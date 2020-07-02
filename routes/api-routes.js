@@ -44,6 +44,10 @@ router.get('/users/login/:username', (req, res) => {
     .catch((err) => { throw err });
 });
 
+// update
+// todo: not sure about this one, as an update to the user, may require updates to all of their animals
+// todo: what would we allow to be updated? email, pass, username
+
 // delete
 router.delete('/users/delete/', (req, res) => {
     // todo will likely need to double check authentication here, lest we have randos hitting delete
@@ -65,10 +69,57 @@ router.delete('/users/delete/', (req, res) => {
 });
 
 // --------------------- ANIMAL ---------------------
+// keeping this for testing but, likely don't want this exposed later on
+router.get('/animals/', (req, res) => {
+    Animal.findAll({})
+    .then((results) => res.json(results))
+    .catch((err) => { throw err });
+});
+
 // create
+router.post('/animals/create', (req, res) => {
+    //todo most of these attributes need to created here on the server, not passed in by the user
+    const { name, hunger, fatigue, bathroom, love, temperature, sick, physicality, boredom, UserUuid } = req.body;
+
+    Animal.create({
+        name:name, 
+        hunger:hunger,
+        fatigue:fatigue,
+        bathroom:bathroom,
+        love:love,
+        temperature:temperature,
+        sick:sick,
+        physicality:physicality,
+        boredom:boredom,
+        UserUuid:UserUuid,
+        uuid: uuidv4()
+    })
+    .then((results) => res.json(results)) // todo send created message
+    .catch((err) => {
+        // todo unique name required,
+        // todo might want to allow duplicate names, as many peopel will want to use the same names for their animals
+        // todo send a response telling user that
+        throw err 
+    });
+});
+
+// update
+// update name
+router.post('/animals/create', (req, res) => {
+    //todo most of these attributes need to created here on the server, not passed in by the user
+    const { name, uuid } = req.body;
+    Animal.findOne({
+        where: {uuid : uuid}
+    })
+    .then(async (animal) => {
+        animal.name = name;
+        return await animal.save();
+    })
+    .then((result) => res.json(result)) //todo send save msg
+    .catch((err) => {throw err})
+});
 // delete
 // view all, per user
-// update
 // view one
 
 // router.get("/burgers", (req, res) => {
