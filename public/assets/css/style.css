@@ -19,8 +19,12 @@ body {
   /* start welcome animation - found on codepen @champa720 */
 
 body.welcome {
-    background-image: url("assets/images/darkStars.jpg");
-    background: #512da8;
+    background-image: url(assets/images/darkStars.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: contain, cover;
+    background-color: #512da8;
     overflow: hidden;
     -webkit-font-smoothing: antialiased;
   }
