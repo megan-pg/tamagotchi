@@ -1,0 +1,31 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+  
+  main {
+    flex: 1 0 auto;
+  }
+  
+  h1 {
+    font-family: 'Indie Flower', cursive;
+    font-weight: 900;
+    text-shadow: 2px 2px black;
+  }
+  .words {
+      margin-left: 25px;
+  }
+
+
+body.list {
+    background-image: url(images/blueTamagot.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: contain, cover;
+    background-color: black;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  
