@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { v4: uuidv4 } = require('uuid');
-const { User } = require('../models');
+const { User, Animal } = require('../models');
 
 // keeping this for testing but, likely don't want this exposed later on
 router.get('/', (req, res) => {
@@ -13,8 +13,7 @@ router.get('/', (req, res) => {
 router.get('/:username/animals', (req, res) => {
   User.findOne({
     where: { username: req.params.username },
-    // include: Animal
-    include: 'Animal',
+    include: Animal,
   })
     // todo is there a better way to do this? the findone above returns the password as well
     .then((data) => res.json(data.Animals))
@@ -42,8 +41,7 @@ router.get('/:username/login', (req, res) => {
   // todo so not sure what will be done with the animal being returned
   User.findOne({
     where: { username: req.params.username },
-    // include: Animal
-    include: 'Animal',
+    include: Animal,
   })
     .then((results) => res.json(results.username)) // todo, needs to return as logged in or a token
     .catch((err) => res.send(`Something went wrong ${err}.`));
