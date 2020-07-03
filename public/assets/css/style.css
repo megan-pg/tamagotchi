@@ -11,6 +11,7 @@ body {
   h1 {
     font-family: 'Indie Flower', cursive;
     font-weight: 900;
+    text-shadow: 2px 2px black;
   }
   .words {
       margin-left: 25px;
@@ -25,6 +26,7 @@ body.welcome {
     background-attachment: fixed;
     background-size: contain, cover;
     background-color: #512da8;
+    background-size: 100% 100%;
     overflow: hidden;
     -webkit-font-smoothing: antialiased;
   }
