@@ -1,22 +1,113 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- Materialize icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
 
-    <title>Hello, world!</title>
-  </head>
-  <body>
-    <h1>Hello, world!</h1>
+  <title>Litte Tamagotchi Dude</title>
+</head>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-  </body>
+<body class="welcome">
+  <span id="splash-overlay" class="splash"></span>
+  <span id="welcome" class="z-depth-4"></span>
+
+  <header class="navbar-fixed">
+    <nav class="row blue darken-3">
+    </nav>
+  </header>
+
+  <main class="valign-wrapper">
+    <span class="container col s12 grey-text text-lighten-1">
+      <div class="words">
+        <p class="flow-text">Welcome to</p>
+        <h1 class="title grey-text text-lighten-3">Little Tamagotchi Dude</h1>
+        <blockquote class="flow-text">A blast from the past!</blockquote>
+      </div>
+    </span>
+
+    <!-- <section> -->
+    <!-- <div class="container"> -->
+    <!-- <div class="row"> -->
+    <!-- <div class="col s12 m8"> -->
+    <!-- <div class="card blue-grey darken-1"> -->
+    <!-- <div class="card-content white-text"> -->
+    <!-- <span class="card-title">Login Below</span> -->
+    <!-- <p>I am a very simple card. I am good at containing small bits of information. -->
+    <!-- I am convenient because I require little markup to use effectively.</p> -->
+    <!-- </div> -->
+    <!-- <div class="card-action"> -->
+    <!-- <a href="#">This is a link</a> -->
+    <!-- <a href="#">This is a link</a> -->
+    <!-- </div> -->
+    <!-- </div> -->
+    <!-- </div> -->
+    <!-- </div> -->
+    <!-- </div> -->
+
+    <!--  -->
+
+    <div class="container" id="login">
+      <div class="z-depth-1 grey lighten-4 row">
+
+        <form class="col s12" method="post">
+          <div class='row'>
+            <div class='col s12'>
+              <h5 class="login-text indigo-text">Login Below</h5>
+
+              <div class='row'>
+                <div class='input-field col s12'>
+                  <input class='validate' type='email' name='email' id='email' />
+                  <label for='email'>Email</label>
+                </div>
+              </div>
+
+              <div class='row'>
+                <div class='input-field col s12'>
+                  <input class='validate' type='password' name='password' id='password' />
+                  <label for='password'>Password</label>
+                </div>
+              </div>
+
+              <div class='row'>
+                <div class='input-field col s12'>
+                  <button type='submit' name='btn_login'
+                    class='login-text col s12 btn btn-large waves-effect indigo'>Login</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+    </section>
+  </main>
+
+  <footer class="page-footer blue darken-3">
+    <div class="footer-copyright blue darken-4">
+      <div class="container">
+        <div>&copy; Copyright 2020</div>
+      </div>
+  </footer>
+
+  <!-- JQUERY -->
+  <script src="https://code.jquery.com/jquery-3.5.0.min.js"
+    integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+  <!-- MATERIALIZE CSS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!-- JavaScript file -->
+  <script src="assets/js/script.js"></script>
+</body>
+
 </html>
