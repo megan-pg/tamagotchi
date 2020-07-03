@@ -1,76 +1,67 @@
-'use strict';
-
 module.exports = {
-  up:  (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Animals', 
-      [
-        { 
-            uuid: 'fdda765f-fc57-5604-a269-52a7df8164ef',
-            UserUuid: 'fdda765f-fc57-5604-a269-52a7df8164ed',
-            name: 'bones',
-            createdAt: '2014-01-01',
-            updatedAt: '2014-01-01',
-            difficulty: 'easy',
+  up: (queryInterface) => queryInterface.bulkInsert('Animals',
+    [
+      {
+        uuid: 'fdda765f-fc57-5604-a269-52a7df8164ef',
+        UserUuid: 'fdda765f-fc57-5604-a269-52a7df8164ed',
+        name: 'bones',
+        createdAt: '2014-01-01',
+        updatedAt: '2014-01-01',
+        difficulty: 'easy',
 
-            hunger: 6,
-            fatigue: true,
-  
-            bathroom: 4,
-            sick: false, 
+        hunger: 6,
+        fatigue: true,
 
-            boredom: 3,
-            bored: false,
+        bathroom: 4,
+        sick: false, 
 
-            health: 8,
-            unhealthy: true,
-        },
-        { 
-          uuid: 'fdda765f-fc57-5604-a269-52a7df8164eg',
-          UserUuid: 'fdda765f-fc57-5604-a269-52a7df8164ec',
-          name: 'snuggles',
-          createdAt: '2014-01-01',
-          updatedAt: '2014-01-01',
-          difficulty: 'medium',
+        boredom: 3,
+        bored: false,
 
-          hunger: 6,
-          fatigue: true,
+        health: 8,
+        unhealthy: true,
+      },
+      {
+        uuid: 'fdda765f-fc57-5604-a269-52a7df8164eg',
+        UserUuid: 'fdda765f-fc57-5604-a269-52a7df8164ec',
+        name: 'snuggles',
+        createdAt: '2014-01-01',
+        updatedAt: '2014-01-01',
+        difficulty: 'medium',
 
-          bathroom: 4,
-          sick: false, 
+        hunger: 6,
+        fatigue: true,
 
-          boredom: 3,
-          bored: false,
+        bathroom: 4,
+        sick: false, 
 
-          health: 8,
-          unhealthy: true,
-        },
-        { 
-          uuid: 'fdda765f-fc57-5604-a269-52a7df8164eh',
-          UserUuid: 'fdda765f-fc57-5604-a269-52a7df8164ec',
-          name: 'snape',
-          createdAt: '2014-01-01',
-          updatedAt: '2014-01-01',
-          difficulty: 'hard',
+        boredom: 3,
+        bored: false,
 
-          hunger: 6,
-          fatigue: true,
+        health: 8,
+        unhealthy: true,
+      },
+      {
+        uuid: 'fdda765f-fc57-5604-a269-52a7df8164eh',
+        UserUuid: 'fdda765f-fc57-5604-a269-52a7df8164ec',
+        name: 'snape',
+        createdAt: '2014-01-01',
+        updatedAt: '2014-01-01',
+        difficulty: 'hard',
 
-          bathroom: 4,
-          sick: false, 
+        hunger: 6,
+        fatigue: true,
 
-          boredom: 3,
-          bored: false,
+        bathroom: 4,
+        sick: false, 
 
-          health: 8,
-          unhealthy: true,
-        }
-      ]
-    // , {}
-    
-    );
-  },
+        boredom: 3,
+        bored: false,
 
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Animals');
-  }
+        health: 8,
+        unhealthy: true,
+      },
+    ]),
+
+  down: (queryInterface) => queryInterface.dropTable('Animals'),
 };
