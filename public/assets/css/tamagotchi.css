@@ -17,7 +17,6 @@ body {
       margin-left: 25px;
   }
 
-
 body.list {
     background-image: url(images/blueTamagot.png);
     background-repeat: no-repeat;
@@ -29,3 +28,9 @@ body.list {
     -webkit-font-smoothing: antialiased;
   }
   
+  #myAudio {
+    position: relative;
+    overflow: hidden;
+    bottom:0;
+    width:100%;
+  }
