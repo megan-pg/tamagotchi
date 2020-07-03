@@ -33,7 +33,7 @@ router.post('/create', (req, res) => {
 // update an individual stat from user input
 router.put('/update', (req, res) => {
   // the following code presumes the actions will share the attribute name of the animal
-  // user clicks "FEED" > put req is sent here with the following json 
+  // user clicks "FEED" > put req is sent here with the following json
   // {"uuid": "animals-uuid-here", "action": "hunger"}
 
   const { uuid, action } = req.body;
@@ -53,7 +53,7 @@ router.put('/update', (req, res) => {
       return animal.update(obj);
     })
     .then((result) => res.send(`Successfully updated ${result.name}. ${action} is now ${result[action]}`))
-    .catch((err) => res.send(`Something went wrong: ${err}`))
+    .catch((err) => res.send(`Something went wrong: ${err}`));
 });
 
 // update via scheduler

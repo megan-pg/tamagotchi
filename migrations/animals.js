@@ -13,7 +13,7 @@ module.exports = {
         fatigue: true,
 
         bathroom: 4,
-        sick: false, 
+        sick: false,
 
         boredom: 3,
         bored: false,
@@ -33,7 +33,7 @@ module.exports = {
         fatigue: true,
 
         bathroom: 4,
-        sick: false, 
+        sick: false,
 
         boredom: 3,
         bored: false,
@@ -53,7 +53,7 @@ module.exports = {
         fatigue: true,
 
         bathroom: 4,
-        sick: false, 
+        sick: false,
 
         boredom: 3,
         bored: false,

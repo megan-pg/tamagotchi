@@ -68,7 +68,7 @@ module.exports = (sequelize, DataTypes) => {
         max = 8;
     }
 
-    const atts = ['hunger','bathroom','boredom'];
+    const atts = ['hunger', 'bathroom', 'boredom'];
     const bools = ['fatigue', 'sick', 'bored'];
     let tempTotal = 0;
     const obj = {
