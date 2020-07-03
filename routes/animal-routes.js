@@ -35,38 +35,41 @@ router.put('/update/', (req, res) => {
     // the following code presumes the actions will share the attribute name of the animal
     // user clicks "FEED" > put req is sent here with the following json 
     // {"uuid": "animals-uuid-here", "action": "hunger"}
-    // hunger: {
-    // bathroom: {
-    // boredom: 
+
     const { uuid, action } = req.body;
     Animal.findOne({
         where: {uuid : uuid}
     })
     .then(async (animal) => {
-        // let obj = {}
-        const obj = Animal.updateStat(animal.dataValues.difficulty, animal.dataValues[action], action)
         if(!Animal.legalActions(action)){
             throw 'Illegal Action!';
         }
 
-        // obj[action] = animal.dataValues[action] - Animal.updateStat(animal.dataValues.difficulty);
-        await animal.update(obj);     
+        const obj = Animal.updateStat(animal.dataValues.difficulty, animal.dataValues[action], action)
+
+        return await animal.update(obj);     
     })
-    .then((result) => res.send(result)) //todo send save msg
-    .catch((err) => res.send(err))
+    .then((result) => res.send(`Successfully updated ${result.name}. ${action} is now ${result[action]}`))
+    .catch((err) => res.send(`Something went wrong: ${err}`))
 });
 
 // update via scheduler
+// seeing as this logic is both moving to the frontend and only running on the animals being viewed
+// the utility of this route is diminished
 router.put('/clock/', (req, res) => {
     Animal.findAll({})
     .then(async (animals) => {
+        let promises = [];
         for(animal of animals){
-            Animal.updateAnimalStats(animal)
-            return await animal.save();
+            let obj = Animal.updateStats(animal);
+            promises.push(animal.update(obj));
         }
+
+        Promise.all(promises)
+        .then((values) => res.send(`${values.length} animals successfully updated!`))
+        .catch((err) => res.send(`Something went wrong: ${err}`));
     })
-    .then((result) => res.json(result)) //todo send save msg
-    .catch((err) => {throw err})
+    .catch((err) => res.send(`Something went wrong: ${err}`));
 });
 
 // update name
@@ -79,11 +82,14 @@ router.put('/rename', (req, res) => {
         where: {uuid : uuid}
     })
     .then(async (animal) => {
-        animal.name = name;
-        return await animal.save();
+        const obj = {
+            name: name
+        }
+
+        return await animal.update(obj);  
     })
-    .then((result) => res.json(result)) //todo send save msg
-    .catch((err) => {throw err})
+    .then((result) => res.send(`Successfully updated ${result.name}'s name!`))
+    .catch((err) => res.send(`Something went wrong: ${err}.`))
 });
 
 // delete
@@ -102,10 +108,8 @@ router.delete('/delete/', (req, res) => {
     .then(async (animal) => {
         return await animal.destroy(); 
     })
-    .then((result) => res.json(result)) //todo send delete msg
-    .catch((err) => {throw err})
+    .then((result) => res.send(`Successfully deleted ${result.name}!`))
+    .catch((err) => res.send(`Something went wrong: ${err}.`))
 });
-// view all, per user
-// view one
 
 module.exports = router;

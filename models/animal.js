@@ -40,22 +40,13 @@ module.exports = (sequelize, DataTypes) => {
       health: {
           type: DataTypes.INTEGER,
       },
-      healthy: {
+      unhealthy: {
           type: DataTypes.BOOLEAN,
       }
     });
   
     // --------------------- HELPER FUNCTIONS ---------------------
     Animal.generateInitialStats = function (name, UserUuid, difficulty){
-        let atts = ['hunger','fatigue','bathroom','sick','boredom','bored','health','healthy'];
-        let obj = 
-            {
-                name: name,
-                difficulty: difficulty,
-                total: 0,
-                UserUuid: UserUuid,
-                uuid: uuidv4(),
-            };
         let min;
         let max;
 
@@ -77,15 +68,39 @@ module.exports = (sequelize, DataTypes) => {
                 max = 8;
         }
 
-        atts.forEach((att) => {
+        let atts = ['hunger','bathroom','boredom'];
+        let bools = ['fatigue', 'sick', 'bored'];
+        let tempTotal = 0;
+        let obj = 
+            {
+                name: name,
+                difficulty: difficulty,
+                total: 0,
+                UserUuid: UserUuid,
+                uuid: uuidv4(),
+            };
+
+        atts.forEach((att, index) => {
             obj[att] = Math.floor(Math.random() * (max - min) + min);
-        })
+            obj[bools[index]] = Animal.tripBoolean(att);
+            tempTotal += obj[att];
+        });
+
+        obj.health = tempTotal / atts.length; // health being an aggregate of the other attributes
+        obj.unhealthy = Animal.tripBoolean(obj.health);
 
         return obj;
     }
 
+    Animal.tripBoolean = function (value){
+        if(value > 5){
+            return true;
+        }
+        return false;
+    }
+
     Animal.updateStat = function (difficulty, value, action){
-        let obj;
+        let obj = {};
         switch(difficulty){
             case 'easy':
                 obj[action] = value - 3;
@@ -109,8 +124,8 @@ module.exports = (sequelize, DataTypes) => {
         // clock update adds to each attribute
         let atts = ['hunger','bathroom','boredom'];
         let tempTotal = 0;
-        att.forEach((att) => {
-            animal[att] += 3 / updateStat(animal.difficulty, animal[att], att).att;
+        atts.forEach((att) => {
+            animal[att] += 3 / this.updateStat(animal.difficulty, animal[att], att)[att];
             tempTotal += animal[att];
         });
         animal.health = tempTotal/atts.length; // aggregate "health" bar, maybe make this the life or death line

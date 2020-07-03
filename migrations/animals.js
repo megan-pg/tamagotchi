@@ -22,7 +22,7 @@ module.exports = {
             bored: false,
 
             health: 8,
-            healthy: true,
+            unhealthy: true,
         },
         { 
           uuid: 'fdda765f-fc57-5604-a269-52a7df8164eg',
@@ -42,7 +42,7 @@ module.exports = {
           bored: false,
 
           health: 8,
-          healthy: true,
+          unhealthy: true,
         },
         { 
           uuid: 'fdda765f-fc57-5604-a269-52a7df8164eh',
@@ -62,7 +62,7 @@ module.exports = {
           bored: false,
 
           health: 8,
-          healthy: true,
+          unhealthy: true,
         }
       ]
     // , {}
