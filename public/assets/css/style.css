@@ -22,6 +22,7 @@ body {
 body.welcome {
     background-image: url(images/darkStars.jpg);
     background-repeat: no-repeat;
+    /*background-image: ;*/
     background-position: center;
     background-attachment: fixed;
     background-size: contain, cover;
