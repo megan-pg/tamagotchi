@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const { v4: uuidv4 } = require('uuid');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const { User, Animal } = require('../models');
 
 // keeping this for testing but, likely don't want this exposed later on
@@ -10,9 +12,9 @@ router.get('/', (req, res) => {
 });
 
 // get animals / user
-router.get('/:username/animals', (req, res) => {
+router.get('/:username/animals', authenticateToken, (req, res) => {
   User.findOne({
-    where: { username: req.params.username },
+    where: { username: req.user.username },
     include: Animal,
   })
     // todo is there a better way to do this? the findone above returns the password as well
@@ -35,15 +37,24 @@ router.post('/create', (req, res) => {
 });
 
 // login
-router.get('/:username/login', (req, res) => {
+router.post('/login', (req, res) => {
+  // expects username & password
   // todo credentials with passport
   // todo this may turn into a very different endpoint seeing as its for logging in
   // todo so not sure what will be done with the animal being returned
   User.findOne({
-    where: { username: req.params.username },
-    include: Animal,
+    where: { username: req.body.username },
   })
-    .then((results) => res.json(results.username)) // todo, needs to return as logged in or a token
+    .then(async (user) => {
+      if (await bcrypt.compare(req.body.password, user.password)) {
+        // res.send(`${req.body.username} signed in successfully!`);
+        const accessToken = jwt.sign(user.dataValues, process.env.ACCESS_TOKEN_SECRET);
+        res.json({ accessToken });
+      } else {
+        res.send('No match!');
+      }
+    })
+    // res.json(results.username)) // todo, needs to return as logged in or a token
     .catch((err) => res.send(`Something went wrong ${err}.`));
 });
 
@@ -70,5 +81,20 @@ router.delete('/delete/', (req, res) => {
     .then((result) => res.send(`${result.username} succesfully deleted!`))
     .catch((err) => res.send(`Something went wrong ${err}.`));
 });
+
+function authenticateToken(req, res, next) {
+  const authHeader = req.headers.authorization;
+  const token = authHeader && authHeader.split(' ')[1];
+  if (token == null) {
+    return res.sendStatus(401);
+  }
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    if (err) {
+      return res.sendStatus(403);
+    }
+    req.user = user;
+    next();
+  });
+}
 
 module.exports = router;
