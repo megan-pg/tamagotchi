@@ -7,25 +7,16 @@ body {
   main {
     flex: 1 0 auto;
   }
-  
-  h1 {
-    font-family: 'Indie Flower', cursive;
-    font-weight: 900;
-    text-shadow: 2px 2px black;
-  }
-  .words {
-      margin-left: 25px;
-  }
 
-body.list {
-    /*background-image: url(images/blueTamagotchi.png);*/
-    /* background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
-    background-size: contain, cover; */
+  body.list {
     background-color: black;
     overflow: hidden;
     -webkit-font-smoothing: antialiased;
+  }
+
+  .dude {
+    display: flex;
+    justify-content: center;
   }
   
   .audioBtns {
@@ -51,7 +42,7 @@ body.list {
   }
 
   #screen {
-    background-image: url(images/darkStars.jpg);
+    background-image: url(images/blueTamagotchiReduced.jpg);
     background-position: center;
     /*width: fit-content;*/
     background-position: center;
