@@ -42,9 +42,14 @@ body {
   }
 
   #screen {
-    background-image: url(images/blueTamagotchiReduced.jpg);
+    background-image: url(images/blueTamagotchi-2000.jpg);
     background-position: center;
     /*width: fit-content;*/
     background-position: center;
     position: center;
+    height: 600px;
+  }
+
+  .view-screen {
+    padding-top: 200px;
   }
