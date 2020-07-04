@@ -26,11 +26,18 @@
         </nav>
     </header>
 
-    <audio id="myAudio" controls muted>
-        <source src="assets/sound-files/POL-chubby-cat-short.wav" type="audio/wav">
-    </audio><br>
+    <div class="container">
+        <div class="col s12">
+            <audio id="player" src="assets/sound-files/POL-chubby-cat-short.wav"></audio>
+            <div>
+                <button onclick="document.getElementById('player').play()">Play</button>
+                <button onclick="document.getElementById('player').pause()">Pause</button>
+                <button onclick="document.getElementById('player').volume+=0.1">Volume Up</button>
+                <button onclick="document.getElementById('player').volume-=0.1">Volume Down</button>
+            </div>
+        </div>
+    </div>
 
-    <p id="demo"></p>
 
     <footer class="list-footer blue darken-3">
         <div class="footer-copyright blue darken-4">
