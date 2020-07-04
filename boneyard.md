@@ -1,3 +1,6 @@
+{"username":"banana", "email":"doug@aol.com", "password":"pencil"} 
+ 
+ 
  {
     "name": "fish people all along",
     "hunger": 50,
