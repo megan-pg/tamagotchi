@@ -28,9 +28,15 @@ body.list {
     -webkit-font-smoothing: antialiased;
   }
   
-  #myAudio {
+  .audioBtns {
     position: relative;
     overflow: hidden;
     bottom:0;
-    width:100%;
+  }
+
+  audio { 
+    width: 600px; 
+    box-shadow: 5px 5px 20px rgba(0,0, 0, 0.4);
+    border-radius: 90px;
+    transform: scale(1.05);
   }
