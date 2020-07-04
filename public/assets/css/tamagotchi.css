@@ -53,3 +53,16 @@ body {
   .view-screen {
     padding-top: 343px;
   }
+
+
+  /* ////////////////////////////// FOOTER //////////////////////////////*/
+  
+.list-footer  {
+  height: 80px;
+}
+
+.footer-copyright  {
+  height: 30px;
+  color: white;
+}
+  
