@@ -18,11 +18,11 @@ body {
   }
 
 body.list {
-    background-image: url(images/blueTamagotchi.png);
-    background-repeat: no-repeat;
+    /*background-image: url(images/blueTamagotchi.png);*/
+    /* background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
-    background-size: contain, cover;
+    background-size: contain, cover; */
     background-color: black;
     overflow: hidden;
     -webkit-font-smoothing: antialiased;
@@ -39,4 +39,21 @@ body.list {
     box-shadow: 5px 5px 20px rgba(0,0, 0, 0.4);
     border-radius: 90px;
     transform: scale(1.05);
+  }
+
+  p {
+    color:white;
+    text-align: center;
+  }
+
+  #padding {
+    padding: 100px;
+  }
+
+  #screen {
+    background-image: url(images/darkStars.jpg);
+    background-position: center;
+    /*width: fit-content;*/
+    background-position: center;
+    position: center;
   }
