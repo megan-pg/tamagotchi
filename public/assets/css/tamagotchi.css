@@ -7,30 +7,62 @@ body {
   main {
     flex: 1 0 auto;
   }
-  
-  h1 {
-    font-family: 'Indie Flower', cursive;
-    font-weight: 900;
-    text-shadow: 2px 2px black;
-  }
-  .words {
-      margin-left: 25px;
-  }
 
-body.list {
-    background-image: url(images/blueTamagotchi.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
-    background-size: contain, cover;
+  body.list {
     background-color: black;
     overflow: hidden;
     -webkit-font-smoothing: antialiased;
   }
+
+  .dude {
+    display: flex;
+    justify-content: center;
+  }
   
-  #myAudio {
+  .audioBtns {
     position: relative;
     overflow: hidden;
     bottom:0;
-    width:100%;
   }
+
+  audio { 
+    width: 600px; 
+    box-shadow: 5px 5px 20px rgba(0,0, 0, 0.4);
+    border-radius: 90px;
+    transform: scale(1.05);
+  }
+
+  p {
+    color:white;
+    text-align: center;
+  }
+
+  #padding {
+    padding: 100px;
+  }
+
+  #screen {
+    background-image: url(images/blueTamagotchi-1475.jpg);
+    background-position: center;
+    /*width: fit-content;*/
+    background-position: center;
+    position: center;
+    height: 800px;
+  }
+
+  .view-screen {
+    padding-top: 343px;
+  }
+
+
+  /* ////////////////////////////// FOOTER //////////////////////////////*/
+  
+.list-footer  {
+  height: 80px;
+}
+
+.footer-copyright  {
+  height: 30px;
+  color: white;
+}
+  

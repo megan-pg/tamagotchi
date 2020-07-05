@@ -26,14 +26,55 @@
         </nav>
     </header>
 
-    <audio id="myAudio" controls muted>
-        <source src="assets/sound-files/POL-chubby-cat-short.wav" type="audio/wav">
-    </audio><br>
+    <div class="container">
+        <div class="audioBtns col s12">
+            <audio id="player" src="assets/sound-files/POL-chubby-cat-short.wav"></audio>
+            <div>
+                <button onclick="document.getElementById('player').play()">Play</button>
+                <button onclick="document.getElementById('player').pause()">Pause</button>
+                <button onclick="document.getElementById('player').volume+=0.1">Volume Up</button>
+                <button onclick="document.getElementById('player').volume-=0.1">Volume Down</button>
+            </div>
+        </div>
+    </div>
+    <main>
+        <div class="container" id="tamagotchi-device">
+            <!--  <div class="row"> -->
+            <!--<form class="col s12" method="post">-->
+            <!-- <div class='row' id="padding row"> -->
+            <!-- <div class='col s12'> -->
+            <!-- <p>padded row</p> -->
+            <!-- </div> -->
+            <!-- </div> -->
+            <div class='row'>
+                <!--blank column to center screen-->
+                <!--<div class='col s2 col m2 col l2'>
+                    </div>-->
+                <!--tamagotchi screen-->
+                <div class='dude col s12' id="screen">
+                    <div class="view-screen">
+                        <img src="assets/css/images/placeholder-image.png" alt="Image of placeholder tamagotchi">
+                        <!--  <p>text</p> -->
+                    </div>
+                </div>
+                <!--blank column to center screen-->
+                <!--<div class='col s2 col m2 col l2'>
+                    </div>-->
+                <!-- <div class='row' id="padding row"> -->
+                <!-- <div class='col s12'> -->
+                <!-- <p>padded row</p> -->
+                <!-- </div> -->
+                <!-- </div> -->
+                <!--  </div> -->
+            </div>
 
-    <p id="demo"></p>
+            <!--</form>-->
+        </div>
+        </div>
+    </main>
 
-    <footer class="list-footer blue darken-3">
-        <div class="footer-copyright blue darken-4">
+    <footer class="list-footer blue darken-4">
+        <div class="footer-copyright blue darken-3">
             <div class="container">
                 <div>&copy; Copyright 2020</div>
             </div>
