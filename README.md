@@ -1,30 +1,82 @@
 # Tamagotchi
 
-One Paragraph of project description goes here
+[![GitHub repo size](https://img.shields.io/github/repo-size/megan-pg/tamagotchi)](https://shields.io/)
 
-## Getting Started
+<!-- ![image or animation of application](./assets/tamagotchi.png) -->
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+## Table of Contents:
+* [Description](##Description)
+* [How to Install](##How-to-Install)
+* [Technologies Used](##Technologies-Used)
+* [Usage](##Usage)
+* [Contributors](##Contributors)
+* [Special Thanks](##Special-Thanks)
+* [Link to Page](##Link-to-Page)
 
-## Built With
+## Description
+This application is a remake of the original Tamagotchi game from the 80's. User logs in and plays with a chosen animal. Keeping it alive and keeping it alive for XX amount of time is the goal.
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+## How to Install
+To run locally: `npm install` in your terminal/bash. Create database `sequelize db:create` then `node server` to turn on the app and database. Run `seeds.sql` in mySQL to get started.
 
-## Contributing
+## Technologies Used
+Project is created with:
+* HTML5
+* CSS3
+* Materialize
+* Javascript
+* MySql
+* Deployed in Heroku
+* Node.js
+    * bcryptjs
+    * dotenv
+    * express
+    * jsonwebtoken
+    * mysql2
+    * sequelize
+    * uuid
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+## Usage
+* Choose your pet
+    * Turtle
+    * Fish
+    * Gator
+    * Mammal
+User inputs Name. Date and pet ID get auto generated.
 
-## Authors
+* Choose level of difficulty 
+    * Easy - Starts off with all full meters
+    * Medium - Starts off with all half meters
+    * Hard - Starts off with meters almost empty
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* Hunger button
+    * Feed - This will update your Hunger meter (makes positive sound)
+    * Snack - This will update your Happy/Bored and Hunger meters but will decrement your Health meter.
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* Disipline button - This will decrement your Happy/Bored meter but will also decrement the chance of your pet acting out (make a negative sound)
 
-## Acknowledgments
+* Medicine button - When your pet's health is very low you can use this but it will also severely lower their Happy/Bored meter (makes a negative sound)
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* Clean button - After your pet poops, it will need to be cleaned. Don't let it sit too long in it's poop or the health meter will be decremented.
 
+* Happy/Bored Button
+    * Love your pet to boost Happy/Bored meter (makes a positive sound)
+    * Play with pet to boost Happy/Bored meter (makes a positive sound)
+
+* Light button - When your pet becomes bored, it wants to go to sleep. Don't let it sit too long bored or the health meter will be decremented. 
+
+## Contributors
+* **Megan Pardy-Gokcu** - [megan-pg](https://github.com/megan-pg)
+* **Doug Wright** - [Spazcool](https://github.com/Spazcool)
+* **Scott House** - [sehouse](https://github.com/sehouse)
+* **Karla McLeod** - [kmcleod81](https://github.com/kmcleod81)
+
+## Special Thanks
+* <!-- kudos -->
+* <!-- kudos -->
+* <!-- kudos -->
+* <!-- kudos -->
+* <!-- kudos -->
+
+## Link to Heroku Page
+* <!-- https://?.herokuapp.com/ -->
