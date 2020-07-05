@@ -30,7 +30,7 @@ $('#login').on('click', () => {
       } else {
         console.log(result);
 
-        // toast explaining what went wrong
+        // todo toast explaining what went wrong
       }
     });
   }

@@ -69,7 +69,7 @@ router.put('/clock', (req, res) => {
       animal.update(obj)
         .then((result) => res.json(result));
     })
-    .catch((err) => res.send(`Something went wrong: ${err}`));
+    .catch((err) => res.json({ msg: `Something went wrong ${err}`, status: 500 }));
 });
 
 // update name
