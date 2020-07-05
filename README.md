@@ -10,6 +10,7 @@
 * [Technologies Used](##Technologies-Used)
 * [Usage](##Usage)
 * [Contributors](##Contributors)
+* [Special Thanks](##Special-Thanks)
 * [Link to Page](##Link-to-Page)
 
 ## Description
@@ -69,6 +70,13 @@ User inputs Name. Date and pet ID get auto generated.
 * **Doug Wright** - [Spazcool](https://github.com/Spazcool)
 * **Scott House** - [sehouse](https://github.com/sehouse)
 * **Karla McLeod** - [kmcleod81](https://github.com/kmcleod81)
+
+## Special Thanks
+* <!-- kudos -->
+* <!-- kudos -->
+* <!-- kudos -->
+* <!-- kudos -->
+* <!-- kudos -->
 
 ## Link to Heroku Page
 * <!-- https://?.herokuapp.com/ -->
