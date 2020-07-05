@@ -124,9 +124,6 @@ module.exports = (sequelize, DataTypes) => {
     return obj;
   };
 
-  // division inverses the difficulty value, to keep easy easy and hard hard
-  // user input subtracts from each attribute
-  // clock update adds to each attribute
   Animal.updateStats = async (animal) => {
     const tempAnimal = { ...animal.dataValues };
     const atts = ['hunger', 'bathroom', 'boredom'];
