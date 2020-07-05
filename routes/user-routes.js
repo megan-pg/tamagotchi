@@ -59,8 +59,8 @@ router.post('/create', (req, res) => {
     password,
     uuid: uuidv4(),
   })
-    .then((results) => res.send(`${results.username} created successfully!`))
-    .catch((err) => res.json(`Something went wrong: ${err.errors[0].message}`));
+    .then((results) => res.json({ msg: `${results.username} created successfully!`, status: 201 }))
+    .catch((err) => res.json({ msg: err.errors[0].message, status: 500 }));
 });
 
 // login
@@ -79,13 +79,13 @@ router.post('/login', (req, res) => {
             // SENDS TOKEN TO FRONTEND, WHERE IT CAN BE SAVED IN LOCALSTORAGE
             // todo add user validation for all actions using their uuid
             // https://github.com/megan-pg/tamagotchi/projects/1#card-41263925
-            res.json({ accessToken, uuid: user.dataValues.uuid });
+            res.json({ accessToken, uuid: user.dataValues.uuid, status: 200 });
           });
       } else {
-        res.send('No match!');
+        res.json({ msg: 'Username OR Password not valid.', status: 400 });
       }
     })
-    .catch((err) => res.send(`Something went wrong ${err}.`));
+    .catch((err) => res.json({ msg: err, status: 500 }));
 });
 
 // logout
