@@ -1,55 +1,67 @@
 body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-  }
-  
-  main {
-    flex: 1 0 auto;
-  }
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
 
-  body.list {
-    background-color: black;
-    overflow: hidden;
-    -webkit-font-smoothing: antialiased;
-  }
+main {
+  flex: 1 0 auto;
+}
 
-  .dude {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .audioBtns {
-    position: relative;
-    overflow: hidden;
-    bottom:0;
-  }
+body.list {
+  background-color: black;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
 
-  audio { 
-    width: 600px; 
-    box-shadow: 5px 5px 20px rgba(0,0, 0, 0.4);
-    border-radius: 90px;
-    transform: scale(1.05);
-  }
+.dude {
+  display: flex;
+  justify-content: center;
+}
 
-  p {
-    color:white;
-    text-align: center;
-  }
+.audioBtns {
+  position: relative;
+  overflow: hidden;
+  bottom:0;
+}
 
-  #padding {
-    padding: 100px;
-  }
+audio { 
+  width: 600px; 
+  box-shadow: 5px 5px 20px rgba(0,0, 0, 0.4);
+  border-radius: 90px;
+  transform: scale(1.05);
+}
 
-  #screen {
-    background-image: url(images/blueTamagotchi-1475.jpg);
-    background-position: center;
-    /*width: fit-content;*/
-    background-position: center;
-    position: center;
-    height: 800px;
-  }
+p {
+  color:white;
+  text-align: center;
+}
 
-  .view-screen {
-    padding-top: 343px;
-  }
+#padding {
+  padding: 100px;
+}
+
+#screen {
+  background-image: url(images/blueTamagotchi-1475.jpg);
+  background-position: center;
+  /*width: fit-content;*/
+  background-position: center;
+  position: center;
+  height: 800px;
+}
+
+.view-screen {
+  padding-top: 343px;
+}
+
+
+/* ////////////////////////////// FOOTER //////////////////////////////*/
+
+.list-footer  {
+height: 80px;
+}
+
+.footer-copyright  {
+height: 30px;
+color: white;
+}
