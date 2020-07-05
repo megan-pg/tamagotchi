@@ -85,7 +85,7 @@ module.exports = (sequelize, DataTypes) => {
       tempTotal += obj[att];
     });
 
-    obj.health = tempTotal / atts.length; // health being an aggregate of the other attributes
+    obj.health = Math.floor(tempTotal / atts.length); // health being an aggregate of the other attributes
     obj.unhealthy = Animal.tripBoolean(obj.health);
 
     return obj;
@@ -98,20 +98,27 @@ module.exports = (sequelize, DataTypes) => {
     return false;
   };
 
-  Animal.updateStat = (difficulty, value, action) => {
+  Animal.updateStat = (difficulty, value, action, user) => {
     const obj = {};
     switch (difficulty) {
       case 'easy':
-        obj[action] = value - 3;
+        obj[action] = user ? value - 3 : value + 3;
         break;
       case 'medium':
-        obj[action] = value - 2;
+        obj[action] = user ? value - 2 : value + 2;
         break;
       case 'hard':
-        obj[action] = value - 1;
+        obj[action] = user ? value - 1 : value + 1;
         break;
       default:
-        obj[action] = value - 3;
+        obj[action] = user ? value - 3 : value + 3;
+    }
+
+    // todo is there a less verbose way of going about this?
+    if (user && obj[action] < 0) {
+      obj[action] = 0;
+    } else if (!user && obj[action] > 10) {
+      obj[action] = 10;
     }
 
     return obj;
@@ -120,16 +127,25 @@ module.exports = (sequelize, DataTypes) => {
   // division inverses the difficulty value, to keep easy easy and hard hard
   // user input subtracts from each attribute
   // clock update adds to each attribute
-  Animal.updateStats = (animal) => {
-    const tempAnimal = { ...animal };
+  Animal.updateStats = async (animal) => {
+    const tempAnimal = { ...animal.dataValues };
     const atts = ['hunger', 'bathroom', 'boredom'];
+    const bools = ['fatigue', 'sick', 'bored'];
     let tempTotal = 0;
-
-    atts.forEach((att) => {
-      tempAnimal[att] += 3 / this.updateStat(tempAnimal.difficulty, tempAnimal[att], att)[att];
-      tempTotal += animal[att];
+    atts.forEach((att, index) => {
+      tempAnimal[att] = Math.floor(Animal.updateStat(
+        tempAnimal.difficulty,
+        tempAnimal[att],
+        att,
+        false,
+      )[att]);
+      // todo move the bool check & health check into separate functions
+      tempAnimal[bools[index]] = Animal.tripBoolean(tempAnimal[att]);
+      tempTotal += tempAnimal[att];
     });
-    tempAnimal.health = tempTotal / atts.length; // aggregate "health" bar
+
+    tempAnimal.health = Math.floor(tempTotal / atts.length); // aggregate "health" bar
+    tempAnimal.unhealthy = Animal.tripBoolean(tempAnimal.health);
 
     return tempAnimal;
   };

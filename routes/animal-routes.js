@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Animal } = require('../models');
+const { Animal, User } = require('../models');
 
 // keeping this for testing but, likely don't want this exposed later on
 router.get('/', (req, res) => {
@@ -8,18 +8,18 @@ router.get('/', (req, res) => {
     .catch((err) => { throw err; });
 });
 
-// get one animal
-router.get('/:id', (req, res) => {
-  // todo limit this to user that is authenticated?
+// get one animal by id
+router.get('/:id', User.authenticateToken, (req, res) => {
+
   Animal.findOne({
     where: { uuid: req.params.id },
   })
     .then((results) => res.json(results))
-    .catch((err) => { throw err; });
+    .catch((err) => res.send(`Something went wrong: ${err}.`));
 });
 
 // create
-router.post('/create', (req, res) => {
+router.post('/create', User.authenticateToken, (req, res) => {
   // user clicks "CREATE" > post req is sent here with the following json
   // {"name": "animals name", "difficulty": "chosen difficulty here", "UserUuid": "usser-uuid-here"}
   const { name, UserUuid, difficulty } = req.body;
@@ -27,11 +27,11 @@ router.post('/create', (req, res) => {
 
   Animal.create(obj)
     .then((results) => res.send(`${results.name} created successfully!`))
-    .catch((err) => res.send(err));
+    .catch((err) => res.send(`Something went wrong: ${err}.`));
 });
 
 // update an individual stat from user input
-router.put('/update', (req, res) => {
+router.put('/update', User.authenticateToken, (req, res) => {
   // the following code presumes the actions will share the attribute name of the animal
   // user clicks "FEED" > put req is sent here with the following json
   // {"uuid": "animals-uuid-here", "action": "hunger"}
@@ -45,9 +45,11 @@ router.put('/update', (req, res) => {
         throw new Error('Invalid Action!');
       }
 
-      const obj = Animal.updateStat(
+      const obj = await Animal.updateStat(
         animal.dataValues.difficulty,
-        animal.dataValues[action], action,
+        animal.dataValues[action],
+        action,
+        true,
       );
 
       return animal.update(obj);
@@ -56,28 +58,22 @@ router.put('/update', (req, res) => {
     .catch((err) => res.send(`Something went wrong: ${err}`));
 });
 
-// update via scheduler
-// seeing as this logic is both moving to the frontend and only running on the animals being viewed
-// the utility of this route is diminished
+// update multiple stats from frontend clock
 router.put('/clock', (req, res) => {
-  Animal.findAll({})
-    .then(async (animals) => {
-      // const promises = [];
-      // for (animal of animals) {
-      //   let obj = Animal.updateStats(animal);
-      //   promises.push(animal.update(obj));
-      // }
-      const promises = animals.map((animal) => animal.update(Animal.updateStats(animal)));
-
-      Promise.all(promises)
-        .then((values) => res.send(`${values.length} animals successfully updated!`))
-        .catch((err) => res.send(`Something went wrong: ${err}`));
+  const { uuid } = req.body;
+  Animal.findOne({
+    where: { uuid },
+  })
+    .then(async (animal) => {
+      const obj = await Animal.updateStats(animal);
+      animal.update(obj)
+        .then((result) => res.json(result));
     })
     .catch((err) => res.send(`Something went wrong: ${err}`));
 });
 
 // update name
-router.put('/rename', (req, res) => {
+router.put('/rename', User.authenticateToken, (req, res) => {
   // user is viewing the update animal view, and has changed the name
   // user clicks "SAVE" > post req is sent here with the following json
   // {"uuid": "animals-uuid-here", "name": "animals new name here"}
@@ -91,14 +87,7 @@ router.put('/rename', (req, res) => {
 });
 
 // delete
-router.delete('/delete/', (req, res) => {
-  // todo will likely need to double check authentication here, lest we have randos hitting delete
-  // something like:
-  //  if(authToken == valid){
-  //    do the thing
-  //  }else{
-  //    get bent
-  //  }
+router.delete('/delete', User.authenticateToken, (req, res) => {
   const { uuid } = req.body;
   Animal.findOne({
     where: { uuid },
