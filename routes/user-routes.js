@@ -10,11 +10,32 @@ router.get('/', (req, res) => {
     .catch((err) => { throw err; });
 });
 
-// get animals / user
+// get user / animals
 router.get('/:username/animals', User.authenticateToken, (req, res) => {
   User.findOne({
-    where: { username: req.body.username },
+    where: { username: req.params.username },
     include: Animal,
+  })
+    // todo check user and token are related
+    .then((user) => {
+      if (user.Animals) {
+        res.json(user.Animals);
+      } else {
+        // todo conditional sends an empty array, so this is pointless
+        throw new Error('No animals!');
+      }
+    })
+    .catch((err) => res.send(`Something went wrong: ${err}.`));
+});
+
+// get user / animal
+router.get('/:username/:animal', User.authenticateToken, (req, res) => {
+  User.findOne({
+    where: { username: req.params.username },
+    include: [{
+      model: Animal,
+      where: { name: req.params.animal },
+    }],
   })
     // todo check user and token are related
     .then((data) => {
@@ -56,6 +77,8 @@ router.post('/login', (req, res) => {
         user.update({ refreshToken })
           .then((result) => {
             // SENDS TOKEN TO FRONTEND, WHERE IT CAN BE SAVED IN LOCALSTORAGE
+            // todo add user validation for all actions using their uuid
+            // https://github.com/megan-pg/tamagotchi/projects/1#card-41263925
             res.json({ accessToken, uuid: user.dataValues.uuid });
           });
       } else {
@@ -123,20 +146,5 @@ router.delete('/delete', User.authenticateToken, (req, res) => {
 // of their animals
 // todo: what would we allow to be updated? email, pass, username
 // todo maybe leave this one alone till everything else is buttoned up
-
-// function authenticateToken(req, res, next) {
-//   const authHeader = req.headers.authorization;
-//   const token = authHeader && authHeader.split(' ')[1];
-//   if (token == null) {
-//     return res.sendStatus(401);
-//   }
-//   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-//     if (err) {
-//       return res.sendStatus(403);
-//     }
-//     req.user = user;
-//     next();
-//   });
-// }
 
 module.exports = router;
