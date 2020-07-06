@@ -17,7 +17,7 @@ $(() => {
     })
     .fail((result) => {
       // todo add a toast here
-      console.log(result.msg);
+      console.log(result);
     });
 });
 
@@ -32,12 +32,15 @@ function getClientCreds() {
 }
 
 function populateAnimalsList(animals, user) {
-  animals.forEach((animal) => {
-    const display = `<li class="waves-effect" id="${animal.name}" data-animal="${animal.uuid}">
+  // todo these are here for demoing, will need to be added to the db
+  const types = ['bird', 'turtle', 'fish', 'mammal'];
+  const states = ['bored', 'fatigue', 'hungry', 'love', 'physicality', 'poop', 'rip', 'sick', 'temperature'];
+  animals.forEach((animal, index) => {
+    const display = `<li class="waves-effect" id="${animal.name}" data-animal="${animal.uuid}" style="padding-bottom: 5px;">
       <div class="valign-wrapper">
           <img 
-          src="/assets/sprite-sheet/raw-sprites/${'bird-tamagotchi/img/bird_default_1.png'}"
-          style="max-width:100px; border-radius:50%;"
+          src="/assets/concept-art/${types[index % 4]}-tamagotchi/img/${types[index % 4]}_${states[index % 9]}.png"
+          style="max-width:80px; height: 80px;border-radius:50%;"
           / >
           <div class="title">
               ${animal.name}<br>
