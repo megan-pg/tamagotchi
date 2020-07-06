@@ -1,24 +1,32 @@
 const path = require('path');
 const router = require('express').Router();
 
+// login
 router.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
+// create user
 router.get('/create', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/create.html'));
 });
 
+// list animals
 router.get('/list', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/list.html'));
 });
 
+// play
 router.get('/play', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/tamagotchi.html'));
 });
 
-// Place this route below all others to send he index.html file
-// to any request that is not explicitly defined above
+// instructions
+router.get('/how-to', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/instructions.html'));
+});
+
+// catch-all
 router.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
