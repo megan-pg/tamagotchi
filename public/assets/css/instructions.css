@@ -10,6 +10,14 @@ body {
     letter-spacing: 0.25px;
 }
 
+.background {
+    position: center;
+    margin-top: 30px;
+    margin-left: 200px;
+    margin-right: 200px;
+    background-color: white;
+}
+
 main {
     flex: 1 0 auto;
 }
@@ -21,6 +29,7 @@ main {
 .container {
     margin-top: 30px;
     max-width: 500px;
+    
 }
   
 .card {
@@ -86,4 +95,3 @@ i.ml-auto {
     height: 60px;
     margin-left: -300px;
     color: white;
-}

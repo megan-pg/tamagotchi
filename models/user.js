@@ -44,12 +44,10 @@ module.exports = (sequelize, DataTypes) => {
   // can be compared to the hashed password stored in our database
   User.validPassword = (pw1, pw2) => bcrypt.compareSync(pw1, pw2);
 
-  User.generateAccessToken = (user) => {
-    return jwt.sign(user.dataValues, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '60m' });
-  };
+  User.generateAccessToken = (user) => jwt.sign(user.dataValues, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '24h' });
 
   User.authenticateToken = (req, res, next) => {
-    const token = req.headers.authorization.slice(1, -1);
+    const token = req.headers.authorization;
     if (token == null) {
       throw new Error('401');
     }

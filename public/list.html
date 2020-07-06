@@ -26,6 +26,53 @@
             </header>
 
             <div>
+                <!-- TODO INLINE STYLING NEEDS TO BE MOVED, ADDNEW BUTTON CAN LIKELY BE REPLACED WITH A MATERIALZE COMPONENT -->
+                <div style="position: fixed; right: 10px; bottom: 10px;">
+                    <form class="col s12 active" method="post" id="addNewForm">
+                        <div class='row'>
+                            <div class='col s12'>
+                                <h5 class="login-text indigo-text">Create a new Animal</h5>
+
+                                <div class='row'>
+                                    <div class='input-field col s12'>
+                                        <input class='validate' type='text' name='name' id='name' />
+                                        <label for='name'>name</label>
+                                    </div>
+                                </div>
+                                <!-- TODO MAKE the next 2 A DROPDOWN WITH THE FOLLOWING OPITONS: easy, medium, hard -->
+                                <div class='row'>
+                                    <div class='input-field col s12'>
+                                        <input class='validate' type='text' name='species' id='species' />
+                                        <label for='species'>species</label>
+                                    </div>
+                                </div>
+                                <div class='row'>
+                                    <div class='input-field col s12'>
+                                        <input class='validate' type='text' name='difficulty' id='difficulty' />
+                                        <label for='difficulty'>difficulty</label>
+                                    </div>
+                                </div>
+                                <div class='row'>
+                                    <div class='input-field col s12'>
+                                        <button type='button' name='btn_create' id='createAnimal'
+                                            class='login-text col s12 btn btn-large waves-effect indigo'>Create</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <button id="addNewButton" type="button" style="
+                    border-radius: 50%; 
+                    background-color: mediumvioletred; 
+                    width: 80px; 
+                    height: 80px; 
+                    font-size: 50px;
+                    float: right;
+                  ">+
+                    </button>
+                </div>
+
                 <div class="container">
                     <div class="card">
                         <h3 class="subheader">Choose your Pet</h3>
@@ -71,43 +118,6 @@
                                 </div>
                             </li>
                         </ul>
-                        <hr class="list-divider">
-                        <h3 class="subheader">Choose Diificulty</h3>
-                        <ul class="list">
-                            <li class="waves-effect">
-                                <div class="valign-wrapper">
-                                    <i class="material-icons left circle white-text">star</i>
-                                    <div class="title">
-                                        Easy<br>
-                                        <span>Start with all full meters</span>
-                                    </div>
-                                    <i class="material-icons ml-auto">control_point</i>
-                                </div>
-                            </li>
-                            <li class="waves-effect">
-                                <div class="valign-wrapper">
-                                    <i class="material-icons left circle white-text">star_half</i>
-                                    <div class="title">
-                                        Medium<br>
-                                        <span>Start with all half full meters</span>
-                                    </div>
-                                    <i class="material-icons ml-auto">control_point</i>
-                                </div>
-                            </li>
-                            <li class="waves-effect">
-                                <div class="valign-wrapper">
-                                    <i class="material-icons left circle white-text">star_border</i>
-                                    <div class="title">
-                                        Hard<br>
-                                        <span>Start with all almost empty meters</span>
-                                    </div>
-                                    <i class="material-icons ml-auto">control_point</i>
-                                </div>
-                            </li>
-                        </ul>
-                        <button class="btn waves-effect waves-light blue darken-3" type="submit" id="start"
-                            name="action">Start
-                        </button>
                     </div>
                 </div>
             </div>
