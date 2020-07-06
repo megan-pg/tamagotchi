@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 });
 
 // get user / animals
-router.get('/:username/animals', User.authenticateToken, (req, res) => {
+router.post('/:username/animals', User.authenticateToken, (req, res) => {
   User.findOne({
     where: { username: req.params.username },
     include: Animal,
@@ -29,7 +29,7 @@ router.get('/:username/animals', User.authenticateToken, (req, res) => {
 });
 
 // get user / animal
-router.get('/:username/:animal', User.authenticateToken, (req, res) => {
+router.post('/:username/:animal', User.authenticateToken, (req, res) => {
   User.findOne({
     where: { username: req.params.username },
     include: [{
@@ -79,7 +79,12 @@ router.post('/login', (req, res) => {
             // SENDS TOKEN TO FRONTEND, WHERE IT CAN BE SAVED IN LOCALSTORAGE
             // todo add user validation for all actions using their uuid
             // https://github.com/megan-pg/tamagotchi/projects/1#card-41263925
-            res.json({ accessToken, uuid: user.dataValues.uuid, status: 200 });
+            res.json({
+              accessToken,
+              uuid: user.dataValues.uuid,
+              username: user.dataValues.username,
+              status: 200,
+            });
           });
       } else {
         res.json({ msg: 'Username OR Password not valid.', status: 400 });
