@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 8080;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static('public')); // todo had to duplicate this in htmlroutes, might beable to cut it
 
 app.use('/', routes);
 

@@ -10,15 +10,16 @@ router.get('/', (req, res) => res.sendFile('index.html', root));
 // create user
 router.get('/create', (req, res) => res.sendFile('create.html', root));
 
-// list animals
+// list user animals
+// todo should i put a check here on the username and animal?
 router.get('/list', (req, res) => res.sendFile('list.html', root));
-
-// instructions
-router.get('/how-to', (req, res) => res.sendFile('instructions.html', root));
 
 // user/animal
 // todo should i put a check here on the username and animal?
 router.get('/play/:username/:animal', (req, res) => res.sendFile('tamagotchi.html', root));
+
+// instructions
+router.get('/how-to', (req, res) => res.sendFile('instructions.html', root));
 
 // catch-all
 router.get('*', (req, res) => res.sendFile('index.html', root));
