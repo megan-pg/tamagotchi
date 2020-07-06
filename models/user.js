@@ -47,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
   User.generateAccessToken = (user) => jwt.sign(user.dataValues, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '24h' });
 
   User.authenticateToken = (req, res, next) => {
-    const token = req.headers.authorization.slice(1, -1);
+    const token = req.headers.authorization;
     if (token == null) {
       throw new Error('401');
     }
