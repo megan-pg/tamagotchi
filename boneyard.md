@@ -1,5 +1,6 @@
 {"username":"banana", "email":"doug@aol.com", "password":"pencil"} 
- 
+  {"UserUuid":"7026ac1c-8cdd-49f8-94f8-c26c94e8e0e6", "name":"orange", "difficulty": "easy"}
+
  {"username":"douglas", "email":"doug@aol.de", "password":"pencils"}
  {
     "name": "fish people all along",
