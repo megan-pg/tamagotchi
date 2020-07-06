@@ -17,7 +17,21 @@
 This application is a remake of the original Tamagotchi game from the 80's. User logs in and plays with a chosen animal. Keeping it alive and keeping it alive for XX amount of time is the goal.
 
 ## How to Install
-To run locally: `npm install` in your terminal/bash. Create database `sequelize db:create` then `node server` to turn on the app and database. Run `seeds.sql` in mySQL to get started.
+Requires:
+* Node
+* MySQL
+
+To run locally:
+1. Install dependencies:
+    ``` npm install ```
+
+2. Create database:
+    ``` sequelize db:create ```
+
+3. Run server:
+    ```node server```
+    
+4. Open localhost in browser & create an account
 
 ## Technologies Used
 Project is created with:
@@ -45,9 +59,9 @@ Project is created with:
 User inputs Name. Date and pet ID get auto generated.
 
 * Choose level of difficulty 
-    * Easy - Starts off with all full meters
-    * Medium - Starts off with all half meters
-    * Hard - Starts off with meters almost empty
+    * Easy - Starts off with meters near empty
+    * Medium - Starts off with meters half full
+    * Hard - Starts off with meters almost full
 
 * Hunger button
     * Feed - This will update your Hunger meter (makes positive sound)
