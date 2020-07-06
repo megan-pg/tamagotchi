@@ -24,8 +24,9 @@ $('#login').on('click', () => {
     $.post('/api/users/login', obj, (result) => {
       if (result.status === 200) {
         // todo might need to check that if token already exists to update it
+        localStorage.setItem('username', JSON.stringify(result.username));
         localStorage.setItem('accessToken', JSON.stringify(result.accessToken));
-        localStorage.setItem('user', JSON.stringify(result.uuid));
+        localStorage.setItem('uuid', JSON.stringify(result.uuid));
         window.location.replace('/list'); // navigate to the login screen
       } else {
         console.log(result);

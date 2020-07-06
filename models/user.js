@@ -45,12 +45,11 @@ module.exports = (sequelize, DataTypes) => {
   User.validPassword = (pw1, pw2) => bcrypt.compareSync(pw1, pw2);
 
   User.generateAccessToken = (user) => {
-    return jwt.sign(user.dataValues, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30m' });
+    return jwt.sign(user.dataValues, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '60m' });
   };
 
   User.authenticateToken = (req, res, next) => {
-    const authHeader = req.headers.authorization;
-    const token = authHeader && authHeader.split(' ')[1];
+    const token = req.headers.authorization.slice(1, -1);
     if (token == null) {
       throw new Error('401');
     }

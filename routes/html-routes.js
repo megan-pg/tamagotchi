@@ -26,6 +26,11 @@ router.get('/how-to', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/instructions.html'));
 });
 
+// user/animal
+router.get('/play/:username/:animal', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/tamagotchi.html'));
+});
+
 // catch-all
 router.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
