@@ -1,31 +1,51 @@
-$(() => {
+// INITIAL PAGE LOAD
+$(async () => {
   // todo add some validation here, if there's no/null values from getClientCreds
   // don't bother with the db call
   const obj = getClientCreds();
-  const userStr = obj.username.slice(1, -1);
+  const userStr = obj.username;
+  const getAnimals = await getAnimalList(obj, userStr);
+  populateAnimalsList(getAnimals.msg, userStr);
+});
 
-  $.ajax({
-    url: `/api/users/${userStr}/animals`,
+async function getAnimalList(creds, user) {
+  return $.ajax({
+    url: `/api/users/${user}/animals`,
     type: 'post',
     headers: {
-      authorization: obj.token,
+      authorization: creds.token,
     },
     dataType: 'json',
   })
-    .then((result) => {
-      populateAnimalsList(result.msg, userStr);
-    })
+    .then(async (result) => result)
     .fail((result) => {
       // todo add a toast here
       console.log(result);
     });
-});
+}
+
+async function createAnimal(creds, data) {
+  $.ajax({
+    url: '/api/animals/create',
+    type: 'post',
+    data,
+    headers: {
+      authorization: creds.token,
+    },
+    dataType: 'json',
+  })
+    .then(async (result) => result)
+    .fail((result) => {
+      // todo add a toast here
+      console.log(result);
+    });
+}
 
 function getClientCreds() {
   const obj = {
-    token: localStorage.getItem('accessToken'),
-    uuid: localStorage.getItem('uuid'),
-    username: localStorage.getItem('username'),
+    token: JSON.parse(localStorage.getItem('accessToken')),
+    uuid: JSON.parse(localStorage.getItem('uuid')),
+    username: JSON.parse(localStorage.getItem('username')),
   };
 
   return obj;
@@ -57,6 +77,39 @@ function populateAnimalsList(animals, user) {
   });
 }
 
+function validateInputs(obj) {
+  const inputs = Object.entries(obj).filter(([key, val]) => val.length === 0);
+
+  if (inputs.length > 0) {
+    const required = inputs.map(([key, val]) => `${key}: is required.`);
+    return required;
+  }
+
+  return true;
+}
+
+// OPEN LITTLE FORM
 $('#addNewButton').click(() => {
   $('#addNewForm').toggleClass('active');
+});
+
+$('#createAnimal').click(async () => {
+  const creds = getClientCreds();
+  const userStr = creds.username;
+  const obj = {
+    name: $('#name').val(),
+    difficulty: $('#difficulty').val(),
+    species: $('#species').val(),
+    UserUuid: creds.uuid,
+  };
+  const valid = validateInputs(obj);
+
+  // todo create a toast or some on screen notification for the following console.logs
+  if (Array.isArray(valid)) {
+    valid.map((item) => console.log(item));
+  } else {
+    createAnimal(creds, obj);
+    const getAnimals = await getAnimalList(creds, userStr);
+    populateAnimalsList(getAnimals.msg, userStr);
+  }
 });
