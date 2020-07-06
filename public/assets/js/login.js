@@ -24,14 +24,23 @@ $('#login').on('click', () => {
     $.post('/api/users/login', obj, (result) => {
       if (result.status === 200) {
         // todo might need to check that if token already exists to update it
+<<<<<<< Updated upstream
         localStorage.setItem('username', JSON.stringify(result.username));
         localStorage.setItem('accessToken', JSON.stringify(result.accessToken));
         localStorage.setItem('uuid', JSON.stringify(result.uuid));
+=======
+        localStorage.setItem('accessToken', JSON.stringify(result.accessToken));
+        localStorage.setItem('user', JSON.stringify(result.uuid));
+>>>>>>> Stashed changes
         window.location.replace('/list'); // navigate to the login screen
       } else {
         console.log(result);
 
+<<<<<<< Updated upstream
         // todo toast explaining what went wrong
+=======
+        // toast explaining what went wrong
+>>>>>>> Stashed changes
       }
     });
   }

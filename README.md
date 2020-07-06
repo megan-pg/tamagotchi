@@ -17,6 +17,7 @@
 This application is a remake of the original Tamagotchi game from the 80's. User logs in and plays with a chosen animal. Keeping it alive and keeping it alive for XX amount of time is the goal.
 
 ## How to Install
+<<<<<<< Updated upstream
 Requires:
 * Node
 * MySQL
@@ -73,6 +74,50 @@ User inputs Name. Date and pet ID get auto generated.
 
 * Clean button - After your pet poops, it will need to be cleaned. Don't let it sit too long in it's poop or the health meter will be decremented.
 
+=======
+To run locally: `npm install` in your terminal/bash. Create database `sequelize db:create` then `node server` to turn on the app and database. Run `seeds.sql` in mySQL to get started.
+
+## Technologies Used
+Project is created with:
+* HTML5
+* CSS3
+* Materialize
+* Javascript
+* MySql
+* Deployed in Heroku
+* Node.js
+    * bcryptjs
+    * dotenv
+    * express
+    * jsonwebtoken
+    * mysql2
+    * sequelize
+    * uuid
+
+## Usage
+* Choose your pet
+    * Turtle
+    * Fish
+    * Gator
+    * Mammal
+User inputs Name. Date and pet ID get auto generated.
+
+* Choose level of difficulty 
+    * Easy - Starts off with all full meters
+    * Medium - Starts off with all half meters
+    * Hard - Starts off with meters almost empty
+
+* Hunger button
+    * Feed - This will update your Hunger meter (makes positive sound)
+    * Snack - This will update your Happy/Bored and Hunger meters but will decrement your Health meter.
+
+* Disipline button - This will decrement your Happy/Bored meter but will also decrement the chance of your pet acting out (make a negative sound)
+
+* Medicine button - When your pet's health is very low you can use this but it will also severely lower their Happy/Bored meter (makes a negative sound)
+
+* Clean button - After your pet poops, it will need to be cleaned. Don't let it sit too long in it's poop or the health meter will be decremented.
+
+>>>>>>> Stashed changes
 * Happy/Bored Button
     * Love your pet to boost Happy/Bored meter (makes a positive sound)
     * Play with pet to boost Happy/Bored meter (makes a positive sound)

@@ -59,8 +59,13 @@ router.post('/create', (req, res) => {
     password,
     uuid: uuidv4(),
   })
+<<<<<<< Updated upstream
     .then((results) => res.json({ msg: results.username, status: 201 }))
     .catch((err) => res.json({ msg: `Something went wrong: ${err.errors[0].message}.`, status: 500 }));
+=======
+    .then((results) => res.json({ msg: `${results.username} created successfully!`, status: 201 }))
+    .catch((err) => res.json({ msg: err.errors[0].message, status: 500 }));
+>>>>>>> Stashed changes
 });
 
 // login
@@ -79,18 +84,26 @@ router.post('/login', (req, res) => {
             // SENDS TOKEN TO FRONTEND, WHERE IT CAN BE SAVED IN LOCALSTORAGE
             // todo add user validation for all actions using their uuid
             // https://github.com/megan-pg/tamagotchi/projects/1#card-41263925
+<<<<<<< Updated upstream
             res.json({
               accessToken,
               uuid: user.dataValues.uuid,
               username: user.dataValues.username,
               status: 200,
             });
+=======
+            res.json({ accessToken, uuid: user.dataValues.uuid, status: 200 });
+>>>>>>> Stashed changes
           });
       } else {
         res.json({ msg: 'Username OR Password not valid.', status: 400 });
       }
     })
+<<<<<<< Updated upstream
     .catch((err) => res.json({ msg: `Something went wrong: ${err}.`, status: 500 }));
+=======
+    .catch((err) => res.json({ msg: err, status: 500 }));
+>>>>>>> Stashed changes
 });
 
 // logout
