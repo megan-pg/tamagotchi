@@ -1,6 +1,6 @@
 {"username":"banana", "email":"doug@aol.com", "password":"pencil"} 
  
- 
+ {"username":"douglas", "email":"doug@aol.de", "password":"pencils"}
  {
     "name": "fish people all along",
     "hunger": 50,

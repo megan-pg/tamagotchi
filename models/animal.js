@@ -15,6 +15,10 @@ module.exports = (sequelize, DataTypes) => {
     difficulty: {
       type: DataTypes.STRING,
     },
+    age: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+    },
 
     hunger: {
       type: DataTypes.INTEGER,
@@ -143,6 +147,7 @@ module.exports = (sequelize, DataTypes) => {
 
     tempAnimal.health = Math.floor(tempTotal / atts.length); // aggregate "health" bar
     tempAnimal.unhealthy = Animal.tripBoolean(tempAnimal.health);
+    tempAnimal.age += 1;
 
     return tempAnimal;
   };

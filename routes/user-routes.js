@@ -6,8 +6,8 @@ const { User, Animal } = require('../models');
 // keeping this for testing but, likely don't want this exposed later on
 router.get('/', (req, res) => {
   User.findAll({})
-    .then((results) => res.json(results))
-    .catch((err) => { throw err; });
+    .then((results) => res.json({ msg: results, status: 200 }))
+    .catch((err) => res.json({ msg: `Something went wrong: ${err}.`, status: 500 }));
 });
 
 // get user / animals
@@ -19,13 +19,13 @@ router.get('/:username/animals', User.authenticateToken, (req, res) => {
     // todo check user and token are related
     .then((user) => {
       if (user.Animals) {
-        res.json(user.Animals);
+        res.json({ msg: user.Animals, status: 200 });
       } else {
         // todo conditional sends an empty array, so this is pointless
         throw new Error('No animals!');
       }
     })
-    .catch((err) => res.send(`Something went wrong: ${err}.`));
+    .catch((err) => res.json({ msg: `Something went wrong: ${err}.`, status: 404 }));
 });
 
 // get user / animal
@@ -40,13 +40,13 @@ router.get('/:username/:animal', User.authenticateToken, (req, res) => {
     // todo check user and token are related
     .then((data) => {
       if (data.Animals) {
-        res.json(data.Animals);
+        res.json({ msg: data.Animals, status: 200 });
       } else {
         // todo conditional sends an empty array, so this is pointless
         throw new Error('No animals!');
       }
     })
-    .catch((err) => res.send(`Something went wrong: ${err}.`));
+    .catch((err) => res.json({ msg: `Something went wrong: ${err}.`, status: 404 }));
 });
 
 // create
@@ -59,8 +59,8 @@ router.post('/create', (req, res) => {
     password,
     uuid: uuidv4(),
   })
-    .then((results) => res.json({ msg: `${results.username} created successfully!`, status: 201 }))
-    .catch((err) => res.json({ msg: err.errors[0].message, status: 500 }));
+    .then((results) => res.json({ msg: results.username, status: 201 }))
+    .catch((err) => res.json({ msg: `Something went wrong: ${err.errors[0].message}.`, status: 500 }));
 });
 
 // login
@@ -85,7 +85,7 @@ router.post('/login', (req, res) => {
         res.json({ msg: 'Username OR Password not valid.', status: 400 });
       }
     })
-    .catch((err) => res.json({ msg: err, status: 500 }));
+    .catch((err) => res.json({ msg: `Something went wrong: ${err}.`, status: 500 }));
 });
 
 // logout
@@ -100,34 +100,33 @@ router.post('/logout', (req, res) => {
       };
       return user.update(obj);
     })
-    .then(() => res.sendStatus(204))
-    .catch((err) => res.send(`Something went wrong ${err}.`));
+    .then(() => res.json({ msg: 'Logout successful.', status: 204 }))
+    .catch((err) => res.json({ msg: `Something went wrong ${err}.`, status: 500 }));
 });
 
 // create new auth token
 router.post('/token', (req, res) => {
   const refreshToken = req.body.token;
   if (refreshToken == null) {
-    return res.sendStatus(401);
+    res.json({ msg: 'Unauthorized.', status: 401 });
   }
+
   User.findOne({
     where: { refreshToken },
   })
     .then((result) => {
       if (result.refreshToken == null) {
-        return res.sendStatus(403);
+        res.json({ msg: 'Forbidden.', status: 403 });
       }
       jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
         if (err) {
-          return res.sendStatus(403);
+          res.json({ msg: 'Forbidden.', status: 403 });
         }
-        const accessToken = generateAccessToken({ name: user.name });
-        res.json(accessToken);
+        const accessToken = User.generateAccessToken({ name: user.name });
+        res.json({ accessToken });
       });
     })
-    .catch((err) => {
-      return `Something went wrong: ${err}.`;
-    });
+    .catch((err) => res.json({ msg: `Something went wrong: ${err}.`, status: 500 }));
 });
 
 // delete
@@ -137,8 +136,8 @@ router.delete('/delete', User.authenticateToken, (req, res) => {
     where: { uuid },
   })
     .then(async (user) => user.destroy())
-    .then((result) => res.send(`${result.username} succesfully deleted!`))
-    .catch((err) => res.send(`Something went wrong ${err}.`));
+    .then((result) => res.json({ msg: `${result.username} succesfully deleted!`, status: 202 }))
+    .catch((err) => res.json({ msg: `Something went wrong ${err}.`, status: 500 }));
 });
 
 // update
