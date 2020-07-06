@@ -1,0 +1,5 @@
+#image {
+  height: 320px;
+  width: 640px;
+  background: url('link_to_sprite_sheet') 0px 0px;
+}
