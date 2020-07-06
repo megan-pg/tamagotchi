@@ -56,3 +56,7 @@ function populateAnimalsList(animals, user) {
     });
   });
 }
+
+$('#addNewButton').click(() => {
+  $('#addNewForm').toggleClass('active');
+});

@@ -13,7 +13,11 @@ body {
 main {
     flex: 1 0 auto;
 }
-  
+
+.active {
+  display: none;
+}  
+
 .container {
     margin-top: 30px;
     max-width: 500px;
@@ -83,4 +87,3 @@ i.ml-auto {
     margin-left: -300px;
     color: white;
 }
-    
