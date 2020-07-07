@@ -101,4 +101,4 @@ $(document).ready(function () {
 
 // * Disipline button - This will decrement your Happy / Bored meter but will also decrement the chance of your pet acting out(make a negative sound)
 
-//       * Light button - When your pet becomes bored, it wants to go to sleep.Don't let it sit too long bored or the health meter will be decremented. 
+// * Light button - When your pet becomes bored, it wants to go to sleep.Don't let it sit too long bored or the health meter will be decremented.
