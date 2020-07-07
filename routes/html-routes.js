@@ -1,39 +1,27 @@
 const path = require('path');
-const router = require('express').Router();
+const express = require('express');
+
+const router = express.Router();
+const root = { root: path.join(__dirname, '../public') };
 
 // login
-router.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/index.html'));
-});
+router.get('/', (req, res) => res.sendFile('index.html', root));
 
 // create user
-router.get('/create', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/create.html'));
-});
+router.get('/create', (req, res) => res.sendFile('create.html', root));
 
-// list animals
-router.get('/list', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/list.html'));
-});
-
-// play
-router.get('/play', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/tamagotchi.html'));
-});
-
-// instructions
-router.get('/how-to', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/instructions.html'));
-});
+// list user animals
+// todo should i put a check here on the username and animal?
+router.get('/list', (req, res) => res.sendFile('list.html', root));
 
 // user/animal
-router.get('/play/:username/:animal', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/tamagotchi.html'));
-});
+// todo should i put a check here on the username and animal?
+router.get('/play/:username/:animal', (req, res) => res.sendFile('tamagotchi.html', root));
+
+// instructions
+router.get('/how-to', (req, res) => res.sendFile('instructions.html', root));
 
 // catch-all
-router.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/index.html'));
-});
+router.get('*', (req, res) => res.sendFile('index.html', root));
 
 module.exports = router;
