@@ -22,8 +22,8 @@ router.get('/:id', User.authenticateToken, (req, res) => {
 router.post('/create', User.authenticateToken, (req, res) => {
   // user clicks "CREATE" > post req is sent here with the following json
   // {"name": "animals name", "difficulty": "chosen difficulty here", "UserUuid": "usser-uuid-here"}
-  const { name, UserUuid, difficulty } = req.body;
-  const obj = Animal.generateInitialStats(name, UserUuid, difficulty);
+  const { name, UserUuid, difficulty, species } = req.body;
+  const obj = Animal.generateInitialStats(name, UserUuid, difficulty, species);
 
   Animal.create(obj)
     .then((results) => res.json({ msg: `${results.name} created successfully!`, status: 201 }))

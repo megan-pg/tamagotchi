@@ -38,8 +38,10 @@ function getClientCreds() {
 }
 
 function populateAnimalStats(animal) {
-  const type = 'bird';
-  const state = 'bored';
+  // const { fatigue, hungry, sick, bathroom, bored, boredom, health, unhealthy} = animal;
+  const type = animal.species;
+  // todo some math for calculating state
+  const state = animal.fatigue;
   const stats = Object.entries(animal).map(([key, val]) => `<li>${key}: ${val}</li>`).join('');
   const display = `<div class="waves-effect" id="animalBox">
       <div class="valign-wrapper">
