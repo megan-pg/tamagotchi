@@ -85,12 +85,10 @@ User inputs Name. Date and pet ID get auto generated.
 * **Scott House** - [sehouse](https://github.com/sehouse)
 * **Karla McLeod** - [kmcleod81](https://github.com/kmcleod81)
 
-## Special Thanks
-* <!-- kudos -->
-* <!-- kudos -->
-* <!-- kudos -->
-* <!-- kudos -->
-* <!-- kudos -->
+## Special Thanks/Credits
+* Game Music: "Chubby Cat", from PlayOnLoop.com Licensed under Creative Commins by Attriution 4.0
+* Additional sound effects from https://www.zapsplat.com
+* Cool bouncy animation found on codepen @champa720
 
 ## Link to Heroku Page
 * <!-- https://?.herokuapp.com/ -->
