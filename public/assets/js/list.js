@@ -4,7 +4,7 @@ $(async () => {
   // don't bother with the db call
   const obj = getClientCreds();
   const userStr = obj.username;
-  let getAnimals = await getAnimalList(obj, userStr);
+  const getAnimals = await getAnimalList(obj, userStr);
   populateAnimalsList(getAnimals.msg, userStr);
 });
 
@@ -116,10 +116,8 @@ $('#createAnimal').click(async () => {
   if (Array.isArray(valid)) {
     valid.map((item) => console.log(item));
   } else {
-    let thing = await createAnimal(creds, obj);
-    console.log(thing)
-    let animals = await getAnimalList(creds, userStr);
-    console.log(animals.msg)
+    await createAnimal(creds, obj);
+    const animals = await getAnimalList(creds, userStr);
     populateAnimalsList(animals.msg, userStr);
   }
 });
