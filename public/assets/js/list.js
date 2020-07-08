@@ -117,7 +117,10 @@ $('#createAnimal').click(async () => {
     valid.map((item) => console.log(item));
   } else {
     await createAnimal(creds, obj)
-      .then(async () => getAnimalList(creds, userStr))
+      .then(async (res) => {
+        console.log(res)
+        return getAnimalList(creds, userStr);
+      })
       .then((animals) => {
         console.log(animals)
         populateAnimalsList(animals.msg, userStr);
