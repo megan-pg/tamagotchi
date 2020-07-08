@@ -30,7 +30,7 @@ async function getAnimalList(creds, user) {
 }
 
 async function createAnimal(creds, data) {
-  $.ajax({
+  return $.ajax({
     url: '/api/animals/create',
     type: 'post',
     data,
