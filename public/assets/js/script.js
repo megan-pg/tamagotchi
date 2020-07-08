@@ -44,40 +44,6 @@ startBtn() => {
 }
 
 
-// html for butons //
-<div class="actionBtns col s12">
-  <div>
-    {/* Feed button - This will update your Hunger meter(makes positive sound) */}
-    <audio id="hunger" src="assets/sound-files/positive_sound.mp3"></audio>
-    <button class="btn" onclick="document.getElementById('hunger').play()">Feed</button>
-  </div>
-
-  <div>
-    {/* Medicine button - When your pet's health is very low you can use this but it will also severely lower their Happy/Bored meter (makes a negative sound) */}
-    <audio id="medicine" src="assets/sound-files/negative_sound.mp3"></audio>
-    <button class="btn" onclick="document.getElementById('medicine').play()">Medicine</button>
-  </div>
-
-  <div>
-    {/* Clean button - After your pet poops, it will need to be cleaned.Don't let it sit too long in it's poop or the health meter will be decremented. */}
-    <audio id="clean" src="assets/sound-files/positive_sound.mp3"></audio>
-    <button class="btn" onclick="document.getElementById('clean').play()">Clean</button>
-  </div>
-
-  <div>
-    {/*  Love your pet to boost Happy / Bored meter(makes a positive sound) */}
-    <audio id="love" src="assets/sound-files/positive_sound.mp3"></audio>
-    <button class="btn" onclick="document.getElementById('love').play()">Love</button>
-  </div>
-
-  <div>
-    {/* Play with pet to boost Happy / Bored meter(makes a positive sound) */}
-    <audio id="play" src="assets/sound-files/positive_sound.mp3"></audio>
-    <button class="btn" onclick="document.getElementById('play').play()">Play</button>
-  </div>
-</div>
-
-
 // js for buttons //
 
 $(document).ready(function () {

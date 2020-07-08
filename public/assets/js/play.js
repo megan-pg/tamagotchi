@@ -5,7 +5,9 @@ $(async () => {
   const obj = getClientCreds();
   const userStr = obj.username;
   const animal = await getAnimal(obj, userStr);
+  localStorage.setItem('animal-uuid', JSON.stringify(animal.msg[0].uuid));
   populateAnimalStats(animal.msg[0]);
+  startGame();
 });
 
 async function getAnimal(creds, user) {
@@ -56,28 +58,9 @@ function populateAnimalStats(animal) {
           </div>
           <i class="material-icons ml-auto"><i class="${'fas fa-poop'}"></i></i>
       </div>
-      <button type="button" id="clock">Update all Stats (clock test)</button>
-      <button type="button" id="feed">Update Stat: hunger</button>
     </div>`;
   $('#animalBox').remove();
   $('#animal').append(display);
-// todo move event listeners outside of this function, the buttons need not be dynamic above 
-  $('#clock').click(async () => {
-    const obj = getClientCreds();
-    const userStr = obj.username;
-    await updateStats({ uuid: animal.uuid }, getClientCreds());
-    const dude = await getAnimal(obj, userStr);
-    populateAnimalStats(dude.msg[0]);
-  });
-
-  $('#feed').click(async () => {
-    const obj = getClientCreds();
-    const userStr = obj.username;
-    updateStat({ uuid: animal.uuid, action: 'hunger' }, getClientCreds());
-    const dude = await getAnimal(obj, userStr);
-    populateAnimalStats(dude.msg[0]);
-  });
-
 }
 
 async function updateStats(data, creds) {
@@ -113,14 +96,109 @@ async function updateStat(data, creds) {
       console.log(result);
     });
 }
-// todo might not need this one
-// function validateInputs(obj) {
-//   const inputs = Object.entries(obj).filter(([key, val]) => val.length === 0);
 
-//   if (inputs.length > 0) {
-//     const required = inputs.map(([key, val]) => `${key}: is required.`);
-//     return required;
-//   }
+async function refreshScreen(action) {
+  const obj = getClientCreds();
+  const userStr = obj.username;
+  const uuid = JSON.parse(localStorage.getItem('animal-uuid'));
 
-//   return true;
+  if (action) {
+    await updateStat({ uuid, action }, getClientCreds());
+  } else {
+    await updateStats({ uuid }, getClientCreds());
+  }
+
+  const animal = await getAnimal(obj, userStr);
+  populateAnimalStats(animal.msg[0]);
+
+  if (animal.msg[0].unhealthy === true && !action) {
+    $('#negative')[0].play();
+  } else {
+    $('#positive')[0].play();
+  }
+}
+
+function startGame() {
+  //timer
+  //every minute call updatestats
+  // then populateanimalstats
+}
+
+$('.updateStat').click(async function() {
+  let action;
+  switch (this.id) {
+    case 'feed':
+      action = 'hunger';
+      break;
+    case 'sleep':
+      action = 'fatigue';
+      break;
+    case 'clean':
+      action = 'bathroom';
+      break;
+    case 'medicine':
+      action = 'sick';
+      break;
+    case 'play':
+      action = 'boredom';
+      break;
+    case 'love':
+      action = 'bored';
+      break;
+    default:
+      action = 'hunger';
+  }
+  refreshScreen(action);
+});
+
+// todo move event listeners outside of this function, the buttons need not be dynamic above 
+$('#clock').click(async () => {
+  refreshScreen();
+});
+
+
+// onclick="document.getElementById('play').play()"
+
+//variable for starting the timer with the start button
+// const startEl = document.querySelector("#start");
+
+// // set seconds to what it starts at
+// const secondsStart = 0;
+// //start of function timer function
+// setTime() => {
+//   timerInterval = setInterval(function () {
+//     //addition of seconds from the timer
+//     secondsStart++;
+//     //what I want to populate to the page in textContent
+//     timeEl.textContent = "Time: " + secondsStart;
+
+//     //if statement saying if counter is zero stop the timer
+//     if (secondsStart === 100) {
+//       clearInterval(timerInterval);
+//     }
+//     // counting in milliseconds
+//   }, 1000);
 // }
+
+// //start timer when start button is clicked function
+// startEl.onclick = startBtn;
+// startBtn() => {
+//   setTime();
+// }
+
+
+// // js for buttons //
+
+// $(document).ready(function () {
+//   $("#hunger").on("click", function (event) {
+//     event.preventDefault();
+//     var id = $(this).data("id");
+//     // console.log(id);
+//     $.ajax({ url: "X" + id, method: "PUT" })
+
+//       .then(function (data) {
+//         console.log(data);
+//         location.reload();
+//       });
+//   });
+
