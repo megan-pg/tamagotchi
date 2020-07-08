@@ -27,7 +27,7 @@ $('#login').on('click', () => {
         localStorage.setItem('username', JSON.stringify(result.username));
         localStorage.setItem('accessToken', JSON.stringify(result.accessToken));
         localStorage.setItem('uuid', JSON.stringify(result.uuid));
-        window.location.replace('/list'); // navigate to the login screen
+        window.location.assign('/list'); // navigate to the login screen
       } else {
         console.log(result);
 
