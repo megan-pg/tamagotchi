@@ -1,3 +1,4 @@
+// todo display a progress bar of unhealthy intervals
 let unhealthyIntervals = 0;
 // INITIAL PAGE LOAD
 $(async () => {
@@ -44,7 +45,7 @@ function populateAnimalStats(animal) {
   // const { fatigue, hungry, sick, bathroom, bored, boredom, health, unhealthy} = animal;
   const type = animal.species;
   // todo some math for calculating state
-  const state = animal.fatigue;
+  const state = calculateStatus(animal);
   const stats = Object.entries(animal).map(([key, val]) => `<li>${key}: ${val}</li>`).join('');
   const display = `<div class="waves-effect" id="animalBox">
       <div class="valign-wrapper">
@@ -135,7 +136,7 @@ function startGame() {
   const timerInterval = setInterval(() => {
     sec += 1;
     if (dead()) {
-      console.log('dead')
+      console.log('dead');
       clearInterval(timerInterval);
     }
     if (sec % 10 === 0) {
@@ -143,6 +144,20 @@ function startGame() {
     }
     console.log(sec);
   }, 1000);
+}
+
+function calculateStatus(animal) {
+  const { fatigue, sick, bored } = animal;
+  if (a > b) {
+// todo this feels recursive to me
+  } 
+  // if a > b > c
+  // if b > c > a
+  // if c > a > b
+  // if a > c > b
+  // if b > a > c
+  // if c > b > a
+  // console.log(fatigue)
 }
 
 $('.updateStat').click(async function() {
