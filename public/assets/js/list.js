@@ -119,6 +119,7 @@ $('#createAnimal').click(async () => {
     await createAnimal(creds, obj)
       .then(async () => getAnimalList(creds, userStr))
       .then((animals) => {
+        console.log(animals)
         populateAnimalsList(animals.msg, userStr);
       });
   }
