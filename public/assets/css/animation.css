@@ -244,6 +244,12 @@
   background: url('sprite-sheet/sheet/exercise_sprite_sheet.png') 0px 0px;
 }
 
+#fatigue {
+  height: 320px;
+  width: 640px;
+  background: url('sprite-sheet/sheet/fatigue_sprite_sheet.png') 0px 0px;
+}
+
 #feed {
   height: 320px;
   width: 640px;
@@ -260,4 +266,10 @@
   height: 320px;
   width: 640px;
   background: url('sprite-sheet/sheet/rip_sprite_sheet.png') 0px 0px;
+}
+
+#sick {
+  height: 320px;
+  width: 640px;
+  background: url('sprite-sheet/sheet/sick_sprite_sheet.png') 0px 0px;
 }
