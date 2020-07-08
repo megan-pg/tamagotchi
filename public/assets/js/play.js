@@ -1,3 +1,4 @@
+let unhealthyIntervals = 0;
 // INITIAL PAGE LOAD
 $(async () => {
   // todo add some validation here, if there's no/null values from getClientCreds
@@ -106,25 +107,46 @@ async function refreshScreen(action) {
     await updateStat({ uuid, action }, getClientCreds());
   } else {
     await updateStats({ uuid }, getClientCreds());
+    $('.updateStat').attr('disabled', false);
   }
 
   const animal = await getAnimal(obj, userStr);
   populateAnimalStats(animal.msg[0]);
 
   if (animal.msg[0].unhealthy === true && !action) {
+    unhealthyIntervals += 1;
     $('#negative')[0].play();
   } else {
     $('#positive')[0].play();
   }
 }
 
+function dead () {
+  console.log(unhealthyIntervals)
+//if animal has been unhealthy for 5 intervals ~ 50 seconds
+  if (unhealthyIntervals > 5) {
+    return true;
+  }
+  return false;
+}
+
 function startGame() {
-  //timer
-  //every minute call updatestats
-  // then populateanimalstats
+  let sec = 0;
+  const timerInterval = setInterval(() => {
+    sec += 1;
+    if (dead()) {
+      console.log('dead')
+      clearInterval(timerInterval);
+    }
+    if (sec % 10 === 0) {
+      refreshScreen();
+    }
+    console.log(sec);
+  }, 1000);
 }
 
 $('.updateStat').click(async function() {
+  $(this).attr('disabled', true);
   let action;
   switch (this.id) {
     case 'feed':
@@ -150,55 +172,3 @@ $('.updateStat').click(async function() {
   }
   refreshScreen(action);
 });
-
-// todo move event listeners outside of this function, the buttons need not be dynamic above 
-$('#clock').click(async () => {
-  refreshScreen();
-});
-
-
-// onclick="document.getElementById('play').play()"
-
-//variable for starting the timer with the start button
-// const startEl = document.querySelector("#start");
-
-// // set seconds to what it starts at
-// const secondsStart = 0;
-// //start of function timer function
-// setTime() => {
-//   timerInterval = setInterval(function () {
-//     //addition of seconds from the timer
-//     secondsStart++;
-//     //what I want to populate to the page in textContent
-//     timeEl.textContent = "Time: " + secondsStart;
-
-//     //if statement saying if counter is zero stop the timer
-//     if (secondsStart === 100) {
-//       clearInterval(timerInterval);
-//     }
-//     // counting in milliseconds
-//   }, 1000);
-// }
-
-// //start timer when start button is clicked function
-// startEl.onclick = startBtn;
-// startBtn() => {
-//   setTime();
-// }
-
-
-// // js for buttons //
-
-// $(document).ready(function () {
-//   $("#hunger").on("click", function (event) {
-//     event.preventDefault();
-//     var id = $(this).data("id");
-//     // console.log(id);
-//     $.ajax({ url: "X" + id, method: "PUT" })
-
-//       .then(function (data) {
-//         console.log(data);
-//         location.reload();
-//       });
-//   });
-
