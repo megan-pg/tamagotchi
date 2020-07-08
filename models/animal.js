@@ -15,6 +15,9 @@ module.exports = (sequelize, DataTypes) => {
     difficulty: {
       type: DataTypes.STRING,
     },
+    species: {
+      type: DataTypes.STRING,
+    },
     age: {
       type: DataTypes.INTEGER,
       defaultValue: 0,
@@ -50,7 +53,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   // --------------------- HELPER FUNCTIONS ---------------------
-  Animal.generateInitialStats = (name, UserUuid, difficulty) => {
+  Animal.generateInitialStats = (name, UserUuid, difficulty, species) => {
     let min;
     let max;
 
@@ -78,6 +81,7 @@ module.exports = (sequelize, DataTypes) => {
     const obj = {
       name,
       difficulty,
+      species,
       total: 0,
       UserUuid,
       uuid: uuidv4(),

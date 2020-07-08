@@ -17,15 +17,20 @@ async function getAnimalList(creds, user) {
     },
     dataType: 'json',
   })
-    .then(async (result) => result)
-    .fail((result) => {
+    .then(async (result) => {
+      if (result.status === 200) {
+        return result;
+      }
+      throw new Error('No animals!');
+    })
+    .fail((err) => {
       // todo add a toast here
-      console.log(result);
+      console.log(err);
     });
 }
 
 async function createAnimal(creds, data) {
-  $.ajax({
+  return $.ajax({
     url: '/api/animals/create',
     type: 'post',
     data,
@@ -52,19 +57,22 @@ function getClientCreds() {
 }
 
 function populateAnimalsList(animals, user) {
-  // todo these are here for demoing, will need to be added to the db
-  const types = ['bird', 'turtle', 'fish', 'mammal'];
-  const states = ['bored', 'fatigue', 'hungry', 'love', 'physicality', 'poop', 'rip', 'sick', 'temperature'];
+  $('.animal').remove();
+  // const { fatigue, hungry, sick, bathroom, bored, boredom, health, unhealthy} = animal;
+  // todo some math for calculating state
+  const state = 'bored';
   animals.forEach((animal, index) => {
-    const display = `<li class="waves-effect" id="${animal.name}" data-animal="${animal.uuid}" style="padding-bottom: 5px;">
+    const display = `<li class="waves-effect animal" id="${animal.name}" data-animal="${animal.uuid}" style="padding-bottom: 5px;">
       <div class="valign-wrapper">
           <img 
-          src="/assets/concept-art/${types[index % 4]}-tamagotchi/img/${types[index % 4]}_${states[index % 9]}.png"
+          src="/assets/concept-art/${animal.species}-tamagotchi/img/${animal.species}_${state}.png"
           style="max-width:80px; height: 80px;border-radius:50%;"
           / >
           <div class="title">
               ${animal.name}<br>
               <span>${animal.createdAt}</span>
+              <br>
+              <span>${animal.species}</span>
           </div>
           <i class="material-icons ml-auto"><i class="${'fas fa-poop'}"></i></i>
       </div>
@@ -108,8 +116,8 @@ $('#createAnimal').click(async () => {
   if (Array.isArray(valid)) {
     valid.map((item) => console.log(item));
   } else {
-    createAnimal(creds, obj);
-    const getAnimals = await getAnimalList(creds, userStr);
-    populateAnimalsList(getAnimals.msg, userStr);
+    await createAnimal(creds, obj);
+    const animals = await getAnimalList(creds, userStr);
+    populateAnimalsList(animals.msg, userStr);
   }
 });
