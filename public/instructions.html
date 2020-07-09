@@ -12,7 +12,7 @@
     <!-- Materialize icons -->
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
     <!-- CSS -->
-    <link rel="stylesheet" href="/assets/css/list.css">
+    <link rel="stylesheet" href="assets/css/instructions.css">
 
     <title>Tamagotchi Instructions</title>
 </head>
@@ -28,50 +28,62 @@
             <div>
                 <div class="background">
                     <div class="container">
-                        <p><strong>Choose your pet</strong></p>
+                        <p class="topic">Choose your pet</p>
 
-                        <ul>Turtle</ul>
-                        <ul> Fish </ul>
-                        <ul> Gator </ul>
-                        <ul> Mammal </ul>
-                        <p>User inputs Name. Date and pet ID get auto generated.</p>
+                        <ul>
+                            <li>Turtle</li>
+                            <li>Fish </li>
+                            <li>Gator </li>
+                            <li>Mammal </li>
+                        </ul>
+                        <p class="clause">*User inputs Name. Date and pet ID get auto generated.</p>
 
                     </div>
                 </div>
                 <div class="background">
                     <div class="container">
-                        <p><strong>Choose level of difficulty</strong></p>
+                        <p class="topic">Choose level of difficulty</p>
+                        <ul>
+                            <li>Easy - Starts off with meters near empty</li>
+                            <li>Medium - Starts off with meters half full</li>
+                            <li>Hard - Starts off with meters almost full</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="background">
+                    <div class="container">
 
-                        <ul>Easy - Starts off with meters near empty</ul>
-                        <ul>Medium - Starts off with meters half full</ul>
-                        <ul>Hard - Starts off with meters almost full</ul>
+                        <p class="topic">How to Play</p>
+                        <p class="subtitle">Hunger button</p>
+                        <p>
+                            <ul>
+                                <li>Feed - This will update your Hunger meter (makes positive sound) </li>
+                                <li>Snack - This will update your Happy/Bored and Hunger meters but will decrement your
+                                    Health meter.</li>
+                            </ul>
+                        </p>
+                        <p class="subtitle">Disipline button</p>
+                        <p>This will decrement your Happy/Bored meter but will also decrement the chance of your pet
+                            acting out (make a negative sound).</p>
 
-                        <p><strong>How to Play</strong></p>
-                        <p><em>Hunger button</em></p>
+                        <p class="subtitle">Medicine button</p>
+                        <p>When your pet's health is very low you can use this but it will also severely lower their
+                            Happy/Bored meter (makes a negative sound)</p>
 
-                        <ul>Feed - This will update your Hunger meter (makes positive sound) </ul>
-                        <ul>Snack - This will update your Happy/Bored and Hunger meters but will decrement your Health
-                            meter.</ul>
+                        <p class="subtitle">Clean button </p>
+                        <p>After your pet poops, it will need to be cleaned. Don't let it sit too long in it's poop or
+                            the Health meter will be decremented.</p>
 
-                        <p><em>Disipline button</em></p>
-                        <p>This will decrement your Happy/Bored meter but will also decrement the chance
-                            of your pet acting out (make a negative sound).</p>
+                        <p class="subtitle">Happy/Bored Button</p>
 
-                        <p><em>Medicine button</em>p></em> - When your pet's health is very low you can use this but it
-                            will also severely
-                            lower their Happy/Bored meter (makes a negative sound)
+                        <p>
+                            <ul>Love your pet to boost Happy/Bored meter (makes a positive sound)</ul>
+                            <ul>Play with pet to boost Happy/Bored meter (makes a positive sound)</ul>
+                        </p>
 
-                            Clean button - After your pet poops, it will need to be cleaned. Don't let it sit too long
-                            in
-                            it's poop or the health meter will be decremented.
-
-                            Happy/Bored Button
-
-                            Love your pet to boost Happy/Bored meter (makes a positive sound)
-                            Play with pet to boost Happy/Bored meter (makes a positive sound)
-                            Light button - When your pet becomes bored, it wants to go to sleep. Don't let it sit too
-                            long
-                            bored or the health meter will be decremented.
+                        <p class="subtitle">Light button</p>
+                        <p>When your pet becomes bored, it wants to go to sleep. Don't let it sit too long bored or the
+                            health meter will be decremented.
                         </p>
 
                     </div>
@@ -93,7 +105,7 @@
     <!-- MATERIALIZE CSS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- JavaScript file -->
-    <script src="/assets/js/list.js"></script>
+    <script src="assets/js/list.js"></script>
 </body>
 
 </html>

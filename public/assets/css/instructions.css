@@ -12,10 +12,33 @@ body {
 
 .background {
     position: center;
-    margin-top: 30px;
-    margin-left: 200px;
-    margin-right: 200px;
+   /* margin-top: 30px;*/
+    margin-left: 90px;
+    margin-right: 90px;
     background-color: white;
+}
+
+.topic {
+font-family: 'Indie Flower', cursive;
+font-weight: 900;
+   /* text-shadow: 2px 2px black;*/
+color: darkslateblue;
+font-size: 28px;
+font-weight: bold;
+}
+
+.subtitle {
+font-size: 18px;
+font-style: italic;
+color:LightSteelBlue;
+text-shadow: 0px 1px black;
+}
+.clause {
+    font-size: 11.5px;
+}
+
+li {
+    display:list-item
 }
 
 main {
@@ -28,15 +51,13 @@ main {
 
 .container {
     margin-top: 30px;
-    max-width: 500px;
+    padding: 10px;
+  
     
 }
   
-.card {
-    overflow: auto;
-}
   
-.waves-effect {
+/*.waves-effect {
     width: 100%;
 }
   
@@ -83,7 +104,7 @@ main {
   
 i.ml-auto {
     color: rgba(0, 0, 0, 0.26);
-}
+}*/
   
 /* ////////////////////////////// FOOTER //////////////////////////////*/
   

@@ -52,7 +52,7 @@ $('#create').on('click', () => {
       if (result.status === 201) {
         $('#email').val(''); // clear useless inputs
         $('#passwordTwo').val('');
-        window.location.replace('/login'); // navigate to the login screen
+        window.location.assign('/login'); // navigate to the login screen
       } else {
         // toast explaining what went wrong
       }
