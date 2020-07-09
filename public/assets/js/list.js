@@ -9,6 +9,7 @@ $(async () => {
 });
 
 async function getAnimalList(creds, user) {
+  console.log(user)
   return $.ajax({
     url: `/api/users/${user}/animals`,
     type: 'post',
@@ -21,11 +22,18 @@ async function getAnimalList(creds, user) {
       if (result.status === 200) {
         return result;
       }
-      throw new Error('No animals!');
+      throw new Error(result.status);
     })
     .fail((err) => {
-      // todo add a toast here
-      console.log(err);
+      if (err.status === 404 || err.status === '404') {
+        // 404 error will show on first load, as a user has not created any animals yet
+        // is there a way that should be handled?
+      } else if (err.status === 401 || err.status === '401') {
+        window.location.assign('/login');
+        // todo make a toast pop telling them they've been unauthenticated
+      } else {
+        console.log(err);
+      }
     });
 }
 
@@ -101,6 +109,7 @@ $('#addNewButton').click(() => {
   $('#addNewForm').toggleClass('active');
 });
 
+// CREATE A NEW ANIMAL
 $('#createAnimal').click(async () => {
   const creds = getClientCreds();
   const userStr = creds.username;
@@ -122,6 +131,5 @@ $('#createAnimal').click(async () => {
         const getAnimals = await getAnimalList(creds, userStr);
         populateAnimalsList(getAnimals.msg, userStr);
       });
-
   }
 });

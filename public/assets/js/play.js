@@ -1,35 +1,22 @@
 // todo display a progress bar of unhealthy intervals
 let unhealthyIntervals = 0;
+let dead;
+
 // INITIAL PAGE LOAD
 $(async () => {
   // todo add some validation here, if there's no/null values from getClientCreds
   // don't bother with the db call
   const obj = getClientCreds();
-  const userStr = obj.username;
-  const animal = await getAnimal(obj, userStr);
-  localStorage.setItem('animal-uuid', JSON.stringify(animal.msg[0].uuid));
+  const animal = await getAnimal(obj);
+  localStorage.setItem('animal-uuid', JSON.stringify(animal.msg[0].uuid)); // to call it elsewhere
+
+  if (!animal.msg[0].dead) {
+    startGame();
+  } else {
+    dead = true;
+  }
   populateAnimalStats(animal.msg[0]);
-  startGame();
 });
-
-async function getAnimal(creds, user) {
-  const url = window.location.href.split('/');
-  const animal = url[url.length - 1]; // todo not sure if there's a better way to go about this
-
-  return $.ajax({
-    url: `/api/users/${user}/${animal}`,
-    type: 'post',
-    headers: {
-      authorization: creds.token,
-    },
-    dataType: 'json',
-  })
-    .then(async (result) => result)
-    .fail((result) => {
-      // todo add a toast here
-      console.log(result);
-    });
-}
 
 function getClientCreds() {
   const obj = {
@@ -41,29 +28,23 @@ function getClientCreds() {
   return obj;
 }
 
-function populateAnimalStats(animal) {
-  // const { fatigue, hungry, sick, bathroom, bored, boredom, health, unhealthy} = animal;
-  const type = animal.species;
-  // todo some math for calculating state
+async function getAnimal(creds) {
+  const url = window.location.href.split('/');
+  const animal = url[url.length - 1]; // todo not sure if there's a better way to go about this
 
-  const state = calculateStatus(animal);
-  const stats = Object.entries(animal).map(([key, val]) => `<li>${key}: ${val}</li>`).join('');
-  const display = `<div class="waves-effect" id="animalBox">
-      <div class="valign-wrapper">
-          <img 
-          src="/assets/concept-art/${type}-tamagotchi/img/${type}_${state}.png"
-          style="max-width:80px; height: 80px;border-radius:50%;"
-          / >
-          <div class="title">
-            <ul>
-              ${stats}
-            </ul>
-          </div>
-          <i class="material-icons ml-auto"><i class="${'fas fa-poop'}"></i></i>
-      </div>
-    </div>`;
-  $('#animalBox').remove();
-  $('#animal').append(display);
+  return $.ajax({
+    url: `/api/users/${creds.username}/${animal}`,
+    type: 'post',
+    headers: {
+      authorization: creds.token,
+    },
+    dataType: 'json',
+  })
+    .then(async (result) => result)
+    .fail((result) => {
+      // todo add a toast here
+      console.log(result);
+    });
 }
 
 async function updateStats(data, creds) {
@@ -100,9 +81,33 @@ async function updateStat(data, creds) {
     });
 }
 
+function populateAnimalStats(animal) {
+  // const { fatigue, hungry, sick, bathroom, bored, boredom, health, unhealthy} = animal;
+  const type = animal.species;
+  // todo some math for calculating state
+  // todo might grab global dead var
+  const state = dead ? 'rip' : calculateStatus(animal);
+  const stats = Object.entries(animal).map(([key, val]) => `<li>${key}: ${val}</li>`).join('');
+  const display = `<div class="waves-effect" id="animalBox">
+      <div class="valign-wrapper">
+          <img 
+          src="/assets/concept-art/${type}-tamagotchi/img/${type}_${state}.png"
+          style="max-width:80px; height: 80px;border-radius:50%;"
+          / >
+          <div class="title">
+            <ul>
+              ${stats}
+            </ul>
+          </div>
+          <i class="material-icons ml-auto"><i class="${'fas fa-poop'}"></i></i>
+      </div>
+    </div>`;
+  $('#animalBox').remove();
+  $('#animal').append(display);
+}
+
 async function refreshScreen(action) {
   const obj = getClientCreds();
-  const userStr = obj.username;
   const uuid = JSON.parse(localStorage.getItem('animal-uuid'));
 
   if (action) {
@@ -112,21 +117,29 @@ async function refreshScreen(action) {
     $('.updateStat').attr('disabled', false);
   }
 
-  const animal = await getAnimal(obj, userStr);
+  const animal = await getAnimal(obj);
   populateAnimalStats(animal.msg[0]);
 
-  if (animal.msg[0].unhealthy === true && !action) {
-    unhealthyIntervals += 1;
-    $('#negative')[0].play();
+  if (!dead) {
+    if (animal.msg[0].unhealthy === true && !action) {
+      // todo reset unhealthy if animals is brought back to health
+      unhealthyIntervals += 1;
+      $('#negative')[0].play();
+    } else {
+      $('#positive')[0].play();
+    }
   } else {
-    $('#positive')[0].play();
+    console.log('tis dead still')
+    // play dead song
+    // $('#rip')[0].play();
   }
 }
 
-function dead() {
-  console.log(unhealthyIntervals)
-  //if animal has been unhealthy for 5 intervals ~ 50 seconds
+function isDead() {
+  console.log('Unhealthy for ', unhealthyIntervals, ' intervals.');
+  // if animal has been unhealthy for 5 intervals ~ 50 seconds
   if (unhealthyIntervals > 5) {
+    dead = true;
     return true;
   }
   return false;
@@ -136,22 +149,19 @@ function startGame() {
   let sec = 0;
   const timerInterval = setInterval(() => {
     sec += 1;
-    if (dead()) {
-      console.log('dead');
+    if (isDead()) {
       clearInterval(timerInterval);
+      refreshScreen('dead');
     }
     if (sec % 10 === 0) {
       refreshScreen();
     }
-    console.log(sec);
   }, 1000);
 }
 
 function calculateStatus(animal) {
   const { fatigue, sick, bored } = animal;
-  // if (a > b) {
-  // todo this feels recursive to me
-  // } 
+  // todo this feels like an oppurtunity for recursion
   // if a > b > c
   // if b > c > a
   // if c > a > b
@@ -161,30 +171,33 @@ function calculateStatus(animal) {
   // console.log(fatigue)
 }
 
-$('.updateStat').click(async function () {
-  $(this).attr('disabled', true);
-  let action;
-  switch (this.id) {
-    case 'feed':
-      action = 'hunger';
-      break;
-    case 'sleep':
-      action = 'fatigue';
-      break;
-    case 'clean':
-      action = 'bathroom';
-      break;
-    case 'medicine':
-      action = 'sick';
-      break;
-    case 'play':
-      action = 'boredom';
-      break;
-    case 'love':
-      action = 'bored';
-      break;
-    default:
-      action = 'hunger';
+// USER INPUT
+$('.updateStat').click(async function() {
+  if (!dead) {
+    $(this).attr('disabled', true);
+    let action;
+    switch (this.id) {
+      case 'feed':
+        action = 'hunger';
+        break;
+      case 'sleep':
+        action = 'fatigue';
+        break;
+      case 'clean':
+        action = 'bathroom';
+        break;
+      case 'medicine':
+        action = 'sick';
+        break;
+      case 'play':
+        action = 'boredom';
+        break;
+      case 'love':
+        action = 'bored';
+        break;
+      default:
+        action = 'hunger';
+    }
+    refreshScreen(action);
   }
-  refreshScreen(action);
 });

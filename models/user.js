@@ -39,29 +39,24 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
-  // Creating a custom method for our User model.
-  // This will check if an unhashed password entered by the user
-  // can be compared to the hashed password stored in our database
   User.validPassword = (pw1, pw2) => bcrypt.compareSync(pw1, pw2);
 
   User.generateAccessToken = (user) => jwt.sign(user.dataValues, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '24h' });
 
   User.authenticateToken = (req, res, next) => {
     const token = req.headers.authorization;
-    if (token == null) {
-      throw new Error('401');
+    if (token === 'null') {
+      res.sendStatus(401);
     }
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
       if (err) {
-        throw new Error('403');
+        res.sendStatus(403);
       }
       req.user = user;
       next();
     });
   };
 
-  // Hooks are automatic methods that run during various phases of the User Model lifecycle
-  // In this case, before a User is created, we will automatically hash their password
   User.addHook('beforeCreate', (user) => {
     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
   });
