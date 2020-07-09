@@ -48,13 +48,13 @@ $('#create').on('click', () => {
   } else {
     delete obj['password confirmation'];
     $.post('/api/users/create', obj, (result) => {
-      console.log(result);
       if (result.status === 201) {
         $('#email').val(''); // clear useless inputs
         $('#passwordTwo').val('');
         window.location.assign('/login'); // navigate to the login screen
       } else {
-        // toast explaining what went wrong
+        // todo toast explaining what went wrong
+        console.log(result);
       }
     });
   }

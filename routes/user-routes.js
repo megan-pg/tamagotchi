@@ -25,7 +25,7 @@ router.post('/:username/animals', User.authenticateToken, (req, res) => {
         throw new Error('No animals!');
       }
     })
-    .catch((err) => res.json({ msg: `Something went wrong: ${err}.`, status: 404 }));
+    .catch((error) => res.json({ msg: `Something went wrong: ${error}.`, status: 404 }));
 });
 
 // get user / animal
@@ -90,7 +90,7 @@ router.post('/login', (req, res) => {
         res.json({ msg: 'Username OR Password not valid.', status: 400 });
       }
     })
-    .catch((err) => res.json({ msg: `Something went wrong: ${err}.`, status: 500 }));
+    .catch((err) => res.json({ msg: `Something went wrong: ${err}.`, status: 404 }));
 });
 
 // logout
