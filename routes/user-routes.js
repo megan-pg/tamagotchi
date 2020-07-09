@@ -94,7 +94,7 @@ router.post('/login', (req, res) => {
         res.json({ msg: 'Username OR Password not valid.', status: 400 });
       }
     })
-    .catch((err) => res.json({ msg: `Something went wrong: ${err}.`, status: 500 }));
+    .catch((err) => res.json({ msg: `Something went wrong: ${err}.`, status: 404 }));
 });
 
 // logout

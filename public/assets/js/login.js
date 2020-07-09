@@ -28,10 +28,12 @@ $('#login').on('click', () => {
         localStorage.setItem('accessToken', JSON.stringify(result.accessToken));
         localStorage.setItem('uuid', JSON.stringify(result.uuid));
         window.location.assign('/list'); // navigate to the login screen
-      } else {
-        console.log(result);
-
+      } else if (result.status === 404) {
         // todo toast explaining what went wrong
+        console.log('User does not exist!');
+      } else {
+        // todo toast explaining what went wrong
+        console.log(result);
       }
     });
   }
