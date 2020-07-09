@@ -101,6 +101,7 @@ $('#addNewButton').click(() => {
   $('#addNewForm').toggleClass('active');
 });
 
+// CREATE A NEW ANIMAL
 $('#createAnimal').click(async () => {
   const creds = getClientCreds();
   const userStr = creds.username;
@@ -121,6 +122,5 @@ $('#createAnimal').click(async () => {
         const getAnimals = await getAnimalList(creds, userStr);
         populateAnimalsList(getAnimals.msg, userStr);
       });
-
   }
 });

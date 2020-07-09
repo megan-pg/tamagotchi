@@ -50,7 +50,7 @@ function populateAnimalStats(animal) {
   const display = `<div class="waves-effect" id="animalBox">
       <div class="valign-wrapper">
           <img 
-          src="/assets/concept-art/${type}-tamagotchi/img/${type}_${state}.png"
+          src="/assets/concept-art/${type}-tamagotchi/img/${type}_${'hunger'}.png"
           style="max-width:80px; height: 80px;border-radius:50%;"
           / >
           <div class="title">
@@ -115,6 +115,7 @@ async function refreshScreen(action) {
   populateAnimalStats(animal.msg[0]);
 
   if (animal.msg[0].unhealthy === true && !action) {
+    // todo reset unhealthy if animals is brought back to health
     unhealthyIntervals += 1;
     $('#negative')[0].play();
   } else {
@@ -123,8 +124,8 @@ async function refreshScreen(action) {
 }
 
 function dead () {
-  console.log(unhealthyIntervals)
-//if animal has been unhealthy for 5 intervals ~ 50 seconds
+  console.log('Unhealthy for ', unhealthyIntervals, ' intervals.');
+  // if animal has been unhealthy for 5 intervals ~ 50 seconds
   if (unhealthyIntervals > 5) {
     return true;
   }
@@ -148,9 +149,7 @@ function startGame() {
 
 function calculateStatus(animal) {
   const { fatigue, sick, bored } = animal;
-  if (a > b) {
-// todo this feels recursive to me
-  } 
+  // todo this feels like an oppurtunity for recursion
   // if a > b > c
   // if b > c > a
   // if c > a > b
@@ -160,6 +159,7 @@ function calculateStatus(animal) {
   // console.log(fatigue)
 }
 
+// USER INPUT
 $('.updateStat').click(async function() {
   $(this).attr('disabled', true);
   let action;
