@@ -36,8 +36,10 @@
 
             <div>
                 <!-- TODO INLINE STYLING NEEDS TO BE MOVED, ADDNEW BUTTON CAN LIKELY BE REPLACED WITH A MATERIALZE COMPONENT -->
-                <div style="position: fixed; right: 10px; bottom: 10px;">
-                    <form class="col s12 active" method="post" id="addNewForm">
+                <div id="addNewButton"
+                    class="fixed-action-btn btn btn-large btn-floating amber waves-effect waves-light">
+                    <i class="large material-icons">add</i>
+                    <form class=" col s12 active" method="post" id="addNewForm">
                         <div class='row'>
                             <div class='col s12'>
                                 <h5 class="login-text indigo-text">Create a new Animal</h5>
@@ -70,16 +72,6 @@
                             </div>
                         </div>
                     </form>
-
-                    <button id="addNewButton" type="button" style="
-                    border-radius: 50%; 
-                    background-color: mediumvioletred; 
-                    width: 80px; 
-                    height: 80px; 
-                    font-size: 50px;
-                    float: right;
-                  ">+
-                    </button>
                 </div>
 
                 <div class="container">
