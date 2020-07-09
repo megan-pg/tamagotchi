@@ -23,14 +23,14 @@ const eggHatching = () => {
     }
     // reset the position to 0px, once position exceeds 4480px
   }, interval); // end of setInterval
-}; // end of animateScript()
+}; // end of eggHatching()
 
 const animateAnimalState = () => {
   let position = 0; // start position for the image slicer
   const interval = 500; // 500 ms of interval for the setInterval()
   const diff = 640; // diff as a variable for position offset
   tID = setInterval(() => {
-    document.getElementById("image").style.backgroundPosition = `-${position}px 0px`;
+    document.getElementById("//whatever-animation-we-need//").style.backgroundPosition = `-${position}px 0px`;
     // Template literal to insert the variable "position"
     if (position < 1280) {
       position += diff;
@@ -39,4 +39,4 @@ const animateAnimalState = () => {
     }
     // reset the position to 0px, once position exceeds 4480px
   }, interval); // end of setInterval
-}; // end of animateScript()
+}; // end of animateAnimalState()

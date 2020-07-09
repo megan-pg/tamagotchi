@@ -80,7 +80,7 @@ function populateAnimalsList(animals, user) {
     // <i class="material-icons left circle white-text"></i>
     $('#animals').append(display);
     $(`#${animal.name}`).click(() => {
-      window.location.replace(`/play/${user}/${animal.name}`);
+      window.location.assign(`/play/${user}/${animal.name}`);
     });
   });
 }

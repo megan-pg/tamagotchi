@@ -18,6 +18,10 @@
 </head>
 
 <body class="list">
+    <audio id="positive" src="/assets/sound-files/positive_sound.mp3"></audio>
+    <audio id="negative" src="/assets/sound-files/negative_sound.mp3"></audio>
+    <audio id="player" src="/assets/sound-files/POL-chubby-cat-short.wav"></audio>
+
     <span id="splash-overlay" class="splash"></span>
     <span id="list" class="z-depth-4"></span>
 
@@ -26,9 +30,11 @@
         </nav>
     </header>
 
+    <!-- todo ------------------- music player ------------------- -->
+    <!-- todo can we replace the images/buttons with some icons? -->
+
     <div class="container">
         <div class="audioBtns col s12">
-            <audio id="player" src="/assets/sound-files/POL-chubby-cat-short.wav"></audio>
             <div>
                 <button onclick="document.getElementById('player').play()">Play</button>
                 <button onclick="document.getElementById('player').pause()">Pause</button>
@@ -37,6 +43,17 @@
             </div>
         </div>
     </div>
+    
+    <!-- todo ------------------- aciton button examples ------------------- -->
+    <!-- todo move this onto the game and style them appropriately -->
+    <div class="actionBtns col s12">
+        <button class="btn updateStat" id="feed">Feed</button>
+        <button class="btn updateStat" id="medicine">Medicine</button>
+        <button class="btn updateStat" id="clean">Clean</button>
+        <button class="btn updateStat" id="love">Love</button>
+        <button class="btn updateStat" id="play">Play</button>
+    </div>
+
     <!-- todo ------------------- DOUG'S HACK TO DISPAY DATA, NEEDS TO BE MADE PRETTY ------------------- -->
     <div 
       style=
