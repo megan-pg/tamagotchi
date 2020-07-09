@@ -45,12 +45,12 @@ function populateAnimalStats(animal) {
   // const { fatigue, hungry, sick, bathroom, bored, boredom, health, unhealthy} = animal;
   const type = animal.species;
   // todo some math for calculating state
-  const state = calculateStatus(animal);
+  const state = animal.dead ? 'rip' : calculateStatus(animal);
   const stats = Object.entries(animal).map(([key, val]) => `<li>${key}: ${val}</li>`).join('');
   const display = `<div class="waves-effect" id="animalBox">
       <div class="valign-wrapper">
           <img 
-          src="/assets/concept-art/${type}-tamagotchi/img/${type}_${'hunger'}.png"
+          src="/assets/concept-art/${type}-tamagotchi/img/${type}_${state}.png"
           style="max-width:80px; height: 80px;border-radius:50%;"
           / >
           <div class="title">
@@ -110,20 +110,26 @@ async function refreshScreen(action) {
     await updateStats({ uuid }, getClientCreds());
     $('.updateStat').attr('disabled', false);
   }
+  if (action === 'dead') {
+    // play dead song
+    // $('#rip')[0].play();
 
-  const animal = await getAnimal(obj, userStr);
-  populateAnimalStats(animal.msg[0]);
-
-  if (animal.msg[0].unhealthy === true && !action) {
-    // todo reset unhealthy if animals is brought back to health
-    unhealthyIntervals += 1;
-    $('#negative')[0].play();
+    // display dead image
   } else {
-    $('#positive')[0].play();
+    const animal = await getAnimal(obj, userStr);
+    populateAnimalStats(animal.msg[0]);
+
+    if (animal.msg[0].unhealthy === true && !action) {
+      // todo reset unhealthy if animals is brought back to health
+      unhealthyIntervals += 1;
+      $('#negative')[0].play();
+    } else {
+      $('#positive')[0].play();
+    }
   }
 }
 
-function dead () {
+function dead() {
   console.log('Unhealthy for ', unhealthyIntervals, ' intervals.');
   // if animal has been unhealthy for 5 intervals ~ 50 seconds
   if (unhealthyIntervals > 5) {
@@ -139,6 +145,7 @@ function startGame() {
     if (dead()) {
       console.log('dead');
       clearInterval(timerInterval);
+      refreshScreen('dead');
     }
     if (sec % 10 === 0) {
       refreshScreen();

@@ -22,6 +22,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       defaultValue: 0,
     },
+    dead: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
 
     hunger: {
       type: DataTypes.INTEGER,
@@ -108,25 +112,30 @@ module.exports = (sequelize, DataTypes) => {
 
   Animal.updateStat = (difficulty, value, action, user) => {
     const obj = {};
-    switch (difficulty) {
-      case 'easy':
-        obj[action] = user ? value - 3 : value + 3;
-        break;
-      case 'medium':
-        obj[action] = user ? value - 2 : value + 2;
-        break;
-      case 'hard':
-        obj[action] = user ? value - 1 : value + 1;
-        break;
-      default:
-        obj[action] = user ? value - 3 : value + 3;
-    }
+    if (action === 'dead') {
+      obj.dead = true;
+    } else {
+      switch (difficulty) {
+        case 'easy':
+          obj[action] = user ? value - 3 : value + 3;
+          break;
+        case 'medium':
+          obj[action] = user ? value - 2 : value + 2;
+          break;
+        case 'hard':
+          obj[action] = user ? value - 1 : value + 1;
+          break;
+        default:
+          obj[action] = user ? value - 3 : value + 3;
+      }
 
-    // todo is there a less verbose way of going about this?
-    if (user && obj[action] < 0) {
-      obj[action] = 0;
-    } else if (!user && obj[action] > 10) {
-      obj[action] = 10;
+      // todo is there a less verbose way of going about this?
+      // making sure the values stay between 0 - 10
+      if (user && obj[action] < 0) {
+        obj[action] = 0;
+      } else if (!user && obj[action] > 10) {
+        obj[action] = 10;
+      }
     }
 
     return obj;
@@ -157,7 +166,7 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   Animal.legalActions = (action) => {
-    const legal = ['hunger', 'bathroom', 'boredom'];
+    const legal = ['hunger', 'bathroom', 'boredom', 'dead'];
     if (legal.includes(action)) {
       return true;
     }
