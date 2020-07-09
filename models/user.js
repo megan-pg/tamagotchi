@@ -50,6 +50,7 @@ module.exports = (sequelize, DataTypes) => {
     }
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
       if (err) {
+        console.log(err)
         throw new Error('403');
       }
       req.user = user;
