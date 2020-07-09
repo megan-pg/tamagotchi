@@ -19,19 +19,16 @@ async function getAnimalList(creds, user) {
     dataType: 'json',
   })
     .then(async (result) => {
-      console.log(result)
       if (result.status === 200) {
         return result;
       }
       throw new Error(result.status);
     })
     .fail((err) => {
-      console.log(err)
-      if (err.message === 404 || err.message === '404') {
-        console.log('caught?')
+      if (err.status === 404 || err.status === '404') {
         // 404 error will show on first load, as a user has not created any animals yet
         // is there a way that should be handled?
-      } else if (err.message === 401 || err.message === '401') {
+      } else if (err.status === 401 || err.status === '401') {
         window.location.assign('/login');
         // todo make a toast pop telling them they've been unauthenticated
       } else {

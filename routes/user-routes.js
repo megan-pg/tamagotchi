@@ -11,25 +11,21 @@ router.get('/', (req, res) => {
 });
 
 // get user / animals
-router.post('/:username/animals', User.authenticateToken, (err, req, res, next) => {
-  if (err) {
-    res.json({ msg: `Something went wrong: ${err.name}.`, status: err.message });
-  } else {
-    User.findOne({
-      where: { username: req.params.username },
-      include: Animal,
+router.post('/:username/animals', User.authenticateToken, (req, res) => {
+  User.findOne({
+    where: { username: req.params.username },
+    include: Animal,
+  })
+    // todo check user and token are related
+    .then((user) => {
+      if (user.Animals) {
+        res.json({ msg: user.Animals, status: 200 });
+      } else {
+        // todo conditional sends an empty array, so this is pointless
+        throw new Error('No animals!');
+      }
     })
-      // todo check user and token are related
-      .then((user) => {
-        if (user.Animals) {
-          res.json({ msg: user.Animals, status: 200 });
-        } else {
-          // todo conditional sends an empty array, so this is pointless
-          throw new Error('No animals!');
-        }
-      })
-      .catch((error) => res.json({ msg: `Something went wrong: ${error}.`, status: 404 }));
-  }
+    .catch((error) => res.json({ msg: `Something went wrong: ${error}.`, status: 404 }));
 });
 
 // get user / animal
