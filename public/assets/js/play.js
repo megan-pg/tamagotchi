@@ -122,9 +122,9 @@ async function refreshScreen(action) {
   }
 }
 
-function dead () {
+function dead() {
   console.log(unhealthyIntervals)
-//if animal has been unhealthy for 5 intervals ~ 50 seconds
+  //if animal has been unhealthy for 5 intervals ~ 50 seconds
   if (unhealthyIntervals > 5) {
     return true;
   }
@@ -148,9 +148,9 @@ function startGame() {
 
 function calculateStatus(animal) {
   const { fatigue, sick, bored } = animal;
-  if (a > b) {
-// todo this feels recursive to me
-  } 
+  // if (a > b) {
+  // todo this feels recursive to me
+  // } 
   // if a > b > c
   // if b > c > a
   // if c > a > b
@@ -160,7 +160,7 @@ function calculateStatus(animal) {
   // console.log(fatigue)
 }
 
-$('.updateStat').click(async function() {
+$('.updateStat').click(async function () {
   $(this).attr('disabled', true);
   let action;
   switch (this.id) {
