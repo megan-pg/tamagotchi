@@ -5,11 +5,13 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Materialize Icons -->
+    <!-- Materialize & Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.4/css/materialize.min.css">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <!-- Materialize icons -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
     <!-- CSS -->
     <link rel="stylesheet" href="/assets/css/list.css">
@@ -66,22 +68,32 @@
                         <div class="row">
                             <div class="input-field col s12">
                                 <input class='validate' type='text' name='species' id='species' />
+                                <select>
+                                    <option value="" disabled selected>Choose your option</option>
+                                    <option value="1">Option 1</option>
+                                    <option value="2">Option 2</option>
+                                    <option value="3">Option 3</option>
+                                </select>
+
                                 <label for='species'>Species</label>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="input-field col s12">
                                 <input class='validate' type='text' name='difficulty' id='difficulty' />
-                                <label for='difficulty'>difficulty</label>
+                                <label for='difficulty'>Difficulty</label>
                             </div>
                         </div>
+
                     </form>
                 </div>
+                <div class="modal-footer">
+                    <a type='button' name='btn_create' id='createAnimal'
+                        class="modal-action login-text modal-close waves-effect btn-flat">Create</a>
+                </div>
             </div>
-            <div class="modal-footer">
-                <a type='button' name='btn_create' id='createAnimal'
-                    class="modal-action login-text modal-close waves-effect btn-flat">Create</a>
-            </div>
+
         </div>
     </div>
     </div>
@@ -97,6 +109,8 @@
     <script src="https://code.jquery.com/jquery-3.5.0.min.js"
         integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
     <script src='https://cdn.jsdelivr.net/jquery.leanmodal/1.1/jquery.leanmodal.min.js'></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.4/js/materialize.min.js"></script>
     <!-- MATERIALIZE CSS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>
     <!-- FONT AWESOME -->
@@ -107,3 +121,6 @@
 </body>
 
 </html>
+<!--  -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script> -->
