@@ -9,7 +9,6 @@ $(async () => {
 });
 
 async function getAnimalList(creds, user) {
-  console.log(user)
   return $.ajax({
     url: `/api/users/${user}/animals`,
     type: 'post',
@@ -68,6 +67,7 @@ function populateAnimalsList(animals, user) {
   $('.animal').remove();
   // const { fatigue, hungry, sick, bathroom, bored, boredom, health, unhealthy} = animal;
   // todo some math for calculating state
+  // todo if dead change poop icon to dead and add a delete button
   const state = 'bored';
   animals.forEach((animal, index) => {
     const display = `<li class="waves-effect animal" id="${animal.name}" data-animal="${animal.uuid}" style="padding-bottom: 5px;">
@@ -81,6 +81,8 @@ function populateAnimalsList(animals, user) {
               <span>${animal.createdAt}</span>
               <br>
               <span>${animal.species}</span>
+              <span>${animal.dead ? 'dead' : ''}</span>
+
           </div>
           <i class="material-icons ml-auto"><i class="${'fas fa-poop'}"></i></i>
       </div>
