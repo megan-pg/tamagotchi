@@ -50,8 +50,11 @@ p {
   height: 800px;
 }
 
-.view-screen {
-  padding-top: 343px;
+#view-screen {
+  margin-top: 340px;
+  height: 20em;
+  width: 20em;
+  background-size: 40em 20em;
 }
 
 
