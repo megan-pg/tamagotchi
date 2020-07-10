@@ -136,10 +136,11 @@ module.exports = (sequelize, DataTypes) => {
           max = 5;
       }
 
-      const val = Math.floor(Math.random() * (max - min) + min);
-      obj[action] = user ? value - (val - 1) : value + val;
+      const less = Math.floor(Math.random() * (max - min) + min);
+      const more = Math.floor(Math.random() * (3 - 1) + 1);
 
-      // todo is there a less verbose way of going about this?
+      obj[action] = user ? value - less : value + more;
+
       // making sure the values stay between 0 - 10
       if (user && obj[action] < 0) {
         obj[action] = 0;

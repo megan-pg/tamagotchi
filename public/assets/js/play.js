@@ -82,12 +82,15 @@ async function updateStat(data, creds) {
 }
 
 function populateAnimalStats(animal) {
-  // const { fatigue, hungry, sick, bathroom, bored, boredom, health, unhealthy} = animal;
+  // const { fatigue, hunger, sick, bathroom, bored, boredom, health, unhealthy} = animal;
   const type = animal.species;
-  // const state = dead ? 'rip' : calculateStatus(animal);
-  const state = dead ? 'rip' : 'hungry';
+  const state = dead ? 'rip' : calculateStatus(animal);
+  // const state = dead ? 'rip' : 'hungry';
   const animation = `/assets/sprite-sheet/sheet/${type}_${state}_sprite_sheet.png`;
-  const stats = Object.entries(animal).map(([key, val]) => `<li>${key}: ${val}</li>`).join('');
+  let stats = Object.entries(animal).map(([key, val]) => `<li>${key}: ${val}</li>`);
+  stats.push(`<li>unhealthy intervals: ${unhealthyIntervals}</li>`);
+  stats = stats.join('');
+
   const display = `<div class="waves-effect" id="animalBox">
       <div class="valign-wrapper">      
         <div class="title">
@@ -121,7 +124,7 @@ async function refreshScreen(action) {
 
   if (!dead) {
     if (animal.msg[0].unhealthy === true && !action) {
-      // todo reset unhealthy if animals is brought back to health
+      console.log('Unhealthy for ', unhealthyIntervals, ' intervals.');
       unhealthyIntervals += 1;
       $('#negative')[0].play();
     } else if (animal.msg[0].unhealthy === false && unhealthyIntervals > 0) {
@@ -131,14 +134,13 @@ async function refreshScreen(action) {
       $('#positive')[0].play();
     }
   } else {
-    console.log('tis dead still')
+    console.log('tis dead still');
     // play dead song
     // $('#rip')[0].play();
   }
 }
 
 function isDead() {
-  console.log('Unhealthy for ', unhealthyIntervals, ' intervals.');
   // if animal has been unhealthy for 5 intervals ~ 50 seconds
   if (unhealthyIntervals > 500) {
     dead = true;
@@ -156,22 +158,32 @@ function startGame() {
       refreshScreen('dead');
     }
     if (sec % 10 === 0) {
-      // refreshScreen();
+      refreshScreen();
     }
   }, 1000);
 }
 
 function calculateStatus(animal) {
-  const { fatigue, sick, bored } = animal;
-  // todo this feels like an oppurtunity for recursion
-  // if fatigue > sick && sick > bored
-  // if a > b > c
-  // if b > c > a
-  // if c > a > b
-  // if a > c > b
-  // if b > a > c
-  // if c > b > a
-  // console.log(fatigue)
+  const { fatigue, hunger, sick, bathroom, bored, boredom } = animal;
+  const arr = [
+    { name: 'hunger', val: hunger },
+    { name: 'bathroom', val: bathroom },
+    { name: 'boredom', val: boredom },
+  ];
+
+  if (fatigue) {
+    return 'fatigue';
+  }
+  if (sick) {
+    return 'sick';
+  }
+  if (bored) {
+    return 'bored';
+  }
+
+  arr.sort((a, b) => a.val - b.val);
+
+  return arr[0].name;
 }
 
 let tID; // we will use this variable to clear the setInterval()
@@ -179,6 +191,7 @@ let tID; // we will use this variable to clear the setInterval()
 const stopAnimate = () => {
   clearInterval(tID);
 };
+
 const animateState = () => {
   const elWidth = $('#view-screen').css('width');
   const diff = parseInt(elWidth.match(/(\d+)/)[0], 10);
@@ -187,6 +200,7 @@ const animateState = () => {
   const interval = 500; // 500 ms of interval for the setInterval()
   // const diff = 640; // diff as a variable for position offset
   tID = setInterval(() => {
+    // todo this is px based, css sheet has ems, might see some weirdness
     document.getElementById('view-screen').style.backgroundPosition = `-${position}px 0px`;
     // Template literal to insert the variable 'position'
     if (position < (diff * 2)) {
