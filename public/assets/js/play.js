@@ -127,14 +127,11 @@ async function refreshScreen(action) {
     } else if (animal.msg[0].unhealthy === false && unhealthyIntervals > 0) {
       unhealthyIntervals = 0;
       updateImage(animal.msg[0].species, action);
-
       $('#positive')[0].play();
     } else {
       updateImage(animal.msg[0].species, action);
-
       $('#positive')[0].play();
     }
-
   } else {
     console.log('tis dead still');
     // play dead song
