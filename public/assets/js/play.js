@@ -137,7 +137,7 @@ async function refreshScreen(action) {
 
 function isDead() {
   console.log('Unhealthy for ', unhealthyIntervals, ' intervals.');
-  // if animal has been unhealthy for 5 intervals ~ 50 seconds
+  // if animal has been unhealthy for 5 intervals ~ 50 seconds (use milliseconds instead)
   if (unhealthyIntervals > 5) {
     dead = true;
     return true;
@@ -172,7 +172,7 @@ function calculateStatus(animal) {
 }
 
 // USER INPUT
-$('.updateStat').click(async function() {
+$('.updateStat').click(async function () {
   if (!dead) {
     $(this).attr('disabled', true);
     let action;
@@ -198,6 +198,7 @@ $('.updateStat').click(async function() {
       default:
         action = 'hunger';
     }
+    unhealthyIntervals -= 1;
     refreshScreen(action);
   }
 });
