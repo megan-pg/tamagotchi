@@ -84,8 +84,6 @@ async function updateStat(data, creds) {
 function populateAnimalStats(animal) {
   // const { fatigue, hungry, sick, bathroom, bored, boredom, health, unhealthy} = animal;
   const type = animal.species;
-  // todo some math for calculating state
-  // todo might grab global dead var
   // const state = dead ? 'rip' : calculateStatus(animal);
   const state = dead ? 'rip' : 'hungry';
   const animation = `/assets/sprite-sheet/sheet/${type}_${state}_sprite_sheet.png`;
@@ -107,8 +105,6 @@ function populateAnimalStats(animal) {
   animateState();
 }
 
-// background: url('') 0px 0px;
-
 async function refreshScreen(action) {
   const obj = getClientCreds();
   const uuid = JSON.parse(localStorage.getItem('animal-uuid'));
@@ -128,6 +124,9 @@ async function refreshScreen(action) {
       // todo reset unhealthy if animals is brought back to health
       unhealthyIntervals += 1;
       $('#negative')[0].play();
+    } else if (animal.msg[0].unhealthy === false && unhealthyIntervals > 0) {
+      unhealthyIntervals = 0;
+      $('#positive')[0].play();
     } else {
       $('#positive')[0].play();
     }
@@ -157,7 +156,7 @@ function startGame() {
       refreshScreen('dead');
     }
     if (sec % 10 === 0) {
-      refreshScreen();
+      // refreshScreen();
     }
   }, 1000);
 }
@@ -176,6 +175,7 @@ function calculateStatus(animal) {
 }
 
 let tID; // we will use this variable to clear the setInterval()
+
 const stopAnimate = () => {
   clearInterval(tID);
 };
