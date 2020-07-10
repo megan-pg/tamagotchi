@@ -9,7 +9,6 @@ $(async () => {
 });
 
 async function getAnimalList(creds, user) {
-  console.log(user)
   return $.ajax({
     url: `/api/users/${user}/animals`,
     type: 'post',

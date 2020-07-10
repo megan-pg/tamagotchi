@@ -82,11 +82,8 @@ async function updateStat(data, creds) {
 }
 
 function populateAnimalStats(animal) {
-  // const { fatigue, hunger, sick, bathroom, bored, boredom, health, unhealthy} = animal;
   const type = animal.species;
   const state = dead ? 'rip' : calculateStatus(animal);
-  // const state = dead ? 'rip' : 'hungry';
-  const animation = `/assets/sprite-sheet/sheet/${type}_${state}_sprite_sheet.png`;
   let stats = Object.entries(animal).map(([key, val]) => `<li>${key}: ${val}</li>`);
   stats.push(`<li>unhealthy intervals: ${unhealthyIntervals}</li>`);
   stats = stats.join('');
@@ -104,7 +101,7 @@ function populateAnimalStats(animal) {
 
   $('#animalBox').remove();
   $('#animal').append(display);
-  $('#view-screen').css('background-image', `url(${animation})`);
+  updateImage(type, state);
   animateState();
 }
 
@@ -129,10 +126,15 @@ async function refreshScreen(action) {
       $('#negative')[0].play();
     } else if (animal.msg[0].unhealthy === false && unhealthyIntervals > 0) {
       unhealthyIntervals = 0;
+      updateImage(animal.msg[0].species, action);
+
       $('#positive')[0].play();
     } else {
+      updateImage(animal.msg[0].species, action);
+
       $('#positive')[0].play();
     }
+
   } else {
     console.log('tis dead still');
     // play dead song
@@ -171,11 +173,11 @@ function calculateStatus(animal) {
     { name: 'boredom', val: boredom },
   ];
 
-  if (fatigue) {
-    return 'fatigue';
-  }
   if (sick) {
     return 'sick';
+  }
+  if (fatigue) {
+    return 'fatigue';
   }
   if (bored) {
     return 'bored';
@@ -184,6 +186,11 @@ function calculateStatus(animal) {
   arr.sort((a, b) => a.val - b.val);
 
   return arr[0].name;
+}
+
+function updateImage(animalType, animalState) {
+  const animation = `/assets/sprite-sheet/sheet/${animalType}_${animalState}_sprite_sheet.png`;
+  $('#view-screen').css('background-image', `url(${animation})`);
 }
 
 let tID; // we will use this variable to clear the setInterval()
