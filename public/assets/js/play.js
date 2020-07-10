@@ -86,25 +86,28 @@ function populateAnimalStats(animal) {
   const type = animal.species;
   // todo some math for calculating state
   // todo might grab global dead var
-  const state = dead ? 'rip' : calculateStatus(animal);
+  // const state = dead ? 'rip' : calculateStatus(animal);
+  const state = dead ? 'rip' : 'hungry';
+  const animation = `/assets/sprite-sheet/sheet/${type}_${state}_sprite_sheet.png`;
   const stats = Object.entries(animal).map(([key, val]) => `<li>${key}: ${val}</li>`).join('');
   const display = `<div class="waves-effect" id="animalBox">
-      <div class="valign-wrapper">
-          <img 
-          src="/assets/concept-art/${type}-tamagotchi/img/${type}_${state}.png"
-          style="max-width:80px; height: 80px;border-radius:50%;"
-          / >
-          <div class="title">
-            <ul>
-              ${stats}
-            </ul>
-          </div>
-          <i class="material-icons ml-auto"><i class="${'fas fa-poop'}"></i></i>
+      <div class="valign-wrapper">      
+        <div class="title">
+          <ul>
+            ${stats}
+          </ul>
+        </div>
+        <i class="material-icons ml-auto"><i class="${'fas fa-poop'}"></i></i>
       </div>
     </div>`;
+
   $('#animalBox').remove();
   $('#animal').append(display);
+  $('#view-screen').css('background-image', `url(${animation})`);
+  animateState();
 }
+
+// background: url('') 0px 0px;
 
 async function refreshScreen(action) {
   const obj = getClientCreds();
@@ -138,7 +141,7 @@ async function refreshScreen(action) {
 function isDead() {
   console.log('Unhealthy for ', unhealthyIntervals, ' intervals.');
   // if animal has been unhealthy for 5 intervals ~ 50 seconds
-  if (unhealthyIntervals > 5) {
+  if (unhealthyIntervals > 500) {
     dead = true;
     return true;
   }
@@ -162,6 +165,7 @@ function startGame() {
 function calculateStatus(animal) {
   const { fatigue, sick, bored } = animal;
   // todo this feels like an oppurtunity for recursion
+  // if fatigue > sick && sick > bored
   // if a > b > c
   // if b > c > a
   // if c > a > b
@@ -170,6 +174,29 @@ function calculateStatus(animal) {
   // if c > b > a
   // console.log(fatigue)
 }
+
+let tID; // we will use this variable to clear the setInterval()
+const stopAnimate = () => {
+  clearInterval(tID);
+};
+const animateState = () => {
+  const elWidth = $('#view-screen').css('width');
+  const diff = parseInt(elWidth.match(/(\d+)/)[0], 10);
+
+  let position = 0; // start position for the image slicer
+  const interval = 500; // 500 ms of interval for the setInterval()
+  // const diff = 640; // diff as a variable for position offset
+  tID = setInterval(() => {
+    document.getElementById('view-screen').style.backgroundPosition = `-${position}px 0px`;
+    // Template literal to insert the variable 'position'
+    if (position < (diff * 2)) {
+      position += diff;
+    } else { // we increment the position by 640 each time
+      position = 0;
+    }
+    // reset the position to 0px, once position exceeds 4480px
+  }, interval); // end of setInterval
+}; // end of animateAnimalState()
 
 // USER INPUT
 $('.updateStat').click(async function() {
