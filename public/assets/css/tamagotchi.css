@@ -51,12 +51,30 @@ p {
 }
 
 #view-screen {
-  margin-top: 340px;
+  margin-top: 339px;
+  margin-right: 10px;
   height: 20em;
   width: 20em;
   background-size: 40em 20em;
 }
 
+#actionButtons {
+  text-align: center;
+  margin-top: 325px;
+}
+
+.updateStat {
+  background-color: #e6e600;
+  border-radius: 50%;
+}
+
+.power {
+  background-color: red;
+}
+
+.active {
+  display: none;
+}
 
 /* ////////////////////////////// FOOTER //////////////////////////////*/
 

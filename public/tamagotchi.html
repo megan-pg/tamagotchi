@@ -33,10 +33,10 @@
                     <img src="/assets/css/images/logo-17percent.jpg" alt="moviephood_logo" /></a>
                 <!--</div>-->
                 <ul id="nav-mobile" class="right">
-                    <li><a href="/assets/create.html">Create</a></li>
-                    <li><a href="/assets/list.html">List</a></li>
-                    <li><a href="/assets/tamagotchi.html">Tamagotchi</a></li>
-                    <li><a href="/assets/instructions.html">Instructions</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                    <li><a href="/list">List</a></li>
+                    <li><a href="/tamagotchi">Play</a></li>
+                    <li><a href="/how-to">Instructions</a></li>
                 </ul>
             </div>
         </nav>
@@ -56,27 +56,33 @@
         </div>
     </div>
 
-    <!-- todo ------------------- aciton button examples ------------------- -->
-    <!-- todo move this onto the game and style them appropriately -->
-    <div class="actionBtns col s12">
-        <button class="btn updateStat" id="feed">Feed</button>
-        <button class="btn updateStat" id="medicine">Medicine</button>
-        <button class="btn updateStat" id="clean">Clean</button>
-        <button class="btn updateStat" id="love">Love</button>
-        <button class="btn updateStat" id="play">Play</button>
-    </div>
-
     <!-- todo ------------------- DOUG'S HACK TO DISPAY DATA, NEEDS TO BE MADE PRETTY ------------------- -->
     <div style="background-color: antiquewhite;
         position: fixed; 
         right: 10px; 
-        bottom: 35%;" id='animal'></div>
+        bottom: 35%;" id='animal'>
+    </div>
 
     <main>
         <div class="container" id="tamagotchi-device">
             <div class='row'>
-                <div class='dude col s12' id="screen">
-                    <div id="view-screen"></div>
+                <div class='dude col s12' id="screen"">
+                  <div id="view-screen">
+                    <div id="actionButtons"">
+                      <!-- todo ------------------- aciton button examples ------------------- -->
+                      <!-- todo move this onto the game and style them appropriately -->
+                      <div class="actionBtns col s12">
+                        <button class="btn updateStat" id="feed">Feed</button>
+                        <button class="btn updateStat" id="clean">Clean</button>
+                        <button class="btn updateStat" id="play">Play</button>
+                      </div>
+                      <div class="actionBtns col s12"></div>
+                      <div class="actionBtns col s12">
+                        <button class="btn updateStat power active" id="sleep">Sleep</button>
+                        <button class="btn updateStat power active" id="medicine">Medicine</button>
+                        <button class="btn updateStat power active" id="love">Love</button>
+                      </div>
+                  </div>
                 </div>
             </div>
         </div>
@@ -94,6 +100,7 @@
         integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
     <!-- MATERIALIZE CSS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://kit.fontawesome.com/968271eaaa.js" crossorigin="anonymous"></script>
     <!-- JavaScript file -->
     <script src="/assets/js/play.js"></script>
 </body>
