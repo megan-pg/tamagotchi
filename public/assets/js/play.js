@@ -157,8 +157,8 @@ async function refreshScreen(action, animate) {
     }
   } else {
     // play dead song
-    // $('#rip')[0].play();
     updateImage(false, 'rip');
+    $('#rip')[0].play();
   }
 }
 
