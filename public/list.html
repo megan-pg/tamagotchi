@@ -65,36 +65,58 @@
                                 <label for='name'>Pet's Name</label>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input class='validate' type='text' name='species' id='species' />
-                                <select>
-                                    <option value="" disabled selected>Choose your option</option>
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
-                                    <option value="3">Option 3</option>
-                                </select>
-
-                                <label for='species'>Species</label>
-                            </div>
-                        </div>
 
                         <div class="row">
-                            <div class="input-field col s12">
-                                <input class='validate' type='text' name='difficulty' id='difficulty' />
-                                <label for='difficulty'>Difficulty</label>
-                            </div>
+                            <p class="indigo-text">Choose your type of pet</p>
+                            <p>
+                                <label class="col s3">
+                                    <input type="radio" name="species" value="turtle" /><span>Turtle</span>
+                                </label>
+                            </p>
+                            <p>
+                                <label class="col s3">
+                                    <input type="radio" name="species" value="mammal" /><span>Mammal</span>
+                                </label>
+                            </p>
+                            <p>
+                                <label class="col s3">
+                                    <input type="radio" name="species" value="fish" /><span>Fish</span>
+                                </label>
+                            </p>
+                            <p>
+                                <label class="col s3">
+                                    <input type="radio" name="species" value="bird" /><span>Bird</span>
+                                </label>
+                            </p>
                         </div>
+                </div>
 
-                    </form>
+                <div class="row">
+                    <p class="indigo-text">Choose your Difficulty</p>
+                    <p>
+                        <label class="col s4">
+                            <input type="radio" name="difficulty" value="easy" /><span>Easy</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label class="col s4">
+                            <input type="radio" name="difficulty" value="medium" /><span>Medium</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label class="col s4">
+                            <input type="radio" name="difficulty" value="hard" /><span>Hard</span>
+                        </label>
+                    </p>
                 </div>
-                <div class="modal-footer">
-                    <a type='button' name='btn_create' id='createAnimal'
-                        class="modal-action login-text modal-close waves-effect btn-flat">Create</a>
-                </div>
+                </form>
             </div>
-
+            <div class="modal-footer">
+                <a type='button' name='btn_create' id='createAnimal'
+                    class="modal-action login-text modal-close waves-effect btn-flat">Create</a>
+            </div>
         </div>
+    </div>
     </div>
     </div>
 
