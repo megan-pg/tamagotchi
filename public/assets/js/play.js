@@ -103,13 +103,7 @@ function populateAnimalStats(animal) {
   stats = stats.join('');
 
   const display = `<div class="waves-effect" id="animalBox">
-      <div class="valign-wrapper">      
-        <div class="title">
-          <ul>
             ${stats}
-          </ul>
-        </div>
-      </div>
     </div>`;
 
   $('#animalBox').remove();
@@ -250,7 +244,7 @@ const animateState = () => {
     // Template literal to insert the variable 'position'
     if (position < (diff * 2)) {
       position += diff;
-    } else { 
+    } else {
       position = 0;
     }
     // reset the position to 0px, once position exceeds 4480px
