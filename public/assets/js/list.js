@@ -157,16 +157,22 @@ $('#createAnimal').click(async () => {
   };
   const valid = validateInputs(obj);
 
-  // todo create a toast or some on screen notification for the following console.logs
   if (Array.isArray(valid)) {
     valid.map((item) => M.toast({ html: item }));
   } else {
+    const getAnimals = await getAnimalList(creds);
+    const dupes = getAnimals.msg.filter((animal) => animal.name === obj.name);
+
     $('#name').val('');
-    await createAnimal(creds, obj)
-      .then(async () => {
-        const getAnimals = await getAnimalList(creds);
-        populateAnimalsList(getAnimals.msg, creds.username);
-      });
+      await createAnimal(creds, obj)
+        .then(async () => {
+          populateAnimalsList(getAnimals.msg, creds.username);
+        });
+    // if (dupes.length) {
+    //   // M.toast({ html: 'Animal name must be unique.' })
+    // } else {
+      
+    // }
   }
 });
 
