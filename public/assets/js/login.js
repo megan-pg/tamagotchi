@@ -19,7 +19,7 @@ function getClientCreds() {
   return obj;
 }
 
-$('#login').on('click', () => {
+$('#loginBtn').on('click', () => {
   const obj = {
     username: $('#username').val(),
     password: $('#passwordOne').val(),
@@ -35,6 +35,8 @@ $('#login').on('click', () => {
         localStorage.setItem('username', JSON.stringify(result.username));
         localStorage.setItem('accessToken', JSON.stringify(result.accessToken));
         localStorage.setItem('uuid', JSON.stringify(result.uuid));
+        $('#username').val(''),
+        $('#passwordOne').val(''),
         window.location.assign('/list'); // navigate to the login screen
       } else if (result.status === 404) {
         M.toast({ html: 'User does not exist!' });
