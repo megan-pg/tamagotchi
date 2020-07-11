@@ -16,6 +16,7 @@ $(async () => {
     dead = true;
   }
   populateAnimalStats(animal.msg[0]);
+  $('.modal').modal();
 });
 
 function getClientCreds() {
@@ -42,9 +43,7 @@ async function getAnimal(creds) {
   })
     .then(async (result) => result)
     .fail((result) => {
-      // todo add a toast here
-      M.toast({ html: 'Error.' });
-      console.log(result);
+      M.toast({ html: result.msg });
     });
 }
 
@@ -60,9 +59,7 @@ async function updateStats(data, creds) {
   })
     .then(async (result) => result)
     .fail((result) => {
-      // todo add a toast here
-      M.toast({ html: 'Error.' });
-      console.log(result);
+      M.toast({ html: result.msg });
     });
 }
 
@@ -78,9 +75,7 @@ async function updateStat(data, creds) {
   })
     .then(async (result) => result)
     .fail((result) => {
-      // todo add a toast here
-      M.toast({ html: 'Error.' });
-      console.log(result);
+      M.toast({ html: result.msg });
     });
 }
 
@@ -296,16 +291,12 @@ $('#logout').click(() => {
     dataType: 'json',
   })
     .then(async (result) => {
-      // todo add logout successufl toast
-      M.toast({ html: 'Logout was successful.' });
-      console.log(result);
+      M.toast({ html: result.msg });
     })
     .then(() => {
       window.location.assign('/');
     })
     .fail((result) => {
-      // todo add a toast here
-      M.toast({ html: 'Logout failed.' });
-      console.log(result);
+      M.toast({ html: result.msg });
     });
 });
