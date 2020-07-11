@@ -105,12 +105,15 @@ function populateAnimalStats(animal) {
   animateState();
 }
 
-async function refreshScreen(action) {
+async function refreshScreen(action, animate) {
   const obj = getClientCreds();
   const uuid = JSON.parse(localStorage.getItem('animal-uuid'));
 
   if (action) {
     await updateStat({ uuid, action }, getClientCreds());
+    if (animate === 'sleep' || animate === 'medicine' || animate === 'love') {
+      await updateStat({ uuid, action }, getClientCreds());
+    }
   } else {
     await updateStats({ uuid }, getClientCreds());
     $('.updateStat').attr('disabled', false);
@@ -121,28 +124,31 @@ async function refreshScreen(action) {
 
   if (!dead) {
     if (animal.msg[0].unhealthy === true && !action) {
-      console.log('Unhealthy for ', unhealthyIntervals, ' intervals.');
       unhealthyIntervals += 1;
       $('#negative')[0].play();
+    } else if (animal.msg[0].unhealthy === false && !action) {
+      $('#postive')[0].play();
     } else if (animal.msg[0].unhealthy === false && unhealthyIntervals > 0) {
       unhealthyIntervals = 0;
-      updateImage(animal.msg[0].species, action);
+      updateImage(false, animate);
+      $('#positive')[0].play();
+    } else if (action) {
+      updateImage(false, animate);
       $('#positive')[0].play();
     } else {
-      updateImage(animal.msg[0].species, action);
+      updateImage(animal.msg[0].type, action);
       $('#positive')[0].play();
     }
   } else {
-    console.log('tis dead still');
     // play dead song
     // $('#rip')[0].play();
+    updateImage(false, 'rip');
   }
 }
 
 function isDead() {
-  console.log('Unhealthy for ', unhealthyIntervals, ' intervals.');
   // if animal has been unhealthy for 5 intervals ~ 50 seconds
-  if (unhealthyIntervals > 5) {
+  if (unhealthyIntervals > 500) {
     dead = true;
     return true;
   }
@@ -187,7 +193,12 @@ function calculateStatus(animal) {
 }
 
 function updateImage(animalType, animalState) {
-  const animation = `/assets/sprite-sheet/sheet/${animalType}_${animalState}_sprite_sheet.png`;
+  let animation;
+  if (animalType) {
+    animation = `/assets/sprite-sheet/sheet/${animalType}/${animalState}_sprite_sheet.png`;
+  } else {
+    animation = `/assets/sprite-sheet/sheet/${animalState}_sprite_sheet.png`;
+  }
   $('#view-screen').css('background-image', `url(${animation})`);
 }
 
@@ -203,19 +214,18 @@ const animateState = () => {
 
   let position = 0; // start position for the image slicer
   const interval = 500; // 500 ms of interval for the setInterval()
-  // const diff = 640; // diff as a variable for position offset
   tID = setInterval(() => {
     // todo this is px based, css sheet has ems, might see some weirdness
     document.getElementById('view-screen').style.backgroundPosition = `-${position}px 0px`;
     // Template literal to insert the variable 'position'
     if (position < (diff * 2)) {
       position += diff;
-    } else { // we increment the position by 640 each time
+    } else { 
       position = 0;
     }
     // reset the position to 0px, once position exceeds 4480px
-  }, interval); // end of setInterval
-}; // end of animateAnimalState()
+  }, interval);
+};
 
 // USER INPUT
 $('.updateStat').click(async function () {
@@ -227,24 +237,23 @@ $('.updateStat').click(async function () {
         action = 'hunger';
         break;
       case 'sleep':
-        action = 'fatigue';
+        action = 'hunger';
         break;
       case 'clean':
         action = 'bathroom';
         break;
       case 'medicine':
-        action = 'sick';
+        action = 'bathroom';
         break;
       case 'play':
         action = 'boredom';
         break;
       case 'love':
-        action = 'bored';
+        action = 'boredom';
         break;
       default:
         action = 'hunger';
     }
-    unhealthyIntervals -= 1;
-    refreshScreen(action);
+    refreshScreen(action, this.id);
   }
 });
