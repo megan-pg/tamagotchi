@@ -97,8 +97,9 @@ function populateAnimalStats(animal) {
       }
       return `<li>${key}: ${val}</li>`;
     });
-
-  stats.push(`<li>unhealthy intervals: ${unhealthyIntervals}</li>`);
+  // width value is dependent upon the # of unhealthyIntervals allowed in isDead()
+  stats.push(`<li>unhealthy intervals: ${unhealthyIntervals}<div class="progress">
+  <div class="determinate" style="width: ${unhealthyIntervals * 2}%"></div></div></li>`);
   stats = stats.join('');
 
   const display = `<div class="waves-effect" id="animalBox">
@@ -160,7 +161,7 @@ async function refreshScreen(action, animate) {
 
 function isDead() {
   // if animal has been unhealthy for 5 intervals ~ 50 seconds
-  if (unhealthyIntervals > 500) {
+  if (unhealthyIntervals > 50) {
     dead = true;
     return true;
   }
