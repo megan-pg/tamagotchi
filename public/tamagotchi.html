@@ -56,21 +56,6 @@
         </div>
     </div>
 
-    <!-- todo ------------------- aciton button examples ------------------- -->
-    <!-- todo move this onto the game and style them appropriately -->
-    <div class="actionBtns col s12">
-        <button class="btn updateStat" id="feed">Feed</button>
-        <button class="btn updateStat" id="clean">Clean</button>
-        <button class="btn updateStat" id="play">Play</button>
-    </div>
-
-    <div class="actionBtns col s12">
-      <button class="btn updateStat" id="sleep">Sleep</button>
-      <button class="btn updateStat" id="medicine">Medicine</button>
-      <button class="btn updateStat" id="love">Love</button>
-    </div>
-  
-
     <!-- todo ------------------- DOUG'S HACK TO DISPAY DATA, NEEDS TO BE MADE PRETTY ------------------- -->
     <div style="background-color: antiquewhite;
         position: fixed; 
@@ -80,8 +65,23 @@
     <main>
         <div class="container" id="tamagotchi-device">
             <div class='row'>
-                <div class='dude col s12' id="screen">
-                    <div id="view-screen"></div>
+                <div class='dude col s12' id="screen"">
+                  <div id="view-screen">
+                    <div id="actionButtons"">
+                      <!-- todo ------------------- aciton button examples ------------------- -->
+                      <!-- todo move this onto the game and style them appropriately -->
+                      <div class="actionBtns col s12">
+                        <button class="btn updateStat" id="feed">Feed</button>
+                        <button class="btn updateStat" id="clean">Clean</button>
+                        <button class="btn updateStat" id="play">Play</button>
+                      </div>
+                      <div class="actionBtns col s12"></div>
+                      <div class="actionBtns col s12">
+                        <button class="btn updateStat power active" id="sleep">Sleep</button>
+                        <button class="btn updateStat power active" id="medicine">Medicine</button>
+                        <button class="btn updateStat power active" id="love">Love</button>
+                      </div>
+                  </div>
                 </div>
             </div>
         </div>
