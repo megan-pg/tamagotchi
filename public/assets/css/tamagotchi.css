@@ -57,6 +57,9 @@ p {
   background-size: 40em 20em;
 }
 
+.active {
+  display: none;
+}
 
 /* ////////////////////////////// FOOTER //////////////////////////////*/
 

@@ -112,7 +112,7 @@ async function refreshScreen(action, animate) {
   if (action) {
     await updateStat({ uuid, action }, getClientCreds());
     if (animate === 'sleep' || animate === 'medicine' || animate === 'love') {
-      await updateStat({ uuid, action }, getClientCreds());
+      await updateStat({ uuid, action }, getClientCreds()); // double effective !!!
     }
   } else {
     await updateStats({ uuid }, getClientCreds());
@@ -155,6 +155,19 @@ function isDead() {
   return false;
 }
 
+function showPowerBtn() {
+  const arr = ['sleep', 'medicine', 'love'];
+  const rand = Math.floor(Math.random() * (2 - 0) + 0);
+  $(`#${arr[rand]}`).toggleClass('active');
+}
+
+function hidePowerBtn() {
+  const arr = ['sleep', 'medicine', 'love'];
+  arr.forEach((id) => {
+    $(`#${id}`).addClass('active');
+  });
+}
+
 function startGame() {
   let sec = 0;
   const timerInterval = setInterval(() => {
@@ -165,6 +178,10 @@ function startGame() {
     }
     if (sec % 10 === 0) {
       refreshScreen();
+      hidePowerBtn();
+    }
+    if (sec % 60 === 0) {
+      showPowerBtn();
     }
   }, 1000);
 }
