@@ -119,8 +119,7 @@ $('#createAnimal').click(async () => {
   const userStr = creds.username;
   const obj = {
     name: $('#name').val(),
-    difficulty: $('#difficulty').val(),
-    /* species: $('#species').val(), */
+    difficulty: $('input:radio[name=difficulty]:checked').val(),
     species: $('input:radio[name=species]:checked').val(),
     UserUuid: creds.uuid,
   };
