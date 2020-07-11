@@ -62,6 +62,11 @@ p {
   text-align: center;
   margin-top: 325px;
 }
+ /* Buttons */
+
+ .audioBtns {
+  margin-top: 5px;
+ }
 
 .updateStat {
   background-color: #e6e600;
