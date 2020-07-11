@@ -55,7 +55,18 @@ main {
   
     
 }
-  
+.list {
+  margin: 0;
+}
+
+.list li {
+  padding: 0 16px;
+}
+#logo {
+/* todo not truly centered, not sure how this'll do on mobile */
+margin-left: 0.5em;
+margin-top: 0.5em;
+}
   
 /*.waves-effect {
     width: 100%;

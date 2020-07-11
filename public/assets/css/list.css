@@ -76,6 +76,11 @@ i.ml-auto {
     color: rgba(0, 0, 0, 0.26);
 }
   
+#logo {
+  /* todo not truly centered, not sure how this'll do on mobile */
+  margin-left: 0.5em;
+  margin-top: 0.5em;
+}
 /* ////////////////////////////// FOOTER //////////////////////////////*/
   
 .list-footer  {

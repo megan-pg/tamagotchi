@@ -135,3 +135,26 @@ $('#createAnimal').click(async () => {
       });
   }
 });
+
+$('#logout').click(() => {
+  const { username } = getClientCreds();
+  localStorage.setItem('accessToken', JSON.stringify('null')); // to call it elsewhere
+
+  $.ajax({
+    url: '/api/users/logout',
+    type: 'post',
+    data: { username },
+    dataType: 'json',
+  })
+    .then(async (result) => {
+      // todo add logout successufl toast
+      console.log(result);
+    })
+    .then(() => {
+      window.location.assign('/');
+    })
+    .fail((result) => {
+      // todo add a toast here
+      console.log(result);
+    });
+});
