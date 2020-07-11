@@ -64,6 +64,7 @@ $('#create').on('click', () => {
         window.location.assign('/login'); // navigate to the login screen
       } else {
         // todo toast explaining what went wrong
+        M.toast({ html: 'Password Error.' });
         console.log(result);
       }
     });
@@ -82,6 +83,7 @@ $('#logout').click(() => {
   })
     .then(async (result) => {
       // todo add logout successufl toast
+      M.toast({ html: 'Logout successful.' });
       console.log(result);
     })
     .then(() => {
@@ -89,6 +91,7 @@ $('#logout').click(() => {
     })
     .fail((result) => {
       // todo add a toast here
+      M.toast({ html: 'Error.' });
       console.log(result);
     });
 });

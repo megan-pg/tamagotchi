@@ -30,6 +30,7 @@ async function getAnimalList(creds, user) {
       } else if (err.status === 401 || err.status === '401') {
         window.location.assign('/login');
         // todo make a toast pop telling them they've been unauthenticated
+        M.toast({ html: 'You have been unauthenticated.' });
       } else {
         console.log(err);
       }
@@ -49,6 +50,7 @@ async function createAnimal(creds, data) {
     .then(async (result) => result)
     .fail((result) => {
       // todo add a toast here
+      M.toast({ html: 'You havve created a DigtalDude!' });
       console.log(result);
     });
 }
@@ -150,12 +152,14 @@ $('#logout').click(() => {
     .then(async (result) => {
       // todo add logout successufl toast
       console.log(result);
+      M.toast({ html: 'Success!' });
     })
     .then(() => {
       window.location.assign('/');
     })
     .fail((result) => {
       // todo add a toast here
+      M.toast({ html: 'Error.' });
       console.log(result);
     });
 });

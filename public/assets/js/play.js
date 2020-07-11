@@ -43,6 +43,7 @@ async function getAnimal(creds) {
     .then(async (result) => result)
     .fail((result) => {
       // todo add a toast here
+      M.toast({ html: 'Error.' });
       console.log(result);
     });
 }
@@ -60,6 +61,7 @@ async function updateStats(data, creds) {
     .then(async (result) => result)
     .fail((result) => {
       // todo add a toast here
+      M.toast({ html: 'Error.' });
       console.log(result);
     });
 }
@@ -77,6 +79,7 @@ async function updateStat(data, creds) {
     .then(async (result) => result)
     .fail((result) => {
       // todo add a toast here
+      M.toast({ html: 'Error.' });
       console.log(result);
     });
 }
@@ -300,6 +303,7 @@ $('#logout').click(() => {
   })
     .then(async (result) => {
       // todo add logout successufl toast
+      M.toast({ html: 'Logout was successful.' });
       console.log(result);
     })
     .then(() => {
@@ -307,6 +311,7 @@ $('#logout').click(() => {
     })
     .fail((result) => {
       // todo add a toast here
+      M.toast({ html: 'Logout failed.' });
       console.log(result);
     });
 });
