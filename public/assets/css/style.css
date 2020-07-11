@@ -39,7 +39,7 @@ body.welcome {
     /* background-size: contain, cover; */
     background-color: #512da8;
     /* background-size: 100% 100%; */
-    overflow: hidden;
+    /* overflow: hidden; */
     -webkit-font-smoothing: antialiased;
   }
   
@@ -189,4 +189,11 @@ body.welcome {
   100% {
     opacity: 0;
   }
+}
+
+@media only screen and (max-width: 600px) {
+  .hideThis{
+    display: none;
+  }
+
 }
