@@ -163,16 +163,16 @@ $('#createAnimal').click(async () => {
     const getAnimals = await getAnimalList(creds);
     const dupes = getAnimals.msg.filter((animal) => animal.name === obj.name);
 
-    $('#name').val('');
+    if (dupes.length) {
+      M.toast({ html: 'Animal name must be unique.' })
+    } else {
+      $('#name').val('');
       await createAnimal(creds, obj)
         .then(async () => {
+          const getAnimals = await getAnimalList(creds);
           populateAnimalsList(getAnimals.msg, creds.username);
         });
-    // if (dupes.length) {
-    //   // M.toast({ html: 'Animal name must be unique.' })
-    // } else {
-      
-    // }
+    }
   }
 });
 
