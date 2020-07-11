@@ -118,7 +118,8 @@ $('#createAnimal').click(async () => {
   const obj = {
     name: $('#name').val(),
     difficulty: $('#difficulty').val(),
-    species: $('#species').val(),
+    /* species: $('#species').val(), */
+    species: $('input:radio[name=species]:checked').val(),
     UserUuid: creds.uuid,
   };
   const valid = validateInputs(obj);

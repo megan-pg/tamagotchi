@@ -50,6 +50,9 @@ Project is created with:
     * sequelize
     * uuid
 
+* Online Pixelart.com
+* Texture Packer (to create sprite sheets)
+
 ## Usage
 * Choose your pet
     * Turtle
@@ -63,21 +66,19 @@ User inputs Name. Date and pet ID get auto generated.
     * Medium - Starts off with meters half full
     * Hard - Starts off with meters almost full
 
-* Hunger button
-    * Feed - This will update your Hunger meter (makes positive sound)
-    * Snack - This will update your Happy/Bored and Hunger meters but will decrement your Health meter.
 
-* Disipline button - This will decrement your Happy/Bored meter but will also decrement the chance of your pet acting out (make a negative sound)
+* Feed Button - This will update your Hunger meter (makes positive sound)
 
-* Medicine button - When your pet's health is very low you can use this but it will also severely lower their Happy/Bored meter (makes a negative sound)
+* Clean Button - After your pet poops, it will need to be cleaned. Don't let it sit too long in it's poop or the health meter will be decremented.
 
-* Clean button - After your pet poops, it will need to be cleaned. Don't let it sit too long in it's poop or the health meter will be decremented.
+* Play Button - Play with pet to boost Happy/Bored meter (makes a positive sound)
 
-* Happy/Bored Button
-    * Love your pet to boost Happy/Bored meter (makes a positive sound)
-    * Play with pet to boost Happy/Bored meter (makes a positive sound)
+* Sleep Button - Play with pet to boost Happy/Bored meter (makes a positive sound)
 
-* Light button - When your pet becomes bored, it wants to go to sleep. Don't let it sit too long bored or the health meter will be decremented. 
+* Medicine Button - When your pet's health is very low you can use this but it will also severely lower their Happy/Bored meter (makes a negative sound)
+
+* Love Button - Love your pet to boost Happy/Bored meter (makes a positive sound)
+
 
 ## Contributors
 * **Megan Pardy-Gokcu** - [megan-pg](https://github.com/megan-pg)
@@ -87,8 +88,8 @@ User inputs Name. Date and pet ID get auto generated.
 
 ## Special Thanks/Credits
 * Game Music: "Chubby Cat", from PlayOnLoop.com Licensed under Creative Commins by Attriution 4.0
-* Additional sound effects from https://www.zapsplat.com
+* Additional sound effects from [Zap Splat](https://www.zapsplat.com)
 * Cool bouncy animation found on codepen @champa720
 
 ## Link to Heroku Page
-* <!-- https://?.herokuapp.com/ -->
+* [Digital Dude](https://digitaldude.herokuapp.com/)
