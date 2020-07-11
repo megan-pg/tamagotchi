@@ -9,8 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <!-- Materialize icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+    <!-- Materialize & Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.4/css/materialize.min.css">
     <!-- CSS -->
     <link rel="stylesheet" href="/assets/css/tamagotchi.css">
 
@@ -32,9 +34,9 @@
                 <a href="/login" class="left-brand-logo hide-on-small-and-down">
                     <img id="logo" src="/assets/css/images/logo-17percent.jpg" alt="digidude-logo" /></a>
                 <ul id="nav-mobile" class="right">
-                  <li><a id="logout">Logout</a></li>
-                  <li><a href="/list">Animals</a></li>
-                  <li><a href="/how-to">Instructions</a></li>
+                    <li><a id="logout">Logout</a></li>
+                    <li><a href="/list">Animals</a></li>
+                    <li><a href="/how-to">Instructions</a></li>
                 </ul>
             </div>
         </nav>
@@ -55,35 +57,50 @@
     </div>
 
     <!-- todo ------------------- DOUG'S HACK TO DISPAY DATA, NEEDS TO BE MADE PRETTY ------------------- -->
-    <div style="background-color: antiquewhite;
-        position: fixed; 
-        right: 10px; 
-        bottom: 35%;" id='animal'>
+    <!-- <div style="background-color: antiquewhite; -->
+    <!-- position: fixed;  -->
+    <!-- right: 10px;  -->
+    <!-- bottom: 35%;" id='animal'> -->
+    <!-- </div> -->
+
+    <!-- Modal Trigger -->
+    <div class="fixed-action-btn">
+        <a class="waves-effect waves-light btn btn-large btn-floating amber waves-effect waves-light modal-trigger"
+            href="#modal1"><i class="large material-icons">settings</i></a>
+
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h5 class="login-text indigo-text">Animal Stats</h5>
+                <div id='animal'></div>
+            </div>
+        </div>
     </div>
+    <!-- End Modal  -->
 
     <main>
         <div class="container" id="tamagotchi-device">
             <div class='row'>
-                <div class='dude col s12' id="screen"">
-                  <div id="view-screen">
-                    <div id="actionButtons"">
-                      <!-- todo ------------------- aciton button examples ------------------- -->
-                      <!-- todo move this onto the game and style them appropriately -->
-                      <div class="actionBtns col s12">
-                        <button class="btn updateStat" id="feed">Feed</button>
-                        <button class="btn updateStat" id="clean">Clean</button>
-                        <button class="btn updateStat" id="play">Play</button>
-                      </div>
-                      <div class="actionBtns col s12"></div>
-                      <div class="actionBtns col s12">
-                        <button class="btn updateStat power active" id="sleep">Sleep</button>
-                        <button class="btn updateStat power active" id="medicine">Medicine</button>
-                        <button class="btn updateStat power active" id="love">Love</button>
-                      </div>
-                  </div>
+                <div class='dude col s12' id="screen">
+                    <div id="view-screen">
+                        <div id="actionButtons">
+                            <!-- todo ------------------- aciton button examples ------------------- -->
+                            <!-- todo move this onto the game and style them appropriately -->
+                            <div class="actionBtns col s12">
+                                <button class="btn updateStat" id="feed">Feed</button>
+                                <button class="btn updateStat" id="clean">Clean</button>
+                                <button class="btn updateStat" id="play">Play</button>
+                            </div>
+                            <div class="actionBtns col s12"></div>
+                            <div class="actionBtns col s12">
+                                <button class="btn updateStat power active" id="sleep">Sleep</button>
+                                <button class="btn updateStat power active" id="medicine">Medicine</button>
+                                <button class="btn updateStat power active" id="love">Love</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
     </main>
 
     <footer class="list-footer blue darken-4">
@@ -101,6 +118,8 @@
     <script src="https://kit.fontawesome.com/968271eaaa.js" crossorigin="anonymous"></script>
     <!-- JavaScript file -->
     <script src="/assets/js/play.js"></script>
+    <script src="/assets/js/add.js"></script>
+
 </body>
 
 </html>
