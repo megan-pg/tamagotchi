@@ -82,9 +82,22 @@ async function updateStat(data, creds) {
 }
 
 function populateAnimalStats(animal) {
+  const atts = ['hunger', 'bathroom', 'boredom', 'health'];
+  const bools = ['fatigue', 'sick', 'bored', 'unhealthy', 'dead'];
   const type = animal.species;
   const state = dead ? 'rip' : calculateStatus(animal);
-  let stats = Object.entries(animal).map(([key, val]) => `<li>${key}: ${val}</li>`);
+  let stats = Object.entries(animal)
+    .map(([key, val]) => {
+      if (atts.includes(key)) {
+        return `<li>${key}: ${val} <div class="progress">
+        <div class="determinate" style="width: ${val * 10}%"></div></div></li>`;
+      }
+      if (bools.includes(key)) {
+        return `<li>${key}: ${val} <i class="fa fa-${val ? 'check' : 'times'}" aria-hidden="true"></i></li>`;
+      }
+      return `<li>${key}: ${val}</li>`;
+    });
+
   stats.push(`<li>unhealthy intervals: ${unhealthyIntervals}</li>`);
   stats = stats.join('');
 
@@ -95,7 +108,6 @@ function populateAnimalStats(animal) {
             ${stats}
           </ul>
         </div>
-        <i class="material-icons ml-auto"><i class="${'fas fa-poop'}"></i></i>
       </div>
     </div>`;
 
