@@ -25,13 +25,12 @@ async function getAnimalList(obj) {
     })
     .fail((err) => {
       if (err.status === 404 || err.status === '404') {
-        // 404 error will show on first load, as a user has not created any animals yet
-        // is there a way that should be handled?
+        M.toast({ html: err });
       } else if (err.status === 401 || err.status === '401') {
         window.location.assign('/login');
         M.toast({ html: 'You have been unauthenticated.' });
       } else {
-        M.toast({ html: result });
+        M.toast({ html: err });
       }
     });
 }
