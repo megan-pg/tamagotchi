@@ -1,10 +1,3 @@
-document.addEventListener('DOMContentLoaded', function () {
-    var elems = document.querySelectorAll('.modal');
-    var instances = M.Modal.init(elems, options);
+$(async () => {
+  $('.modal').modal();
 });
-// Or with jQuery
-$(document).ready(function () {
-    $('.modal').modal();
-    $('select').material_select();
-});
-

@@ -82,28 +82,27 @@ async function updateStat(data, creds) {
 }
 
 function populateAnimalStats(animal) {
-  // const { fatigue, hungry, sick, bathroom, bored, boredom, health, unhealthy} = animal;
   const type = animal.species;
-  // todo some math for calculating state
-  // todo might grab global dead var
   const state = dead ? 'rip' : calculateStatus(animal);
-  const stats = Object.entries(animal).map(([key, val]) => `<li>${key}: ${val}</li>`).join('');
+  let stats = Object.entries(animal).map(([key, val]) => `<li>${key}: ${val}</li>`);
+  stats.push(`<li>unhealthy intervals: ${unhealthyIntervals}</li>`);
+  stats = stats.join('');
+
   const display = `<div class="waves-effect" id="animalBox">
-      <div class="valign-wrapper">
-          <img 
-          src="/assets/concept-art/${type}-tamagotchi/img/${type}_${state}.png"
-          style="max-width:80px; height: 80px;border-radius:50%;"
-          / >
-          <div class="title">
-            <ul>
-              ${stats}
-            </ul>
-          </div>
-          <i class="material-icons ml-auto"><i class="${'fas fa-poop'}"></i></i>
+      <div class="valign-wrapper">      
+        <div class="title">
+          <ul>
+            ${stats}
+          </ul>
+        </div>
+        <i class="material-icons ml-auto"><i class="${'fas fa-poop'}"></i></i>
       </div>
     </div>`;
+
   $('#animalBox').remove();
   $('#animal').append(display);
+  updateImage(type, state);
+  animateState();
 }
 
 async function refreshScreen(action) {
@@ -122,14 +121,19 @@ async function refreshScreen(action) {
 
   if (!dead) {
     if (animal.msg[0].unhealthy === true && !action) {
-      // todo reset unhealthy if animals is brought back to health
+      console.log('Unhealthy for ', unhealthyIntervals, ' intervals.');
       unhealthyIntervals += 1;
       $('#negative')[0].play();
+    } else if (animal.msg[0].unhealthy === false && unhealthyIntervals > 0) {
+      unhealthyIntervals = 0;
+      updateImage(animal.msg[0].species, action);
+      $('#positive')[0].play();
     } else {
+      updateImage(animal.msg[0].species, action);
       $('#positive')[0].play();
     }
   } else {
-    console.log('tis dead still')
+    console.log('tis dead still');
     // play dead song
     // $('#rip')[0].play();
   }
@@ -137,7 +141,7 @@ async function refreshScreen(action) {
 
 function isDead() {
   console.log('Unhealthy for ', unhealthyIntervals, ' intervals.');
-  // if animal has been unhealthy for 5 intervals ~ 50 seconds (use milliseconds instead)
+  // if animal has been unhealthy for 5 intervals ~ 50 seconds
   if (unhealthyIntervals > 5) {
     dead = true;
     return true;
@@ -160,16 +164,58 @@ function startGame() {
 }
 
 function calculateStatus(animal) {
-  const { fatigue, sick, bored } = animal;
-  // todo this feels like an oppurtunity for recursion
-  // if a > b > c
-  // if b > c > a
-  // if c > a > b
-  // if a > c > b
-  // if b > a > c
-  // if c > b > a
-  // console.log(fatigue)
+  const { fatigue, hunger, sick, bathroom, bored, boredom } = animal;
+  const arr = [
+    { name: 'hunger', val: hunger },
+    { name: 'bathroom', val: bathroom },
+    { name: 'boredom', val: boredom },
+  ];
+
+  if (sick) {
+    return 'sick';
+  }
+  if (fatigue) {
+    return 'fatigue';
+  }
+  if (bored) {
+    return 'bored';
+  }
+
+  arr.sort((a, b) => a.val - b.val);
+
+  return arr[0].name;
 }
+
+function updateImage(animalType, animalState) {
+  const animation = `/assets/sprite-sheet/sheet/${animalType}_${animalState}_sprite_sheet.png`;
+  $('#view-screen').css('background-image', `url(${animation})`);
+}
+
+let tID; // we will use this variable to clear the setInterval()
+
+const stopAnimate = () => {
+  clearInterval(tID);
+};
+
+const animateState = () => {
+  const elWidth = $('#view-screen').css('width');
+  const diff = parseInt(elWidth.match(/(\d+)/)[0], 10);
+
+  let position = 0; // start position for the image slicer
+  const interval = 500; // 500 ms of interval for the setInterval()
+  // const diff = 640; // diff as a variable for position offset
+  tID = setInterval(() => {
+    // todo this is px based, css sheet has ems, might see some weirdness
+    document.getElementById('view-screen').style.backgroundPosition = `-${position}px 0px`;
+    // Template literal to insert the variable 'position'
+    if (position < (diff * 2)) {
+      position += diff;
+    } else { // we increment the position by 640 each time
+      position = 0;
+    }
+    // reset the position to 0px, once position exceeds 4480px
+  }, interval); // end of setInterval
+}; // end of animateAnimalState()
 
 // USER INPUT
 $('.updateStat').click(async function () {

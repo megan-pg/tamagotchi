@@ -112,24 +112,35 @@ module.exports = (sequelize, DataTypes) => {
 
   Animal.updateStat = (difficulty, value, action, user) => {
     const obj = {};
+    let min;
+    let max;
+
     if (action === 'dead') {
       obj.dead = true;
     } else {
       switch (difficulty) {
         case 'easy':
-          obj[action] = user ? value - 3 : value + 3;
+          min = 3;
+          max = 5;
           break;
         case 'medium':
-          obj[action] = user ? value - 2 : value + 2;
+          min = 2;
+          max = 4;
           break;
         case 'hard':
-          obj[action] = user ? value - 1 : value + 1;
+          min = 1;
+          max = 3;
           break;
         default:
-          obj[action] = user ? value - 3 : value + 3;
+          min = 2;
+          max = 5;
       }
 
-      // todo is there a less verbose way of going about this?
+      const less = Math.floor(Math.random() * (max - min) + min);
+      const more = Math.floor(Math.random() * (3 - 1) + 1);
+
+      obj[action] = user ? value - less : value + more;
+
       // making sure the values stay between 0 - 10
       if (user && obj[action] < 0) {
         obj[action] = 0;
