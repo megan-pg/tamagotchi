@@ -43,6 +43,7 @@ async function getAnimal(creds) {
     .then(async (result) => result)
     .fail((result) => {
       // todo add a toast here
+      M.toast({ html: 'Error.' });
       console.log(result);
     });
 }
@@ -60,6 +61,7 @@ async function updateStats(data, creds) {
     .then(async (result) => result)
     .fail((result) => {
       // todo add a toast here
+      M.toast({ html: 'Error.' });
       console.log(result);
     });
 }
@@ -77,6 +79,7 @@ async function updateStat(data, creds) {
     .then(async (result) => result)
     .fail((result) => {
       // todo add a toast here
+      M.toast({ html: 'Error.' });
       console.log(result);
     });
 }
@@ -103,13 +106,7 @@ function populateAnimalStats(animal) {
   stats = stats.join('');
 
   const display = `<div class="waves-effect" id="animalBox">
-      <div class="valign-wrapper">      
-        <div class="title">
-          <ul>
             ${stats}
-          </ul>
-        </div>
-      </div>
     </div>`;
 
   $('#animalBox').remove();
@@ -154,8 +151,8 @@ async function refreshScreen(action, animate) {
     }
   } else {
     // play dead song
-    // $('#rip')[0].play();
     updateImage(false, 'rip');
+    $('#rip')[0].play();
   }
 }
 
@@ -250,7 +247,7 @@ const animateState = () => {
     // Template literal to insert the variable 'position'
     if (position < (diff * 2)) {
       position += diff;
-    } else { 
+    } else {
       position = 0;
     }
     // reset the position to 0px, once position exceeds 4480px
@@ -300,6 +297,7 @@ $('#logout').click(() => {
   })
     .then(async (result) => {
       // todo add logout successufl toast
+      M.toast({ html: 'Logout was successful.' });
       console.log(result);
     })
     .then(() => {
@@ -307,6 +305,7 @@ $('#logout').click(() => {
     })
     .fail((result) => {
       // todo add a toast here
+      M.toast({ html: 'Logout failed.' });
       console.log(result);
     });
 });

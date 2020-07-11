@@ -27,6 +27,7 @@ $('#logout').click(() => {
     })
     .fail((result) => {
       // todo add a toast here
+      M.toast({ html: 'Error.' });
       console.log(result);
     });
 });

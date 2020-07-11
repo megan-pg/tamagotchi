@@ -43,6 +43,7 @@ $('#login').on('click', () => {
         console.log('User does not exist!');
       } else {
         // todo toast explaining what went wrong
+        M.toast({ html: 'User does not exist.' });
         console.log(result);
       }
     });
@@ -60,7 +61,8 @@ $('#logout').click(() => {
     dataType: 'json',
   })
     .then(async (result) => {
-      // todo add logout successufl toast
+      // todo add logout successful toast
+      M.toast({ html: 'Logout successful!' });
       console.log(result);
     })
     .then(() => {
@@ -68,6 +70,7 @@ $('#logout').click(() => {
     })
     .fail((result) => {
       // todo add a toast here
+      M.toast({ html: 'Login failed!' });
       console.log(result);
     });
 });
