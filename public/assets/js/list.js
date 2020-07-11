@@ -149,10 +149,10 @@ async function deleteAnimal(uuid, creds) {
     });
 }
 
-// OPEN LITTLE FORM
-$('#addNewButton').click(() => {
-  $('#addNewForm').toggleClass('active');
-});
+// // OPEN LITTLE FORM
+// $('#addNewButton').click(() => {
+//   $('#addNewForm').toggleClass('active');
+// });
 
 // CREATE A NEW ANIMAL
 $('#createAnimal').click(async () => {
@@ -164,6 +164,7 @@ $('#createAnimal').click(async () => {
     species: $('input:radio[name=species]:checked').val(),
     UserUuid: creds.uuid,
   };
+  console.log(obj)
   const valid = validateInputs(obj);
 
   // todo create a toast or some on screen notification for the following console.logs
