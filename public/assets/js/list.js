@@ -18,7 +18,6 @@ async function getAnimalList(obj) {
     dataType: 'json',
   })
     .then(async (result) => {
-      console.log(result)
       if (result.status === 200) {
         return result;
       }
