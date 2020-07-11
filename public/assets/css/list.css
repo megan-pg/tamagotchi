@@ -87,6 +87,22 @@ i.ml-auto {
     margin-left: 0.5em;
   }
 
+.name {
+  font-size: 2em;
+  color: #3d3d3d
+}
+.fas{
+  font-size: 0.75em;
+}
+.delete {
+  background-color: #ef5350;
+  color: white;
+}
+
+.delete:hover{
+  cursor: pointer;
+}
+
 /* ////////////////////////////// FOOTER //////////////////////////////*/
   
 .list-footer  {

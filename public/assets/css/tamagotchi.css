@@ -42,7 +42,7 @@ p {
 }
 
 #screen {
-  background-image: url(images/blueTamagotchi-1475.jpg);
+  background-image: url(images/blueTamagotchi-1475-reducedgreen.jpg);
   background-position: center;
   /*width: fit-content;*/
   background-position: center;
@@ -51,11 +51,12 @@ p {
 }
 
 #view-screen {
-  margin-top: 339px;
-  margin-right: 10px;
-  height: 20em;
-  width: 20em;
-  background-size: 40em 20em;
+  margin-top: 21.25em;
+  margin-right: 0.625em;
+  height: 21em;
+  width: 24em;
+  background-size: 48em 22em;
+  border-radius: 0.9375em;
 }
 
 #actionButtons {

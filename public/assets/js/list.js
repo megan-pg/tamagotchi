@@ -3,17 +3,17 @@ $(async () => {
   // todo add some validation here, if there's no/null values from getClientCreds
   // don't bother with the db call
   const obj = getClientCreds();
-  const userStr = obj.username;
-  const getAnimals = await getAnimalList(obj, userStr);
-  populateAnimalsList(getAnimals.msg, userStr);
+  const getAnimals = await getAnimalList(obj);
+  populateAnimalsList(getAnimals.msg, obj.username);
+  $('.modal').modal();
 });
 
-async function getAnimalList(creds, user) {
+async function getAnimalList(obj) {
   return $.ajax({
-    url: `/api/users/${user}/animals`,
+    url: `/api/users/${obj.username}/animals`,
     type: 'post',
     headers: {
-      authorization: creds.token,
+      authorization: obj.token,
     },
     dataType: 'json',
   })
@@ -29,9 +29,9 @@ async function getAnimalList(creds, user) {
         // is there a way that should be handled?
       } else if (err.status === 401 || err.status === '401') {
         window.location.assign('/login');
-        // todo make a toast pop telling them they've been unauthenticated
+        M.toast({ html: 'You have been unauthenticated.' });
       } else {
-        console.log(err);
+        M.toast({ html: result });
       }
     });
 }
@@ -48,8 +48,7 @@ async function createAnimal(creds, data) {
   })
     .then(async (result) => result)
     .fail((result) => {
-      // todo add a toast here
-      console.log(result);
+      M.toast({ html: result });
     });
 }
 
@@ -68,35 +67,54 @@ function populateAnimalsList(animals, user) {
   // const { fatigue, hungry, sick, bathroom, bored, boredom, health, unhealthy} = animal;
   // todo some math for calculating state
   // todo if dead change poop icon to dead and add a delete button
-  const state = 'bored';
+  // const state = 'bored';
   animals.forEach((animal, index) => {
-    const display = `<li class="waves-effect animal" id="${animal.name}" data-animal="${animal.uuid}" style="padding-bottom: 5px;">
+    const display = `<li class=" animal" style="padding-bottom: 5px;">
       <div class="valign-wrapper">
-          <img 
-          src="/assets/concept-art/${animal.species}-tamagotchi/img/${animal.species}_${state}.png"
-          style="max-width:80px; height: 80px;border-radius:50%;"
-          / >
+        <img
+          class="waves-effect waves-teal"
+          id="${animal.name}"
+          src='/assets/concept-art/${animal.dead ? 'miscellaneous/img/rip_example.png' : `${animal.species}-tamagotchi/img/${animal.species}_example.png`}'
+          style="max-width:80px; height: 80px;border-radius:50%;" / >
           <div class="title">
-              ${animal.name}<br>
-              <span>${animal.createdAt}</span>
+              <span class="name">${animal.name} <i class="fas fa-${translateIcon(animal.species)}" aria-hidden="true"></i></span>
               <br>
-              <span>${animal.species}</span>
-              <span>${animal.dead ? 'dead' : ''}</span>
-
+              <span> Age: ${animal.age}</span>
           </div>
-          <i class="material-icons ml-auto"><i class="${'fas fa-poop'}"></i></i>
+          <span class="ml-auto">${animal.dead ? `<button class="btn delete waves-effect waves-red" type="button" data-uuid=${animal.uuid}>Bury</button>` : ''}</span>
       </div>
     </li>`;
-    // <i class="material-icons left circle white-text"></i>
+
     $('#animals').append(display);
     $(`#${animal.name}`).click(() => {
       window.location.assign(`/play/${user}/${animal.name}`);
     });
+
+    $(`.delete[data-uuid=${animal.uuid}]`).click(async function() {
+      const uuid = $(this).attr('data-uuid');
+      await deleteAnimal(uuid, getClientCreds());
+    });
   });
 }
 
+function translateIcon(species) {
+  // cat, crow, dog, fish, dove, turtle
+  switch (species) {
+    case 'bird':
+      return 'dove';
+    case 'fish':
+      return 'fish';
+    case 'mammal':
+      return 'dog';
+    case 'turtle':
+      return 'turtle';
+    default:
+      return 'paw';
+  }
+}
+
 function validateInputs(obj) {
-  const inputs = Object.entries(obj).filter(([key, val]) => val.length === 0);
+  const inputs = Object.entries(obj).filter(([key, val]) => val === undefined || val.length === 0);
 
   if (inputs.length > 0) {
     const required = inputs.map(([key, val]) => `${key}: is required.`);
@@ -106,15 +124,31 @@ function validateInputs(obj) {
   return true;
 }
 
-// OPEN LITTLE FORM
-$('#addNewButton').click(() => {
-  $('#addNewForm').toggleClass('active');
-});
+async function deleteAnimal(uuid, creds) {
+  $.ajax({
+    url: '/api/animals/delete',
+    type: 'delete',
+    data: { uuid },
+    dataType: 'json',
+    headers: {
+      authorization: creds.token,
+    },
+  })
+    .then(async (result) => {
+      const obj = getClientCreds();
+      const getAnimals = await getAnimalList(obj);
+      
+      populateAnimalsList(getAnimals.msg, obj.username);
+      M.toast({ html: result.msg });
+    })
+    .fail((result) => {
+      M.toast({ html: result.msg });
+    });
+}
 
 // CREATE A NEW ANIMAL
 $('#createAnimal').click(async () => {
   const creds = getClientCreds();
-  const userStr = creds.username;
   const obj = {
     name: $('#name').val(),
     difficulty: $('input:radio[name=difficulty]:checked').val(),
@@ -125,13 +159,13 @@ $('#createAnimal').click(async () => {
 
   // todo create a toast or some on screen notification for the following console.logs
   if (Array.isArray(valid)) {
-    valid.map((item) => console.log(item));
+    valid.map((item) => M.toast({ html: item }));
   } else {
-
+    $('#name').val('');
     await createAnimal(creds, obj)
       .then(async () => {
-        const getAnimals = await getAnimalList(creds, userStr);
-        populateAnimalsList(getAnimals.msg, userStr);
+        const getAnimals = await getAnimalList(creds);
+        populateAnimalsList(getAnimals.msg, creds.username);
       });
   }
 });
@@ -147,14 +181,12 @@ $('#logout').click(() => {
     dataType: 'json',
   })
     .then(async (result) => {
-      // todo add logout successufl toast
-      console.log(result);
+      M.toast({ html: result.msg });
     })
     .then(() => {
       window.location.assign('/');
     })
     .fail((result) => {
-      // todo add a toast here
-      console.log(result);
+      M.toast({ html: result.msg });
     });
 });

@@ -19,14 +19,12 @@ $('#logout').click(() => {
     dataType: 'json',
   })
     .then(async (result) => {
-      // todo add logout successufl toast
-      console.log(result);
+      M.toast({ html: result.msg });
     })
     .then(() => {
       window.location.assign('/');
     })
     .fail((result) => {
-      // todo add a toast here
-      console.log(result);
+      M.toast({ html: result.msg });
     });
 });

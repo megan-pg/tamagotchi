@@ -13,7 +13,7 @@ function emailIsEmail(str) {
 }
 
 function validateInputs(obj) {
-  const inputs = Object.entries(obj).filter(([key, val]) => val.length === 0);
+  const inputs = Object.entries(obj).filter(([key, val]) => val === undefined || val.length === 0);
 
   if (inputs.length > 0) {
     const required = inputs.map(([key, val]) => `${key}: is required.`);
@@ -47,14 +47,12 @@ $('#create').on('click', () => {
   };
   const valid = validateInputs(obj);
 
-  // todo create a toast or some on screen notification for the following console.logs
-
   if (valid === 'password') {
-    console.log('Passwords do not match.');
+    M.toast({ html: 'Passwords do not match.' });
   } else if (valid === 'email') {
-    console.log('Not a valid email.');
+    M.toast({ html: 'Not a valid email.' });
   } else if (Array.isArray(valid)) {
-    valid.map((item) => console.log(item));
+    valid.map((item) => M.toast({ html: item }));
   } else {
     delete obj['password confirmation'];
     $.post('/api/users/create', obj, (result) => {
@@ -63,8 +61,7 @@ $('#create').on('click', () => {
         $('#passwordTwo').val('');
         window.location.assign('/login'); // navigate to the login screen
       } else {
-        // todo toast explaining what went wrong
-        console.log(result);
+        M.toast({ html: result.msg });
       }
     });
   }
@@ -81,14 +78,12 @@ $('#logout').click(() => {
     dataType: 'json',
   })
     .then(async (result) => {
-      // todo add logout successufl toast
-      console.log(result);
+      M.toast({ html: result.msg });
     })
     .then(() => {
       window.location.assign('/');
     })
     .fail((result) => {
-      // todo add a toast here
-      console.log(result);
+      M.toast({ html: result.msg });
     });
 });

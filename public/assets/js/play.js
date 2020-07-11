@@ -16,6 +16,7 @@ $(async () => {
     dead = true;
   }
   populateAnimalStats(animal.msg[0]);
+  $('.modal').modal();
 });
 
 function getClientCreds() {
@@ -42,8 +43,7 @@ async function getAnimal(creds) {
   })
     .then(async (result) => result)
     .fail((result) => {
-      // todo add a toast here
-      console.log(result);
+      M.toast({ html: result.msg });
     });
 }
 
@@ -59,8 +59,7 @@ async function updateStats(data, creds) {
   })
     .then(async (result) => result)
     .fail((result) => {
-      // todo add a toast here
-      console.log(result);
+      M.toast({ html: result.msg });
     });
 }
 
@@ -76,8 +75,7 @@ async function updateStat(data, creds) {
   })
     .then(async (result) => result)
     .fail((result) => {
-      // todo add a toast here
-      console.log(result);
+      M.toast({ html: result.msg });
     });
 }
 
@@ -148,8 +146,8 @@ async function refreshScreen(action, animate) {
     }
   } else {
     // play dead song
-    // $('#rip')[0].play();
     updateImage(false, 'rip');
+    $('#rip')[0].play();
   }
 }
 
@@ -293,14 +291,12 @@ $('#logout').click(() => {
     dataType: 'json',
   })
     .then(async (result) => {
-      // todo add logout successufl toast
-      console.log(result);
+      M.toast({ html: result.msg });
     })
     .then(() => {
       window.location.assign('/');
     })
     .fail((result) => {
-      // todo add a toast here
-      console.log(result);
+      M.toast({ html: result.msg });
     });
 });
