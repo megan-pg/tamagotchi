@@ -81,9 +81,12 @@ i.ml-auto {
   margin-left: 0.5em;
   margin-top: 0.5em;
 }
+
 .title {
-  margin-left:10px;
-}
+    /* todo not truly centered, not sure how this'll do on mobile */
+    margin-left: 0.5em;
+  }
+
 .name {
   font-size: 2em;
   color: #3d3d3d
@@ -99,6 +102,7 @@ i.ml-auto {
 .delete:hover{
   cursor: pointer;
 }
+
 /* ////////////////////////////// FOOTER //////////////////////////////*/
   
 .list-footer  {

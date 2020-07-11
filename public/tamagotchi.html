@@ -9,6 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="/assets/favicomatic/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/assets/favicomatic/favicon-16x16.png" sizes="16x16" />
     <!-- Materialize & Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet"
@@ -48,10 +51,14 @@
     <div class="container">
         <div class="audioBtns col s12">
             <div>
-                <button onclick="document.getElementById('player').play()">Play</button>
-                <button onclick="document.getElementById('player').pause()">Pause</button>
-                <button onclick="document.getElementById('player').volume+=0.1">Volume Up</button>
-                <button onclick="document.getElementById('player').volume-=0.1">Volume Down</button>
+                <button class="waves-effect light-green waves-light btn"
+                    onclick="document.getElementById('player').play()">Play Music</button>
+                <button class="waves-effect light-green waves-light btn"
+                    onclick="document.getElementById('player').pause()">Pause Music</button>
+                <button class="waves-effect light-green waves-light btn"
+                    onclick="document.getElementById('player').volume+=0.1">Volume Up</button>
+                <button class="waves-effect light-green waves-light btn"
+                    onclick="document.getElementById('player').volume-=0.1">Volume Down</button>
             </div>
         </div>
     </div>
@@ -80,9 +87,9 @@
                             <!-- todo ------------------- aciton button examples ------------------- -->
                             <!-- todo move this onto the game and style them appropriately -->
                             <div class="actionBtns col s12">
-                                <button class="btn updateStat" id="feed">Feed</button>
-                                <button class="btn updateStat" id="clean">Clean</button>
-                                <button class="btn updateStat" id="play">Play</button>
+                                <button class="btn deep-purple darken-2 updateStat" id="feed">Feed</button>
+                                <button class="btn deep-purple darken-2 updateStat" id="clean">Clean</button>
+                                <button class="btn deep-purple darken-2 updateStat" id="play">Play</button>
                             </div>
                             <div class="actionBtns col s12"></div>
                             <div class="actionBtns col s12">
