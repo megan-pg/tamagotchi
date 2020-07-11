@@ -1,5 +1,5 @@
 function validateInputs(obj) {
-  const inputs = Object.entries(obj).filter(([key, val]) => val.length === 0);
+  const inputs = Object.entries(obj).filter(([key, val]) => val === undefined || val.length === 0);
 
   if (inputs.length > 0) {
     const required = inputs.map(([key, val]) => `${key}: is required.`);
@@ -26,10 +26,8 @@ $('#login').on('click', () => {
   };
   const valid = validateInputs(obj);
 
-  // todo create a toast or some on screen notification for the following console.logs
-
   if (Array.isArray(valid)) {
-    valid.map((item) => console.log(item));
+    valid.map((item) => M.toast({ html: item }));
   } else {
     $.post('/api/users/login', obj, (result) => {
       if (result.status === 200) {
@@ -39,12 +37,9 @@ $('#login').on('click', () => {
         localStorage.setItem('uuid', JSON.stringify(result.uuid));
         window.location.assign('/list'); // navigate to the login screen
       } else if (result.status === 404) {
-        // todo toast explaining what went wrong
-        console.log('User does not exist!');
+        M.toast({ html: 'User does not exist!' });
       } else {
-        // todo toast explaining what went wrong
-        M.toast({ html: 'User does not exist.' });
-        console.log(result);
+        M.toast({ html: result });
       }
     });
   }
@@ -61,16 +56,12 @@ $('#logout').click(() => {
     dataType: 'json',
   })
     .then(async (result) => {
-      // todo add logout successful toast
-      M.toast({ html: 'Logout successful!' });
-      console.log(result);
+      M.toast({ html: result.msg });
     })
     .then(() => {
       window.location.assign('/');
     })
     .fail((result) => {
-      // todo add a toast here
-      M.toast({ html: 'Login failed!' });
-      console.log(result);
+      M.toast({ html: result.msg });
     });
 });
