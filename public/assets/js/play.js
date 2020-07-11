@@ -170,7 +170,7 @@ function isDead() {
 
 function showPowerBtn() {
   const arr = ['sleep', 'medicine', 'love'];
-  const rand = Math.floor(Math.random() * (2 - 0) + 0);
+  const rand = Math.floor(Math.random() * (3 - 0) + 0);
   $(`#${arr[rand]}`).toggleClass('active');
 }
 
@@ -286,4 +286,27 @@ $('.updateStat').click(async function () {
     }
     refreshScreen(action, this.id);
   }
+});
+
+$('#logout').click(() => {
+  const { username } = getClientCreds();
+  localStorage.setItem('accessToken', JSON.stringify('null')); // to call it elsewhere
+
+  $.ajax({
+    url: '/api/users/logout',
+    type: 'post',
+    data: { username },
+    dataType: 'json',
+  })
+    .then(async (result) => {
+      // todo add logout successufl toast
+      console.log(result);
+    })
+    .then(() => {
+      window.location.assign('/');
+    })
+    .fail((result) => {
+      // todo add a toast here
+      console.log(result);
+    });
 });

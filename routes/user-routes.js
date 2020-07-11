@@ -95,7 +95,6 @@ router.post('/login', (req, res) => {
 
 // logout
 router.post('/logout', (req, res) => {
-  // todo need to delete the localstorage copy of authtoken as well on the frontend
   User.findOne({
     where: { username: req.body.username },
   })
