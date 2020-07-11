@@ -47,11 +47,11 @@ p {
   /*width: fit-content;*/
   background-position: center;
   position: center;
-  height: 800px;
+  height: 50em;
 }
 
 #view-screen {
-  margin-top: 21.25em;
+  margin-top: 19.5em;
   margin-right: 0.625em;
   height: 21em;
   width: 24em;
@@ -61,7 +61,7 @@ p {
 
 #actionButtons {
   text-align: center;
-  margin-top: 325px;
+  margin-top: 23em;
 }
  /* Buttons */
 

@@ -111,13 +111,15 @@ function populateAnimalStats(animal) {
 }
 
 async function refreshScreen(action, animate) {
+  stopAnimate();
   const obj = getClientCreds();
   const uuid = JSON.parse(localStorage.getItem('animal-uuid'));
 
   if (action) {
+    
     await updateStat({ uuid, action }, getClientCreds());
     if (animate === 'sleep' || animate === 'medicine' || animate === 'love') {
-      await updateStat({ uuid, action }, getClientCreds()); // double effective !!!
+      await updateStat({ uuid, action }, getClientCreds());// double effective !!!
     }
   } else {
     await updateStats({ uuid }, getClientCreds());
@@ -232,13 +234,13 @@ const stopAnimate = () => {
 
 const animateState = () => {
   const elWidth = $('#view-screen').css('width');
-  const diff = parseInt(elWidth.match(/(\d+)/)[0], 10);
+  const diff = parseInt(elWidth.match(/(\d+)/)[0], 18);
 
   let position = 0; // start position for the image slicer
-  const interval = 500; // 500 ms of interval for the setInterval()
+  const interval = 600; // 500 ms of interval for the setInterval()
   tID = setInterval(() => {
     // todo this is px based, css sheet has ems, might see some weirdness
-    document.getElementById('view-screen').style.backgroundPosition = `-${position}px 0px`;
+    document.getElementById('view-screen').style.backgroundPosition = `-${position}em 0em`;
     // Template literal to insert the variable 'position'
     if (position < (diff * 2)) {
       position += diff;
