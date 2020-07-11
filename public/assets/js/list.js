@@ -3,17 +3,16 @@ $(async () => {
   // todo add some validation here, if there's no/null values from getClientCreds
   // don't bother with the db call
   const obj = getClientCreds();
-  const userStr = obj.username;
-  const getAnimals = await getAnimalList(obj, userStr);
-  populateAnimalsList(getAnimals.msg, userStr);
+  const getAnimals = await getAnimalList(obj);
+  populateAnimalsList(getAnimals.msg, obj.username);
 });
 
-async function getAnimalList(creds, user) {
+async function getAnimalList(obj) {
   return $.ajax({
-    url: `/api/users/${user}/animals`,
+    url: `/api/users/${obj.username}/animals`,
     type: 'post',
     headers: {
-      authorization: creds.token,
+      authorization: obj.token,
     },
     dataType: 'json',
   })
@@ -68,31 +67,51 @@ function populateAnimalsList(animals, user) {
   // const { fatigue, hungry, sick, bathroom, bored, boredom, health, unhealthy} = animal;
   // todo some math for calculating state
   // todo if dead change poop icon to dead and add a delete button
-  const state = 'bored';
+  // const state = 'bored';
   animals.forEach((animal, index) => {
-    const display = `<li class="waves-effect animal" id="${animal.name}" data-animal="${animal.uuid}" style="padding-bottom: 5px;">
+    // waves-effect
+    const display = `<li class=" animal" style="padding-bottom: 5px;">
       <div class="valign-wrapper">
-          <img 
-          src="/assets/concept-art/${animal.species}-tamagotchi/img/${animal.species}_${state}.png"
-          style="max-width:80px; height: 80px;border-radius:50%;"
-          / >
+        <img
+          class="waves-effect waves-teal"
+          id="${animal.name}"
+          src='/assets/concept-art/${animal.dead ? 'miscellaneous/img/rip_example.png' : `${animal.species}-tamagotchi/img/${animal.species}_example.png`}'
+          style="max-width:80px; height: 80px;border-radius:50%;" / >
           <div class="title">
-              ${animal.name}<br>
-              <span>${animal.createdAt}</span>
+              <span id="name">${animal.name} <i class="fas fa-${translateIcon(animal.species)}" aria-hidden="true"></i></span>
               <br>
-              <span>${animal.species}</span>
-              <span>${animal.dead ? 'dead' : ''}</span>
-
+              <span> Age: ${animal.age}</span>
           </div>
-          <i class="material-icons ml-auto"><i class="${'fas fa-poop'}"></i></i>
+          <span class="ml-auto">${animal.dead ? `<button class="btn delete waves-effect waves-red" type="button" data-uuid=${animal.uuid}>Bury</button>` : ''}</span>
       </div>
     </li>`;
-    // <i class="material-icons left circle white-text"></i>
+
     $('#animals').append(display);
     $(`#${animal.name}`).click(() => {
       window.location.assign(`/play/${user}/${animal.name}`);
     });
+
+    $(`.delete[data-uuid=${animal.uuid}]`).click(async function() {
+      const uuid = $(this).attr('data-uuid');
+      await deleteAnimal(uuid, getClientCreds());
+    });
   });
+}
+
+function translateIcon(species) {
+  // cat, crow, dog, fish, dove, turtle
+  switch (species) {
+    case 'bird':
+      return 'dove';
+    case 'fish':
+      return 'fish';
+    case 'mammal':
+      return 'dog';
+    case 'turtle':
+      return 'turtle';
+    default:
+      return 'paw';
+  }
 }
 
 function validateInputs(obj) {
@@ -106,6 +125,28 @@ function validateInputs(obj) {
   return true;
 }
 
+async function deleteAnimal(uuid, creds) {
+  $.ajax({
+    url: '/api/animals/delete',
+    type: 'delete',
+    data: { uuid },
+    dataType: 'json',
+    headers: {
+      authorization: creds.token,
+    },
+  })
+    .then(async (result) => {
+      const obj = getClientCreds();
+      const getAnimals = await getAnimalList(obj);
+      
+      populateAnimalsList(getAnimals.msg, obj.username);
+      M.toast({ html: result.msg });
+    })
+    .fail((result) => {
+      M.toast({ html: result.msg });
+    });
+}
+
 // OPEN LITTLE FORM
 $('#addNewButton').click(() => {
   $('#addNewForm').toggleClass('active');
@@ -114,7 +155,6 @@ $('#addNewButton').click(() => {
 // CREATE A NEW ANIMAL
 $('#createAnimal').click(async () => {
   const creds = getClientCreds();
-  const userStr = creds.username;
   const obj = {
     name: $('#name').val(),
     difficulty: $('#difficulty').val(),
@@ -127,11 +167,10 @@ $('#createAnimal').click(async () => {
   if (Array.isArray(valid)) {
     valid.map((item) => console.log(item));
   } else {
-
     await createAnimal(creds, obj)
       .then(async () => {
-        const getAnimals = await getAnimalList(creds, userStr);
-        populateAnimalsList(getAnimals.msg, userStr);
+        const getAnimals = await getAnimalList(creds);
+        populateAnimalsList(getAnimals.msg, creds.username);
       });
   }
 });
