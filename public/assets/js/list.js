@@ -1,3 +1,9 @@
+/* eslint-disable func-names */
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-shadow */
+/* eslint-disable no-undef */
+
 // INITIAL PAGE LOAD
 $(async () => {
   // todo add some validation here, if there's no/null values from getClientCreds
@@ -158,7 +164,7 @@ $('#createAnimal').click(async () => {
     const dupes = getAnimals.msg.filter((animal) => animal.name === obj.name);
 
     if (dupes.length) {
-      M.toast({ html: 'Animal name must be unique.' })
+      M.toast({ html: 'Animal name must be unique.' });
     } else {
       $('#name').val('');
       await createAnimal(creds, obj)
@@ -189,4 +195,8 @@ $('#logout').click(() => {
     .fail((result) => {
       M.toast({ html: result.msg });
     });
+});
+
+$(document).click(() => {
+  $('.sidenav').sidenav();
 });

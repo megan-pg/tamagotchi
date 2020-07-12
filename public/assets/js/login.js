@@ -1,3 +1,7 @@
+/* eslint-disable no-sequences */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-undef */
 function validateInputs(obj) {
   const inputs = Object.entries(obj).filter(([key, val]) => val === undefined || val.length === 0);
 
@@ -66,4 +70,8 @@ $('#logout').click(() => {
     .fail((result) => {
       M.toast({ html: result.msg });
     });
+});
+
+$(document).click(() => {
+  $('.sidenav').sidenav();
 });

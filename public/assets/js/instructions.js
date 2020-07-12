@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 function getClientCreds() {
   const obj = {
     token: JSON.parse(localStorage.getItem('accessToken')),
@@ -27,4 +28,8 @@ $('#logout').click(() => {
     .fail((result) => {
       M.toast({ html: result.msg });
     });
+});
+
+$(document).click(() => {
+  $('.sidenav').sidenav();
 });

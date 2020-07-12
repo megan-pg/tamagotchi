@@ -27,18 +27,23 @@
     <audio id="player" src="/assets/sound-files/POL-chubby-cat-short.wav" loop></audio>
     <audio id="rip" src="/assets/sound-files/dead_song.wav"></audio>
 
-  <header class="navbar-fixed">
-    <nav class="row blue darken-3">
-      <div class="nav-wrapper">
-        <a href="/login" class="left-brand-logo ">
-          <img id="logo" src="/assets/css/images/logo-17percent.jpg" alt="digidude-logo" /></a>
-        <ul id="nav-mobile" class="right">
-          <li><a id="logout">Logout</a></li>
-          <li><a href="/list">Animals</a></li>
-        </ul>
-      </div>
-    </nav>
-  </header>
+   <header class="navbar-fixed list">
+                <nav class="row blue darken-3">
+                    <div class="nav-wrapper">
+                        <a href="/login" class="left-brand-logo">
+                            <img id="logo" src="/assets/css/images/logo-17percent.jpg" alt="digidude-logo" title="digital dude" /></a>
+                        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                        <ul class="right hide-on-med-and-down">
+                            <li><a id="logout">Logout</a></li>
+                            <li><a href="/list">Animals</a></li>
+                        </ul>
+                    </div>
+                </nav>
+                <ul class="sidenav blue darken-3" id="mobile-demo">
+                    <li><a id="logout">Logout</a></li>
+                    <li><a href="/list">Animals</a></li>
+                </ul>
+            </header>
 
   <main class="container">
     <div class="row" id="screen">
