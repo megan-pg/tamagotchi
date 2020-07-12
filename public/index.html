@@ -27,12 +27,11 @@
   <header class="navbar-fixed list">
     <nav class="row blue darken-3">
       <div class="nav-wrapper">
-        <a href="/login" class="left-brand-logo hide-on-small-and-down">
+        <a href="/login" class="left-brand-logo">
           <img id="logo" src="/assets/css/images/logo-17percent.jpg" alt="digidude-logo" title="digital dude" /></a>
         <ul id="nav-mobile" class="right">
           <li><a id="logout">Logout</a></li>
           <li><a href="/list">Animals</a></li>
-          <li><a href="/how-to">Instructions</a></li>
         </ul>
       </div>
     </nav>
@@ -40,57 +39,62 @@
 
   <main class="valign-wrapper"">
 
-    <div class="row" style="margin:0; width:100%;">
-      
-      <div class="col s12 m9 grey-text text-lighten-1 hideThis">
-        <div class="words">
-          <p class="flow-text">Welcome to</p>
-          <h1 class="title grey-text text-lighten-3">Digital Dude</h1>
-          <blockquote class="flow-text">A blast from the past!</blockquote>
+    <div class=" row" style="margin:0; width:100%;">
+
+    <div class="col s12 m9 grey-text text-lighten-1 hideThis">
+      <div class="words">
+        <p class="flow-text">Welcome to</p>
+        <h1 class="title grey-text text-lighten-3">Digital Dude</h1>
+        <blockquote class="flow-text">A blast from the past!</blockquote>
+      </div>
+    </div>
+
+    <div class="col s12 m3">
+      <form class="col s12 z-depth-1 grey lighten-4" method="post">
+        <h5 class="login-text indigo-text">Login Below</h5>
+
+        <div class='row'>
+          <div class='input-field col s12'>
+            <input class='validate' type='text' name='username' id='username' />
+            <label for='username'>Username</label>
+          </div>
         </div>
-      </div>
 
-      <div class="col s12 m3">
-        <form class="col s12 z-depth-1 grey lighten-4" method="post">
-          <h5 class="login-text indigo-text">Login Below</h5>
-
-          <div class='row'>
-            <div class='input-field col s12'>
-              <input class='validate' type='text' name='username' id='username' />
-              <label for='username'>Username</label>
-            </div>
+        <div class='row'>
+          <div class='input-field col s12'>
+            <input class='validate' type='password' name='password' id='passwordOne' />
+            <label for='password'>Password</label>
           </div>
+        </div>
 
-          <div class='row'>
-            <div class='input-field col s12'>
-              <input class='validate' type='password' name='password' id='passwordOne' />
-              <label for='password'>Password</label>
-            </div>
+        <div class='row'>
+          <div class='input-field col s12'>
+            <button type='button' name='btn_login' id="loginBtn"
+              class='login-text col s12 btn btn-large waves-effect indigo'>Login</button>
           </div>
+        </div>
 
-          <div class='row'>
-            <div class='input-field col s12'>
-              <button type='button' name='btn_login' id="loginBtn"
-                class='login-text col s12 btn btn-large waves-effect indigo'>Login</button>
-            </div>
+        <div class='row'>
+          <div class='input-field col s12'>
+            <p>New? <a href="/create">sign up</a>.</p>
           </div>
+        </div>
 
-          <div class='row'>
-            <div class='input-field col s12'>
-              <p>New? <a href="/create">sign up</a>.</p>
-            </div>
-          </div>
+      </form>
+    </div>
 
-        </form>
-      </div>
-      
     </div>
   </main>
 
   <footer class="page-footer blue darken-3">
     <div class="footer-copyright blue darken-4">
       <div class="container">
-        <div>&copy; Copyright 2020</div>
+        <div style='float:left; width:30%'>
+          &copy; Copyright 2020
+        </div>
+        <div style='float:right; width:40%; margin-left:30px'>
+          <a href="/how-to">Instructions</a>
+        </div>
       </div>
   </footer>
 
