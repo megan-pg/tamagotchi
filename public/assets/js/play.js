@@ -80,30 +80,37 @@ async function updateStat(data, creds) {
 }
 
 function populateAnimalStats(animal) {
-  // name, 
   const atts = ['hunger', 'bathroom', 'boredom', 'health'];
-  const bools = ['fatigue', 'sick', 'bored', 'unhealthy', 'dead'];
+  const bools = ['fatigue', 'sick', 'bored'];
+  const serious = ['unhealthy', 'dead'];
   const type = animal.species;
   const state = dead ? 'rip' : calculateStatus(animal);
   const bars = Object.entries(animal)
     .map(([key, val]) => {
       if (atts.includes(key)) {
-        return `<div class="col s12 left-align"><span style="font-weight:bold;">${key}: ${val}</span><span class="progress" style="display:inline-block;">
-        <div class="determinate" style="width: ${val * 10}%"></div></span></div>`;
+        return `<div class="col s12 left-align"><span style="font-weight:bold;">${key}: ${val}</span><span class="progress">
+        <div class="determinate grey darken-3" style="width: ${val * 10}%"></div></span></div>`;
       }
     });
-  bars.push(`<div class="col s12 left-align"><span style="font-weight:bold;">Unhealthy turns: ${unhealthyIntervals}</span><span class="progress" style="display:inline-block;">
-    <div class="determinate" style="width: ${unhealthyIntervals * 2}%"></div></span></div>`);
+  bars.push(`<div class="col s12 left-align"><span style="font-weight:bold;">Unhealthy turns: ${unhealthyIntervals}</span><span class="progress">
+    <div class="determinate grey darken-3" style="width: ${unhealthyIntervals * 2}%;"></div></span></div>`);
   const tf = Object.entries(animal)
     .map(([key, val]) => {
       if (bools.includes(key)) {
-        return `<span>${key}: <i class="fa fa-${val ? 'check' : 'times'}" aria-hidden="true"></i></span>`;
+        return `<span class="tf">${key}: <i class="fa fa-${val ? 'check' : 'times'}" aria-hidden="true"></i></span>`;
       }
     });
-
-  const display = `<div class="row waves-effect" id="animalBox">
+  const grave = Object.entries(animal)
+    .map(([key, val]) => {
+      if (serious.includes(key)) {
+        return `<span class="tf">${key}: <i class="fa fa-${val ? 'check' : 'times'}" aria-hidden="true"></i></span>`;
+      }
+    });
+  const display = `<div id="animalBox">
     ${bars.join('')}
-    ${tf.join(' ')}
+   
+    ${grave.join(' ')}
+
   </div>`;
 
   $('#animalBox').remove();
