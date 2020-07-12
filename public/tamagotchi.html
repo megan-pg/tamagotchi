@@ -2,102 +2,113 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet">
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <!-- FAVICON -->
-    <link rel="icon" type="image/png" href="/assets/favicomatic/favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="/assets/favicomatic/favicon-16x16.png" sizes="16x16" />
-    <!-- Materialize & Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- CSS -->
-    <link rel="stylesheet" href="/assets/css/tamagotchi.css">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- FAVICON -->
+  <link rel="icon" type="image/png" href="/assets/favicomatic/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="/assets/favicomatic/favicon-16x16.png" sizes="16x16" />
+  <!-- Materialize & Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/tamagotchi.css">
 
-    <title>Digital Dude</title>
+  <title>Digital Dude</title>
 </head>
 
 <body class="list">
-    <audio id="positive" src="/assets/sound-files/positive_sound.mp3"></audio>
-    <audio id="negative" src="/assets/sound-files/negative_sound.mp3"></audio>
-    <audio id="player" src="/assets/sound-files/POL-chubby-cat-short.wav"></audio>
-    <audio id="rip" src="/assets/sound-files/dead_song.wav"></audio>
+  <audio id="positive" src="/assets/sound-files/positive_sound.mp3"></audio>
+  <audio id="negative" src="/assets/sound-files/negative_sound.mp3"></audio>
+  <audio id="player" src="/assets/sound-files/POL-chubby-cat-short.wav"></audio>
+  <audio id="rip" src="/assets/sound-files/dead_song.wav"></audio>
 
-    <header class="navbar-fixed">
-        <nav class="row blue darken-3">
-            <div class="nav-wrapper">
-                <a href="/login" class="left-brand-logo ">
-                    <img id="logo" src="/assets/css/images/logo-17percent.jpg" alt="digidude-logo" /></a>
-                <ul id="nav-mobile" class="right">
-                    <li><a id="logout">Logout</a></li>
-                    <li><a href="/list">Animals</a></li>
-                    <li><a href="/how-to">Instructions</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+  <header class="navbar-fixed">
+    <nav class="row blue darken-3">
+      <div class="nav-wrapper">
+        <a href="/login" class="left-brand-logo ">
+          <img id="logo" src="/assets/css/images/logo-17percent.jpg" alt="digidude-logo" /></a>
+        <ul id="nav-mobile" class="right">
+          <li><a id="logout">Logout</a></li>
+          <li><a href="/list">Animals</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
 
-    <main class="container">
-      <div class="row" id="screen">
-        <!-- SETTINGS ICON -->
-        <div class="col s12 center-align">
-          <button id="showMenu"class="waves-effect waves-light btn btn-large btn-floating amber waves-effect waves-light"><i class="large material-icons">info</i></button>
-        </div>
-        <!-- MUSIC BUTTONS -->
-        <div class="audioBtns col s12">
-          <button class="waves-effect light-green waves-light btn" id="volDown">
-            <i class="fa fa-minus" aria-hidden="true"></i>
-          </button>
-          <button class="waves-effect light-green waves-light btn" id="playPause">
-            <i class="fa fa-play" aria-hidden="true"></i>
-            <i class="fa fa-pause" aria-hidden="true"></i>
-          </button>
-          <button class="waves-effect light-green waves-light btn" id="volUp">
-            <i class="fa fa-plus" aria-hidden="true"></i>
-          </button>
-        </div>
-        <!-- ANIMATION SCREEN -->
-        <div class="animater col s12">
-          <div class="center-align" id="view-screen">
-            <div id="menu">
-              <div id='animal'></div>
-            </div>
-          </div>
-        </div>
-        <!-- PLAYER BUTTONS -->
-        <div id="actionButtons" class="col s12">
-          <div class="actionBtns">
-              <button class="btn deep-purple darken-2 updateStat" id="feed">Feed</button>
-              <button class="btn deep-purple darken-2 updateStat" id="clean">Clean</button>
-              <button class="btn deep-purple darken-2 updateStat" id="play">Play</button>
-          </div>
-          <div class="actionBtns">
-              <button class="btn updateStat power active" id="sleep">Sleep</button>
-              <button class="btn updateStat power active" id="medicine">Medicine</button>
-              <button class="btn updateStat power active" id="love">Love</button>
+  <main class="container">
+    <div class="row" id="screen">
+      <!-- SETTINGS ICON -->
+      <div class="col s12 center-align">
+        <button id="showMenu"
+          class="waves-effect waves-light btn btn-large btn-floating amber waves-effect waves-light"><i
+            class="large material-icons">info</i></button>
+      </div>
+      <!-- MUSIC BUTTONS -->
+      <div class="audioBtns col s12">
+        <button class="waves-effect light-green waves-light btn" id="volDown">
+          <i class="fa fa-minus" aria-hidden="true"></i>
+        </button>
+        <button class="waves-effect light-green waves-light btn" id="playPause">
+          <i class="fa fa-play" aria-hidden="true"></i>
+          <i class="fa fa-pause" aria-hidden="true"></i>
+        </button>
+        <button class="waves-effect light-green waves-light btn" id="volUp">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+        </button>
+      </div>
+      <!-- ANIMATION SCREEN -->
+      <div class="animater col s12">
+        <div class="center-align" id="view-screen">
+          <div id="menu">
+            <div id='animal'></div>
           </div>
         </div>
       </div>
-    </main>
+      <!-- PLAYER BUTTONS -->
+      <div id="actionButtons" class="col s12">
+        <div class="actionBtns">
+          <button class="btn deep-purple darken-2 updateStat" id="feed">Feed</button>
+          <button class="btn deep-purple darken-2 updateStat" id="clean">Clean</button>
+          <button class="btn deep-purple darken-2 updateStat" id="play">Play</button>
+        </div>
+        <div class="actionBtns">
+          <button class="btn updateStat power active" id="sleep">Sleep</button>
+          <button class="btn updateStat power active" id="medicine">Medicine</button>
+          <button class="btn updateStat power active" id="love">Love</button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!--  -->
+  <!-- <footer class="list-footer blue darken-4"> -->
+  <!-- <div class="footer-copyright blue darken-3"> -->
+  <!-- <div class="container"> -->
+  <!-- <div>&copy; Copyright 2020</div> -->
+  <!-- </div> -->
+  <!-- </footer> -->
 
-    <footer class="list-footer blue darken-4">
-        <div class="footer-copyright blue darken-3">
-            <div class="container">
-                <div>&copy; Copyright 2020</div>
-            </div>
-    </footer>
+  <footer class="page-footer blue darken-3">
+    <div class="footer-copyright blue darken-4">
+      <div class="footer-container">
+        <div class="copyright">&copy; Copyright 2020</div>
+      </div>
+      <div class="footer-link">
+        <a class="link" id="instructions" href="/how-to">Instructions</a>
+      </div>
+  </footer>
 
-    <!-- JQUERY -->
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js"
-        integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
-    <!-- MATERIALIZE CSS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://kit.fontawesome.com/968271eaaa.js" crossorigin="anonymous"></script>
-    <!-- JavaScript file -->
-    <script src="/assets/js/play.js"></script>
+  <!-- JQUERY -->
+  <script src="https://code.jquery.com/jquery-3.5.0.min.js"
+    integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+  <!-- MATERIALIZE CSS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://kit.fontawesome.com/968271eaaa.js" crossorigin="anonymous"></script>
+  <!-- JavaScript file -->
+  <script src="/assets/js/play.js"></script>
 </body>
 
 </html>
