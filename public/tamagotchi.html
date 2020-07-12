@@ -14,8 +14,6 @@
     <link rel="icon" type="image/png" href="/assets/favicomatic/favicon-16x16.png" sizes="16x16" />
     <!-- Materialize & Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- <link rel="stylesheet" -->
-        <!-- href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.4/css/materialize.min.css"> -->
     <!-- CSS -->
     <link rel="stylesheet" href="/assets/css/tamagotchi.css">
 
@@ -45,62 +43,50 @@
       </nav>
     </header>
 
-    <!-- todo ------------------- music player ------------------- -->
-    <!-- todo can we replace the images/buttons with some icons? -->
-
-    <div class="container">
-        <div class="audioBtns col s12">
-            <div>
-                <button class="waves-effect light-green waves-light btn"
-                    onclick="document.getElementById('player').play()">Play Music</button>
-                <button class="waves-effect light-green waves-light btn"
-                    onclick="document.getElementById('player').pause()">Pause Music</button>
-                <button class="waves-effect light-green waves-light btn"
-                    onclick="document.getElementById('player').volume+=0.1">Volume Up</button>
-                <button class="waves-effect light-green waves-light btn"
-                    onclick="document.getElementById('player').volume-=0.1">Volume Down</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Trigger -->
-    <div class="fixed-action-btn">
-        <a class="waves-effect waves-light btn btn-large btn-floating amber waves-effect waves-light modal-trigger"
-            href="#modal1"><i class="large material-icons">settings</i></a>
-
-        <!-- Modal Structure -->
-        <div id="modal1" class="modal">
-            <div class="modal-content">
-                <h5 class="login-text indigo-text">Animal Stats</h5>
-                <div id='animal'></div>
-            </div>
-        </div>
-    </div>
-    <!-- End Modal  -->
-
-    <main>
-        <div class="container" id="tamagotchi-device">
-            <div class='row'>
-                <div class='dude col s12 m8 l12' id="screen">
-                    <div id="view-screen">
-                        <div id="actionButtons">
-                            <!-- todo ------------------- aciton button examples ------------------- -->
-                            <!-- todo move this onto the game and style them appropriately -->
-                            <div class="actionBtns col s12">
-                                <button class="btn deep-purple darken-2 updateStat" id="feed">Feed</button>
-                                <button class="btn deep-purple darken-2 updateStat" id="clean">Clean</button>
-                                <button class="btn deep-purple darken-2 updateStat" id="play">Play</button>
-                            </div>
-                            <div class="actionBtns col s12"></div>
-                            <div class="actionBtns col s12">
-                                <button class="btn updateStat power active" id="sleep">Sleep</button>
-                                <button class="btn updateStat power active" id="medicine">Medicine</button>
-                                <button class="btn updateStat power active" id="love">Love</button>
-                            </div>
-                        </div>
-                    </div>
+    <main class="container">
+      <div class="row" id="screen">
+        <!-- SETTINGS ICON -->
+        <div class="col s12 center-align">
+            <a class="waves-effect waves-light btn btn-large btn-floating amber waves-effect waves-light modal-trigger"
+                href="#modal1"><i class="large material-icons">settings</i></a>
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <h5 class="login-text indigo-text">Animal Stats</h5>
+                    <div id='animal'></div>
                 </div>
             </div>
+        </div>
+        <!-- MUSIC BUTTONS -->
+        <div class="audioBtns col s12">
+          <button class="waves-effect light-green waves-light btn" id="volDown">
+            <i class="fa fa-minus" aria-hidden="true"></i>
+          </button>
+          <button class="waves-effect light-green waves-light btn" id="playPause">
+            <i class="fa fa-play" aria-hidden="true"></i>
+            <i class="fa fa-pause" aria-hidden="true"></i>
+          </button>
+          <button class="waves-effect light-green waves-light btn" id="volUp">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+          </button>
+        </div>
+        <!-- ANIMATION SCREEN -->
+        <div class="animater col s12">
+          <div class="center-align" id="view-screen"></div>
+        </div>
+        <!-- PLAYER BUTTONS -->
+        <div id="actionButtons" class="col s12">
+          <div class="actionBtns">
+              <button class="btn deep-purple darken-2 updateStat" id="feed">Feed</button>
+              <button class="btn deep-purple darken-2 updateStat" id="clean">Clean</button>
+              <button class="btn deep-purple darken-2 updateStat" id="play">Play</button>
+          </div>
+          <div class="actionBtns">
+              <button class="btn updateStat power active" id="sleep">Sleep</button>
+              <button class="btn updateStat power active" id="medicine">Medicine</button>
+              <button class="btn updateStat power active" id="love">Love</button>
+          </div>
+        </div>
+      </div>
     </main>
 
     <footer class="list-footer blue darken-4">
