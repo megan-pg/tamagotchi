@@ -81,6 +81,14 @@ i.ml-auto {
   margin-left: 0.5em;
   margin-top: 0.5em;
 }
+
+#toast-container {
+    top: auto !important;
+    right: auto !important;
+    bottom: 10%;
+    left:50%;  
+  }
+  
 /* ////////////////////////////// FOOTER //////////////////////////////*/
   
 .list-footer  {
