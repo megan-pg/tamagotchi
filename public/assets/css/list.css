@@ -105,47 +105,58 @@ i.ml-auto {
 /* ////////////////////////////// FOOTER //////////////////////////////*/
 
 .copyright {
-    float:left; 
-    margin-left: 25px;
-  }
+  float:left; 
+  margin-left: 25px;
+}
+
   
-    
-  .list-footer  {
-    height: 80px;
-  }
+.list-footer  {
+  height: 80px;
+}
+
+.footer-copyright  {
+  height: 60px;
+  color: white;
+}
+
+.footer-link {
+  float: right; 
+  margin-right: 10px;
+  color: white;
+}
+
+#instructions {
+  color: white;
+  margin-right: 80px;
+}
+
+/* unvisited link */
+.link a:link {
+  color: white;
+}
+
+/* visited link */
+.link a:visited {
+  color: white;
+}
+
+/* mouse over link */
+.link a:hover {
+  color: white;
+}
+
+/* selected link */
+.link a:active {
+  color: white;
+}
+
+#toast-container {
+  top: auto !important;
+  right: auto !important;
+  bottom: 10%;
+  left: 80%;  
+}
   
-  .footer-copyright  {
-    height: 60px;
-    color: white;
-  }
-  
-  .footer-link {
-    float: right; 
-    margin-right: 10px;
-    color: white;
-  }
-  
-  #instructions {
-    color: white;
-    margin-right: 80px;
-  }
-  
-  /* unvisited link */
-  .link a:link {
-    color: white;
-  }
-  
-  /* visited link */
-  .link a:visited {
-    color: white;
-  }
-  
-  /* mouse over link */
-  .link a:hover {
-    color: white;
-  }
-  
-  /* selected link */
-  .link a:active {
-    color: white;
-  }
+.fixed-action-btn{
+  bottom: 10%
+}

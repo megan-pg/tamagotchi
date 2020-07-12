@@ -119,12 +119,18 @@ p {
 #animalBox {
   padding-top: 0.5em;
   width: 100%;
-  text-transform:capitalize;
+  text-transform: capitalize;
 }
+
 .progress {
   height: 0.5em;
   background-color: rgba(0,0,0,0);
   border: 1px dashed #3d3d3d;
+}
+
+.tf {
+  margin-left:1em;
+  margin-right: 1em;
 }
 
 #logo {

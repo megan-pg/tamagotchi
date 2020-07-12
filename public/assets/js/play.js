@@ -81,7 +81,8 @@ async function updateStat(data, creds) {
 
 function populateAnimalStats(animal) {
   const atts = ['hunger', 'bathroom', 'boredom', 'health'];
-  const bools = ['fatigue', 'sick', 'bored', 'unhealthy', 'dead'];
+  const bools = ['fatigue', 'sick', 'bored'];
+  const serious = ['unhealthy', 'dead'];
   const type = animal.species;
   const state = dead ? 'rip' : calculateStatus(animal);
   const bars = Object.entries(animal)
@@ -96,13 +97,21 @@ function populateAnimalStats(animal) {
   const tf = Object.entries(animal)
     .map(([key, val]) => {
       if (bools.includes(key)) {
-        return `<span>${key}: <i class="fa fa-${val ? 'check' : 'times'}" aria-hidden="true"></i></span>`;
+        return `<span class="tf">${key}: <i class="fa fa-${val ? 'check' : 'times'}" aria-hidden="true"></i></span>`;
       }
     });
-
+  const grave = Object.entries(animal)
+    .map(([key, val]) => {
+      if (serious.includes(key)) {
+        return `<span class="tf">${key}: <i class="fa fa-${val ? 'check' : 'times'}" aria-hidden="true"></i></span>`;
+      }
+    });
   const display = `<div class="row waves-effect" id="animalBox">
     ${bars.join('')}
     ${tf.join(' ')}
+    <br/>
+    ${grave.join(' ')}
+
   </div>`;
 
   $('#animalBox').remove();
@@ -118,19 +127,19 @@ async function refreshScreen(action, animate) {
   const currentAnimal = await getAnimal(obj);
   const status = calculateStatus(currentAnimal.msg[0]);
 
-console.log(1, status)
+  console.log(1, status)
   if (animate && action !== status) { // user input that does not match the creatues most depserate status
-console.log(2, 'wrong')
+    console.log(2, 'wrong')
     await updateStats({ uuid }, getClientCreds());
   } else if (action) {
-console.log(2, 'right')
+    console.log(2, 'right')
     await updateStat({ uuid, action }, getClientCreds());
     if (animate === 'sleep' || animate === 'medicine' || animate === 'love') {
-console.log(2, 'power')
+      console.log(2, 'power')
       await updateStat({ uuid, action }, getClientCreds()); // double effective !!!
     }
   } else {
-console.log(2, 'update')
+    console.log(2, 'update')
     await updateStats({ uuid }, getClientCreds());
     $('.updateStat').attr('disabled', false);
   }
@@ -140,27 +149,28 @@ console.log(2, 'update')
 
   if (!dead) {
     if (animal.msg[0].unhealthy === true && !animate) {
-console.log(3, 'update unhealthy')
+      console.log(3, 'update unhealthy')
       unhealthyIntervals += 1;
       $('#negative')[0].play();
     } else if (animal.msg[0].unhealthy === false && !animate) {
-console.log(3, 'update healthy')
+      console.log(3, 'update healthy')
       $('#postive')[0].play();
     } else if (animal.msg[0].unhealthy === false && unhealthyIntervals > 0) {
-console.log(3, 'right made healthy')
+      console.log(3, 'right made healthy')
       unhealthyIntervals = 0;
       updateImage(false, animate);
       $('#positive')[0].play();
     } else if (animate && action === status) {
-console.log(3, 'user input correct')
+      console.log(3, 'user input correct')
       updateImage(false, animate);
       $('#positive')[0].play();
     } else if (animate && action !== status) {
-console.log(3, 'user input wrong')
+      console.log(3, 'user input wrong')
+      console.log(animal.msg[0])
       updateImage(animal.msg[0].species, 'boredom');
       $('#negative')[0].play();
     } else {
-console.log(3, 'catchall')
+      console.log(3, 'catchall')
       updateImage(animal.msg[0].species, action);
       $('#positive')[0].play();
     }
