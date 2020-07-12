@@ -80,8 +80,7 @@ i.ml-auto {
   /* todo not truly centered, not sure how this'll do on mobile */
   margin-left: 0.5em;
   margin-top: 0.5em;
-}
-
+}  
 .title {
     /* todo not truly centered, not sure how this'll do on mobile */
     margin-left: 0.5em;
@@ -102,7 +101,6 @@ i.ml-auto {
 .delete:hover{
   cursor: pointer;
 }
-
 /* ////////////////////////////// FOOTER //////////////////////////////*/
   
 .list-footer  {

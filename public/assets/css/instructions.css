@@ -117,6 +117,13 @@ i.ml-auto {
     color: rgba(0, 0, 0, 0.26);
 }*/
   
+#toast-container {
+    top: auto !important;
+    right: auto !important;
+    bottom: 10%;
+    left:50%;  
+  }
+  
 /* ////////////////////////////// FOOTER //////////////////////////////*/
   
 .list-footer  {
