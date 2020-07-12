@@ -10,19 +10,13 @@ main {
 
 body.list {
   background-color: black;
-  overflow: hidden;
+  /* overflow: hidden; */
   -webkit-font-smoothing: antialiased;
 }
 
 .dude {
   display: flex;
   justify-content: center;
-}
-
-.audioBtns {
-  position: relative;
-  overflow: hidden;
-  bottom:0;
 }
 
 audio { 
@@ -41,49 +35,72 @@ p {
   padding: 100px;
 }
 
+.egg-shape{
+  width: 70px;
+  height: 70px;
+  border-radius: 80% 15% 55% 50% / 55% 15% 80% 50%;
+  border: 3px solid #1c446b;
+  transform: rotate(-45deg);
+  margin-top: 30px;
+  background: #ffc000;
+}
+
 #screen {
   background-image: url(images/blueTamagotchi-1475-reducedgreen.jpg);
   background-position: center;
   /*width: fit-content;*/
-  background-position: center;
+  background-position-x: 47.5%;
   position: center;
   height: 50em;
+  padding-top: 150px;
+  padding-top: 10.75em;
 }
 
 #view-screen {
-  margin-top: 19.5em;
-  margin-right: 0.625em;
+  /* margin-top: 19.5em;
+  margin-right: 0.625em; */
   height: 21em;
   width: 24em;
   background-size: 48em 22em;
   border-radius: 0.9375em;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #modal1 {
-  margin-top: 20.5em;
-  margin-right: 52.5em;
+  margin-top: 17em;
+  /* margin-right: 52.5em; */
   height: 21em;
   width: 24em;
-  background-size: 48em 22em;
+  /* background-size: 48em 22em; */
   border-radius: 0.9375em;
 }
 
-#actionButtons {
-  text-align: center;
-  margin-top: 23em;
-}
- /* Buttons */
+ /* ----------------------- BUTTONS ----------------------- */
 
  .audioBtns {
-  margin-top: 5px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 30px;
  }
 
+ .audioBtns > button {
+  border-radius: 50%;
+ }
+
+.actionBtns{
+  margin-top: 20px;
+  text-align: center;
+}
+
 .updateStat {
+  font-weight: bold;
   background-color: #e6e600;
   border-radius: 50%;
 }
 
 .power {
+  margin-top: 0.5em;
   background-color: red;
 }
 
@@ -91,6 +108,9 @@ p {
   display: none;
 }
 
+.playing{
+
+}
 #logo {
   /* todo not truly centered, not sure how this'll do on mobile */
   margin-left: 0.5em;

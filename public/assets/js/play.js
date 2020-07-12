@@ -116,7 +116,6 @@ async function refreshScreen(action, animate) {
   const uuid = JSON.parse(localStorage.getItem('animal-uuid'));
 
   if (action) {
-    
     await updateStat({ uuid, action }, getClientCreds());
     if (animate === 'sleep' || animate === 'medicine' || animate === 'love') {
       await updateStat({ uuid, action }, getClientCreds());// double effective !!!
@@ -234,6 +233,7 @@ const stopAnimate = () => {
 
 const animateState = () => {
   const elWidth = $('#view-screen').css('width');
+  console.log(elWidth)
   const diff = parseInt(elWidth.match(/(\d+)/)[0], 18);
 
   let position = 0; // start position for the image slicer
@@ -250,6 +250,23 @@ const animateState = () => {
     // reset the position to 0px, once position exceeds 4480px
   }, interval);
 };
+
+$('#playPause').click(() => {
+  $('#playPause').toggleClass('playing');
+  if ($('#playPause').hasClass('playing')) {
+    $('#player')[0].play();
+  } else {
+    $('#player')[0].pause();
+  }
+});
+
+$('#volUp').click(() => {
+  $('#player')[0].volume += 0.1;
+});
+
+$('#volDown').click(() => {
+  $('#player')[0].volume -= 0.1;
+});
 
 // USER INPUT
 $('.updateStat').click(async function () {
