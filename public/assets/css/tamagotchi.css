@@ -108,14 +108,22 @@ p {
   display: none;
 }
 
-.playing{
-
+#menu {
+  height: 21em;
+  width: 24em;
+  border-radius: 0.9375em;
+  background-image: url(/assets/sprite-sheet/raw-sprites/green-background.jpg);
 }
+#animalBox {
+  width: 100%;
+}
+
 #logo {
   /* todo not truly centered, not sure how this'll do on mobile */
   margin-left: 0.5em;
   margin-top: 0.5em;
 }
+
 .list {
   margin: 0;
 }
@@ -123,6 +131,7 @@ p {
 .list li {
   padding: 0 16px;
 }
+
 #toast-container {
   top: auto !important;
   right: auto !important;

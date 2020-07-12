@@ -44,14 +44,7 @@
       <div class="row" id="screen">
         <!-- SETTINGS ICON -->
         <div class="col s12 center-align">
-            <a class="waves-effect waves-light btn btn-large btn-floating amber waves-effect waves-light modal-trigger"
-                href="#modal1"><i class="large material-icons">settings</i></a>
-            <div id="modal1" class="modal">
-                <div class="modal-content">
-                    <h5 class="login-text indigo-text">Animal Stats</h5>
-                    <div id='animal'></div>
-                </div>
-            </div>
+          <button id="showMenu"class="waves-effect waves-light btn btn-large btn-floating amber waves-effect waves-light"><i class="large material-icons">info</i></button>
         </div>
         <!-- MUSIC BUTTONS -->
         <div class="audioBtns col s12">
@@ -68,7 +61,11 @@
         </div>
         <!-- ANIMATION SCREEN -->
         <div class="animater col s12">
-          <div class="center-align" id="view-screen"></div>
+          <div class="center-align" id="view-screen">
+            <div id="menu">
+              <div id='animal'></div>
+            </div>
+          </div>
         </div>
         <!-- PLAYER BUTTONS -->
         <div id="actionButtons" class="col s12">
