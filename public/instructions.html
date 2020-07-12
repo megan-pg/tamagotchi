@@ -23,29 +23,28 @@
 <body>
     <main>
         <div class="list">
-          <header class="navbar-fixed list">
-            <nav class="row blue darken-3">
-              <div class="nav-wrapper">
-                <a href="/login" class="left-brand-logo">
-                  <img id="logo" src="/assets/css/images/logo-17percent.jpg" alt="digidude-logo" title="digital dude" /></a>
-                <ul id="nav-mobile" class="right">
-                  <li><a id="logout">Logout</a></li>
-                  <li><a href="/list">Animals</a></li>
-                  <li><a href="/how-to">Instructions</a></li>
-                </ul>
-              </div>
-            </nav>
-          </header>
+            <header class="navbar-fixed">
+                <nav class="row blue darken-3">
+                    <div class="nav-wrapper">
+                        <a href="/login" class="left-brand-logo">
+                            <img id="logo" src="/assets/css/images/logo-17percent.jpg" alt="digidude-logo" /></a>
+                        <ul id="nav-mobile" class="right">
+                            <li><a id="logout">Logout</a></li>
+                            <li><a href="/list">Animals</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
 
             <div>
                 <div class="background">
-                    <div class="container">
+                    <div class="body-container">
                         <p class="topic">Choose your pet</p>
 
                         <ul>
                             <li>Turtle</li>
                             <li>Fish </li>
-                            <li>Gator </li>
+                            <li>Bird </li>
                             <li>Mammal </li>
                         </ul>
                         <p class="clause">*User inputs Name. Date and pet ID get auto generated.</p>
@@ -53,7 +52,7 @@
                     </div>
                 </div>
                 <div class="background">
-                    <div class="container">
+                    <div class="body-container">
                         <p class="topic">Choose level of difficulty</p>
                         <ul>
                             <li>Easy - Starts off with meters near empty</li>
@@ -63,39 +62,25 @@
                     </div>
                 </div>
                 <div class="background">
-                    <div class="container">
+                    <div class="body-container">
 
                         <p class="topic">How to Play</p>
-                        <p class="subtitle">Hunger button</p>
-                        <p>
-                        <ul>
-                            <li>Feed - This will update your Hunger meter (makes positive sound) </li>
-                            <li>Snack - This will update your Happy/Bored and Hunger meters but will decrement your
-                                Health meter.</li>
-                        </ul>
+                        <p class="subtitle">Feed Button</p>
+                        <p>This will update your Hunger meter (makes positive sound)
                         </p>
-                        <p class="subtitle">Disipline button</p>
-                        <p>This will decrement your Happy/Bored meter but will also decrement the chance of your pet
-                            acting out (make a negative sound).</p>
+                        <p class="subtitle">Clean Button </p>
+                        <p>After your pet poops, it will need to be cleaned. Don't let it sit too long in it's poop or
+                            the health meter will be decremented.</p>
+                        <p class="subtitle">Play Button</p>
+                        <p>Play with pet to boost Happy/Bored meter (makes a positive sound).</p>
 
-                        <p class="subtitle">Medicine button</p>
+                        <p class="subtitle">Medicine Button</p>
                         <p>When your pet's health is very low you can use this but it will also severely lower their
                             Happy/Bored meter (makes a negative sound)</p>
-
-                        <p class="subtitle">Clean button </p>
-                        <p>After your pet poops, it will need to be cleaned. Don't let it sit too long in it's poop or
-                            the Health meter will be decremented.</p>
-
-                        <p class="subtitle">Happy/Bored Button</p>
-
-                        <p>
-                        <ul>Love your pet to boost Happy/Bored meter (makes a positive sound)</ul>
-                        <ul>Play with pet to boost Happy/Bored meter (makes a positive sound)</ul>
-                        </p>
-
-                        <p class="subtitle">Light button</p>
-                        <p>When your pet becomes bored, it wants to go to sleep. Don't let it sit too long bored or the
-                            health meter will be decremented.
+                        <p class="subtitle">Sleep Button</p>
+                        <p>Play with pet to boost Happy/Bored meter (makes a positive sound)</p>
+                        <p class="subtitle">Love Button</p>
+                        <p>Love your pet to boost Happy/Bored meter (makes a positive sound)
                         </p>
 
                     </div>
@@ -107,7 +92,12 @@
     <footer class="list-footer blue darken-3">
         <div class="footer-copyright blue darken-4">
             <div class="container">
-                <div>&copy; Copyright 2020</div>
+                <div style='float:left; width:30%'>
+                    &copy; Copyright 2020
+                </div>
+                <div style='float:right; width:40%; margin-left:30px'>
+                    <a href="/how-to">Instructions</a>
+                </div>
             </div>
     </footer>
 
