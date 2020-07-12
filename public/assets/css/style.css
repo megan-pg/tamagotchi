@@ -8,14 +8,24 @@ body {
     flex: 1 0 auto;
   }
   
+  p.flow-text {
+    margin-bottom: -25px;
+  }
+  
   h1 {
     font-family: 'Indie Flower', cursive;
     font-weight: 900;
     text-shadow: 2px 2px black;
   }
+
   .words {
       margin-left: 25px;
   }
+  .text {
+    margin:0; 
+    width:100%;
+  }
+
   .list {
     margin: 0;
 }
@@ -23,11 +33,13 @@ body {
 .list li {
     padding: 0 16px;
 }
+
 #logo {
   /* todo not truly centered, not sure how this'll do on mobile */
   margin-left: 0.5em;
   margin-top: 0.5em;
 }
+
   /* start welcome animation - found on codepen @champa720 */
 
 body.welcome {
@@ -197,4 +209,54 @@ body.welcome {
   right: auto !important;
   bottom: 10%;
   left:50%;  
+}
+
+
+.copyright {
+  float:left; 
+  margin-left: 10px;
+}
+
+  
+.list-footer  {
+  height: 80px;
+}
+
+.footer-copyright  {
+  height: 60px;
+  color: white;
+}
+
+.footer-link {
+  float: right; 
+  margin-right: 10px;
+  color: white;
+}
+
+.sign-up a:link {
+  color: #039be5 !important;
+}
+
+#instructions {
+  color: white;
+}
+
+/* unvisited link */
+.link a:link {
+  color: white;
+}
+
+/* visited link */
+.link a:visited {
+  color: white;
+}
+
+/* mouse over link */
+.link a:hover {
+  color: white;
+}
+
+/* selected link */
+.link a:active {
+  color: white;
 }
