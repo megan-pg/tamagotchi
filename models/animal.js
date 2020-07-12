@@ -97,7 +97,8 @@ module.exports = (sequelize, DataTypes) => {
       tempTotal += obj[att];
     });
 
-    obj.health = Math.floor(tempTotal / atts.length); // health being an aggregate of the other attributes
+    obj.health = Math.floor(tempTotal / atts.length);
+    // health being an aggregate of the other attributes
     obj.unhealthy = Animal.tripBoolean(obj.health);
 
     return obj;
@@ -168,7 +169,10 @@ module.exports = (sequelize, DataTypes) => {
     )[atts[rand]]);
 
     tempAnimal[bools[rand]] = Animal.tripBoolean(tempAnimal[randAtt]);
-    tempAnimal.health = Math.floor((tempAnimal.hunger + tempAnimal.bathroom + tempAnimal.boredom) / 3); // aggregate "health" bar
+    tempAnimal.health = Math.floor(
+      (tempAnimal.hunger + tempAnimal.bathroom + tempAnimal.boredom) / 3,
+    );
+    // aggregate "health" bar
     tempAnimal.unhealthy = Animal.tripBoolean(tempAnimal.health);
     tempAnimal.age += 1;
 

@@ -1,3 +1,10 @@
+/* eslint-disable func-names */
+/* eslint-disable no-console */
+/* eslint-disable array-callback-return */
+/* eslint-disable no-unused-vars */
+/* eslint-disable consistent-return */
+/* eslint-disable no-undef */
+/* eslint-disable no-use-before-define */
 // todo display a progress bar of unhealthy intervals
 let unhealthyIntervals = 0;
 let dead;
@@ -127,7 +134,8 @@ async function refreshScreen(action, animate) {
   const status = calculateStatus(currentAnimal.msg[0]);
 
   console.log(1, status);
-  if (animate && action !== status) { // user input that does not match the creatues most depserate status
+  if (animate && action !== status) {
+    // user input that does not match the creatues most depserate status
     console.log(2, 'wrong');
     await updateStats({ uuid }, getClientCreds());
   } else if (action) {
