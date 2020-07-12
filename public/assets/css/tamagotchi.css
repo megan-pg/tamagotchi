@@ -49,7 +49,7 @@ p {
   background-image: url(images/blueTamagotchi-1475-reducedgreen.jpg);
   background-position: center;
   /*width: fit-content;*/
-  background-position-x: 47.5%;
+  /*background-position-x: 47.5%;*/
   position: center;
   height: 50em;
   padding-top: 150px;
