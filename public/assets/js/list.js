@@ -63,10 +63,6 @@ function getClientCreds() {
 
 function populateAnimalsList(animals, user) {
   $('.animal').remove();
-  // const { fatigue, hungry, sick, bathroom, bored, boredom, health, unhealthy} = animal;
-  // todo some math for calculating state
-  // todo if dead change poop icon to dead and add a delete button
-  // const state = 'bored';
   animals.forEach((animal, index) => {
     const display = `<li class=" animal" style="padding-bottom: 5px;">
       <div class="valign-wrapper">
@@ -97,7 +93,6 @@ function populateAnimalsList(animals, user) {
 }
 
 function translateIcon(species) {
-  // cat, crow, dog, fish, dove, turtle
   switch (species) {
     case 'bird':
       return 'dove';

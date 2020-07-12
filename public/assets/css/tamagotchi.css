@@ -59,6 +59,15 @@ p {
   border-radius: 0.9375em;
 }
 
+#modal1 {
+  margin-top: 19.5em;
+  margin-right: 52.5em;
+  height: 21em;
+  width: 24em;
+  background-size: 48em 22em;
+  border-radius: 0.9375em;
+}
+
 #actionButtons {
   text-align: center;
   margin-top: 23em;
@@ -94,6 +103,12 @@ p {
 .list li {
   padding: 0 16px;
 }
+#toast-container {
+  top: auto !important;
+  right: auto !important;
+  bottom: 10%;
+  left:50%;  
+}
 
 /* ////////////////////////////// FOOTER //////////////////////////////*/
 
@@ -104,4 +119,13 @@ height: 80px;
 .footer-copyright  {
 height: 30px;
 color: white;
+}
+
+/*#modal1{
+  margin-top: 20.5em;
+  margin-right: 52.5em;
+  height: 21em;
+  width: 24em;
+  background-size: 48em 22em;
+  border-radius: 0.9375em;
 }
