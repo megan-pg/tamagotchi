@@ -23,17 +23,22 @@
 <body>
     <main>
         <div class="list">
-            <header class="navbar-fixed">
+             <header class="navbar-fixed list">
                 <nav class="row blue darken-3">
                     <div class="nav-wrapper">
                         <a href="/login" class="left-brand-logo">
-                            <img id="logo" src="/assets/css/images/logo-17percent.jpg" alt="digidude-logo" /></a>
-                        <ul id="nav-mobile" class="right">
+                            <img id="logo" src="/assets/css/images/logo-17percent.jpg" alt="digidude-logo" title="digital dude" /></a>
+                        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                        <ul class="right hide-on-med-and-down">
                             <li><a id="logout">Logout</a></li>
                             <li><a href="/list">Animals</a></li>
                         </ul>
                     </div>
                 </nav>
+                <ul class="sidenav blue darken-3" id="mobile-demo">
+                    <li><a id="logout">Logout</a></li>
+                    <li><a href="/list">Animals</a></li>
+                </ul>
             </header>
 
             <div style="padding-bottom:30px;">
