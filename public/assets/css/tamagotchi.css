@@ -117,9 +117,11 @@ p {
 }
 
 #animalBox {
+  font-family: 'Press Start 2P', cursive;
+  color:#3d3d3d;
   padding-top: 0.5em;
   width: 100%;
-  text-transform: capitalize;
+  text-transform: uppercase;
 }
 
 .progress {
@@ -133,6 +135,9 @@ p {
   margin-right: 1em;
 }
 
+.tf > i {
+  font-size: 1.1em;
+}
 #logo {
   /* todo not truly centered, not sure how this'll do on mobile */
   margin-left: 0.5em;

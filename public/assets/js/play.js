@@ -106,10 +106,9 @@ function populateAnimalStats(animal) {
         return `<span class="tf">${key}: <i class="fa fa-${val ? 'check' : 'times'}" aria-hidden="true"></i></span>`;
       }
     });
-  const display = `<div class="row waves-effect" id="animalBox">
+  const display = `<div id="animalBox">
     ${bars.join('')}
-    ${tf.join(' ')}
-    <br/>
+   
     ${grave.join(' ')}
 
   </div>`;
