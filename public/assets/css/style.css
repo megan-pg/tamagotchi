@@ -32,14 +32,9 @@ body {
 
 body.welcome {
     background-image: url(images/darkStars.jpg);
-    /* background-repeat: no-repeat; */
-    /*background-image: ;*/
     background-position: center;
-    /* background-attachment: fixed; */
-    /* background-size: contain, cover; */
     background-color: #512da8;
-    /* background-size: 100% 100%; */
-    /* overflow: hidden; */
+    overflow: hidden;
     -webkit-font-smoothing: antialiased;
   }
   
