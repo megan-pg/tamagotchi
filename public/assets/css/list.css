@@ -149,3 +149,10 @@ i.ml-auto {
   .link a:active {
     color: white;
   }
+  
+  #toast-container {
+    top: auto !important;
+    right: auto !important;
+    bottom: 10%;
+    right: 10%;  
+  }

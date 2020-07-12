@@ -129,11 +129,11 @@ i.ml-auto {
 }*/
   
 #toast-container {
-    top: auto !important;
-    right: auto !important;
-    bottom: 10%;
-    left:50%;  
-  }
+  top: auto !important;
+  right: auto !important;
+  bottom: 10%;
+  right: 10%;  
+}
   
 /* ////////////////////////////// FOOTER //////////////////////////////*/
   
