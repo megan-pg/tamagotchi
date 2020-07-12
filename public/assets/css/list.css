@@ -101,6 +101,13 @@ i.ml-auto {
 .delete:hover{
   cursor: pointer;
 }
+
+#toast-container {
+    top: auto !important;
+    right: auto !important;
+    bottom: 10%;
+    left:50%;  
+  }
 /* ////////////////////////////// FOOTER //////////////////////////////*/
   
 .list-footer  {
