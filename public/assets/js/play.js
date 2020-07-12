@@ -80,28 +80,30 @@ async function updateStat(data, creds) {
 }
 
 function populateAnimalStats(animal) {
+  // name, 
   const atts = ['hunger', 'bathroom', 'boredom', 'health'];
   const bools = ['fatigue', 'sick', 'bored', 'unhealthy', 'dead'];
   const type = animal.species;
   const state = dead ? 'rip' : calculateStatus(animal);
-  let stats = Object.entries(animal)
+  const bars = Object.entries(animal)
     .map(([key, val]) => {
       if (atts.includes(key)) {
-        return `<li>${key}: ${val} <div class="progress">
-        <div class="determinate" style="width: ${val * 10}%"></div></div></li>`;
+        return `<div class="col s12 left-align"><span style="font-weight:bold;">${key}: ${val}</span><span class="progress" style="display:inline-block;">
+        <div class="determinate" style="width: ${val * 10}%"></div></span></div>`;
       }
-      if (bools.includes(key)) {
-        return `<li>${key}: ${val} <i class="fa fa-${val ? 'check' : 'times'}" aria-hidden="true"></i></li>`;
-      }
-      return `<li>${key}: ${val}</li>`;
     });
-  // width value is dependent upon the # of unhealthyIntervals allowed in isDead()
-  stats.push(`<li>unhealthy intervals: ${unhealthyIntervals}<div class="progress">
-  <div class="determinate" style="width: ${unhealthyIntervals * 2}%"></div></div></li>`);
-  stats = stats.join('');
+  bars.push(`<div class="col s12 left-align"><span style="font-weight:bold;">Unhealthy turns: ${unhealthyIntervals}</span><span class="progress" style="display:inline-block;">
+    <div class="determinate" style="width: ${unhealthyIntervals * 2}%"></div></span></div>`);
+  const tf = Object.entries(animal)
+    .map(([key, val]) => {
+      if (bools.includes(key)) {
+        return `<span>${key}: <i class="fa fa-${val ? 'check' : 'times'}" aria-hidden="true"></i></span>`;
+      }
+    });
 
-  const display = `<div class="waves-effect" id="animalBox">
-            ${stats}
+  const display = `<div class="row waves-effect" id="animalBox">
+            ${bars.join('')}
+            ${tf.join(' ')}
     </div>`;
 
   $('#animalBox').remove();
@@ -233,7 +235,6 @@ const stopAnimate = () => {
 
 const animateState = () => {
   const elWidth = $('#view-screen').css('width');
-  console.log(elWidth)
   const diff = parseInt(elWidth.match(/(\d+)/)[0], 18);
 
   let position = 0; // start position for the image slicer

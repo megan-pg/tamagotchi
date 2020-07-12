@@ -114,6 +114,9 @@ p {
   border-radius: 0.9375em;
   background-image: url(/assets/sprite-sheet/raw-sprites/green-background.jpg);
 }
+#animalBox {
+  width: 100%;
+}
 
 #logo {
   /* todo not truly centered, not sure how this'll do on mobile */
