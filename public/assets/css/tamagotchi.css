@@ -60,7 +60,7 @@ p {
 }
 
 #modal1 {
-  margin-top: 19.5em;
+  margin-top: 20.5em;
   margin-right: 52.5em;
   height: 21em;
   width: 24em;
@@ -119,13 +119,4 @@ height: 80px;
 .footer-copyright  {
 height: 30px;
 color: white;
-}
-
-/*#modal1{
-  margin-top: 20.5em;
-  margin-right: 52.5em;
-  height: 21em;
-  width: 24em;
-  background-size: 48em 22em;
-  border-radius: 0.9375em;
 }
