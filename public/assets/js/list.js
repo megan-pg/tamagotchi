@@ -89,7 +89,7 @@ function populateAnimalsList(animals, user) {
       window.location.assign(`/play/${user}/${animal.name}`);
     });
 
-    $(`.delete[data-uuid=${animal.uuid}]`).click(async function() {
+    $(`.delete[data-uuid=${animal.uuid}]`).click(async function () {
       const uuid = $(this).attr('data-uuid');
       await deleteAnimal(uuid, getClientCreds());
     });
@@ -136,7 +136,7 @@ async function deleteAnimal(uuid, creds) {
     .then(async (result) => {
       const obj = getClientCreds();
       const getAnimals = await getAnimalList(obj);
-      
+
       populateAnimalsList(getAnimals.msg, obj.username);
       M.toast({ html: result.msg });
     })
