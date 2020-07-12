@@ -4,6 +4,7 @@
   "description": "This application is a remake of the original Tamagotchi game from the 80's. User logs in and plays with a chosen animal. Keeping it alive and keeping it alive for XX amount of time is the goal.",
   "main": "server.js",
   "scripts": {
+    "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "lint": "eslint \"./**/*.js\""
