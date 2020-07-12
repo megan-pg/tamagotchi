@@ -153,23 +153,22 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   Animal.updateStats = async (animal) => {
+    // actually only update one stat but choosing it randomly
     const tempAnimal = { ...animal.dataValues };
     const atts = ['hunger', 'bathroom', 'boredom'];
     const bools = ['fatigue', 'sick', 'bored'];
-    let tempTotal = 0;
-    atts.forEach((att, index) => {
-      tempAnimal[att] = Math.floor(Animal.updateStat(
-        tempAnimal.difficulty,
-        tempAnimal[att],
-        att,
-        false,
-      )[att]);
-      // todo move the bool check & health check into separate functions
-      tempAnimal[bools[index]] = Animal.tripBoolean(tempAnimal[att]);
-      tempTotal += tempAnimal[att];
-    });
+    const rand = Math.floor(Math.random() * (4 - 0) + 0);
+    const randAtt = atts[rand];
 
-    tempAnimal.health = Math.floor(tempTotal / atts.length); // aggregate "health" bar
+    tempAnimal[randAtt] = Math.floor(Animal.updateStat(
+      tempAnimal.difficulty,
+      tempAnimal[randAtt],
+      randAtt,
+      false,
+    )[atts[rand]]);
+
+    tempAnimal[bools[rand]] = Animal.tripBoolean(tempAnimal[randAtt]);
+    tempAnimal.health = Math.floor((tempAnimal.hunger + tempAnimal.bathroom + tempAnimal.boredom) / 3); // aggregate "health" bar
     tempAnimal.unhealthy = Animal.tripBoolean(tempAnimal.health);
     tempAnimal.age += 1;
 
