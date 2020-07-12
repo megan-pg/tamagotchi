@@ -134,42 +134,50 @@ i.ml-auto {
     bottom: 10%;
     left:50%;  
   }
-  
 /* ////////////////////////////// FOOTER //////////////////////////////*/
-  
-.list-footer  {
-    height: 80px;
-}
 
-.footer-copyright  {
+.copyright {
+    float:left; 
+    margin-left: 25px;
+  }
+  
+    
+  .list-footer  {
+    height: 80px;
+  }
+  
+  .footer-copyright  {
     height: 60px;
     color: white;
-}
-
-.footer-link {
+  }
+  
+  .footer-link {
     float: right; 
-    width: 40%; 
-    margin-left: 30px;
+    margin-right: 10px;
     color: white;
-}
-
-
-/* unvisited link */
-a:link {
+  }
+  
+  #instructions {
+    color: white;
+    margin-right: 20px;
+  }
+  
+  /* unvisited link */
+  .link a:link {
     color: white;
   }
   
   /* visited link */
-  a:visited {
+  .link a:visited {
     color: white;
   }
   
   /* mouse over link */
-  a:hover {
+  .link a:hover {
     color: white;
   }
   
   /* selected link */
-  a:active {
+  .link a:active {
     color: white;
   }

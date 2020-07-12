@@ -214,7 +214,7 @@ body.welcome {
 
 .copyright {
   float:left; 
-  margin-left: 10px;
+  margin-left: 20px;
 }
 
   
@@ -234,11 +234,12 @@ body.welcome {
 }
 
 .sign-up a:link {
-  color: #039be5 !important;
+  color: #039be5;
 }
 
 #instructions {
   color: white;
+  margin-right: 12px;
 }
 
 /* unvisited link */

@@ -32,7 +32,6 @@
         <ul id="nav-mobile" class="right">
           <li><a id="logout">Logout</a></li>
           <li><a href="/list">Animals</a></li>
-          <li><a href="/how-to">Instructions</a></li>
         </ul>
       </div>
     </nav>
@@ -40,8 +39,8 @@
 
   <main class="valign-wrapper">
 
-    <div class="row" style="margin:0; width:100%;">
-      
+    <div class="text row">
+
       <div class="col s12 m9 grey-text text-lighten-1 hideThis">
         <div class="words">
           <p class="flow-text">Welcome to</p>
@@ -52,56 +51,59 @@
 
       <div class="col s12 m3">
         <form class="col s12 z-depth-1 grey lighten-4" method="post">
-            <h5 class="login-text indigo-text">Create an Account</h5>
+          <h5 class="login-text indigo-text">Create an Account</h5>
 
-            <div class='row'>
-              <div class='input-field col s12'>
-                <input class='validate' type='text' name='username' id='username' />
-                <label for='username'>Username</label>
-              </div>
+          <div class='row'>
+            <div class='input-field col s12'>
+              <input class='validate' type='text' name='username' id='username' />
+              <label for='username'>Username</label>
             </div>
+          </div>
 
-            <div class='row'>
-              <div class='input-field col s12'>
-                <input class='validate' type='email' name='email' id='email' />
-                <label for='email'>Email</label>
-              </div>
+          <div class='row'>
+            <div class='input-field col s12'>
+              <input class='validate' type='email' name='email' id='email' />
+              <label for='email'>Email</label>
             </div>
+          </div>
 
-            <div class='row'>
-              <div class='input-field col s12'>
-                <input class='validate' type='password' name='password' id='passwordOne' />
-                <label for='password'>Password</label>
-              </div>
+          <div class='row'>
+            <div class='input-field col s12'>
+              <input class='validate' type='password' name='password' id='passwordOne' />
+              <label for='password'>Password</label>
             </div>
+          </div>
 
-            <div class='row'>
-              <div class='input-field col s12'>
-                <input class='validate' type='password' name='password' id='passwordTwo' />
-                <label for='password'>Confirm Password</label>
-              </div>
+          <div class='row'>
+            <div class='input-field col s12'>
+              <input class='validate' type='password' name='password' id='passwordTwo' />
+              <label for='password'>Confirm Password</label>
             </div>
+          </div>
 
-            <div class='row'>
-              <div class='input-field col s12'>
-                <button type='button' name='btn_login' id='create'
-                  class='login-text col s12 btn btn-large waves-effect indigo'>Create</button>
-              </div>
+          <div class='row'>
+            <div class='input-field col s12'>
+              <button type='button' name='btn_login' id='create'
+                class='login-text col s12 btn btn-large waves-effect indigo'>Create</button>
             </div>
+          </div>
 
         </form>
       </div>
-      
+
     </div>
   </main>
 
   <footer class="page-footer blue darken-3">
     <div class="footer-copyright blue darken-4">
-      <div class="container">
-        <div>&copy; Copyright 2020</div>
+      <div class="footer-container">
+        <div class="copyright">&copy; Copyright 2020</div>
+      </div>
+      <div class="footer-link">
+        <a class="link" id="instructions" href="/how-to">Instructions</a>
       </div>
   </footer>
-  
+
   <!-- JQUERY -->
   <script src="https://code.jquery.com/jquery-3.5.0.min.js"
     integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
