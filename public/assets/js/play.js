@@ -80,7 +80,6 @@ async function updateStat(data, creds) {
 }
 
 function populateAnimalStats(animal) {
-  // name, 
   const atts = ['hunger', 'bathroom', 'boredom', 'health'];
   const bools = ['fatigue', 'sick', 'bored', 'unhealthy', 'dead'];
   const type = animal.species;
@@ -88,12 +87,12 @@ function populateAnimalStats(animal) {
   const bars = Object.entries(animal)
     .map(([key, val]) => {
       if (atts.includes(key)) {
-        return `<div class="col s12 left-align"><span style="font-weight:bold;">${key}: ${val}</span><span class="progress" style="display:inline-block;">
-        <div class="determinate" style="width: ${val * 10}%"></div></span></div>`;
+        return `<div class="col s12 left-align"><span style="font-weight:bold;">${key}: ${val}</span><span class="progress">
+        <div class="determinate grey darken-3" style="width: ${val * 10}%"></div></span></div>`;
       }
     });
-  bars.push(`<div class="col s12 left-align"><span style="font-weight:bold;">Unhealthy turns: ${unhealthyIntervals}</span><span class="progress" style="display:inline-block;">
-    <div class="determinate" style="width: ${unhealthyIntervals * 2}%"></div></span></div>`);
+  bars.push(`<div class="col s12 left-align"><span style="font-weight:bold;">Unhealthy turns: ${unhealthyIntervals}</span><span class="progress">
+    <div class="determinate grey darken-3" style="width: ${unhealthyIntervals * 2}%;"></div></span></div>`);
   const tf = Object.entries(animal)
     .map(([key, val]) => {
       if (bools.includes(key)) {
@@ -102,27 +101,36 @@ function populateAnimalStats(animal) {
     });
 
   const display = `<div class="row waves-effect" id="animalBox">
-            ${bars.join('')}
-            ${tf.join(' ')}
-    </div>`;
+    ${bars.join('')}
+    ${tf.join(' ')}
+  </div>`;
 
   $('#animalBox').remove();
   $('#animal').append(display);
   updateImage(type, state);
   animateState();
 }
-
+// THE MONSTER
 async function refreshScreen(action, animate) {
   stopAnimate();
   const obj = getClientCreds();
   const uuid = JSON.parse(localStorage.getItem('animal-uuid'));
+  const currentAnimal = await getAnimal(obj);
+  const status = calculateStatus(currentAnimal.msg[0]);
 
-  if (action) {
+console.log(1, status)
+  if (animate && action !== status) { // user input that does not match the creatues most depserate status
+console.log(2, 'wrong')
+    await updateStats({ uuid }, getClientCreds());
+  } else if (action) {
+console.log(2, 'right')
     await updateStat({ uuid, action }, getClientCreds());
     if (animate === 'sleep' || animate === 'medicine' || animate === 'love') {
-      await updateStat({ uuid, action }, getClientCreds());// double effective !!!
+console.log(2, 'power')
+      await updateStat({ uuid, action }, getClientCreds()); // double effective !!!
     }
   } else {
+console.log(2, 'update')
     await updateStats({ uuid }, getClientCreds());
     $('.updateStat').attr('disabled', false);
   }
@@ -131,24 +139,32 @@ async function refreshScreen(action, animate) {
   populateAnimalStats(animal.msg[0]);
 
   if (!dead) {
-    if (animal.msg[0].unhealthy === true && !action) {
+    if (animal.msg[0].unhealthy === true && !animate) {
+console.log(3, 'update unhealthy')
       unhealthyIntervals += 1;
       $('#negative')[0].play();
-    } else if (animal.msg[0].unhealthy === false && !action) {
+    } else if (animal.msg[0].unhealthy === false && !animate) {
+console.log(3, 'update healthy')
       $('#postive')[0].play();
     } else if (animal.msg[0].unhealthy === false && unhealthyIntervals > 0) {
+console.log(3, 'right made healthy')
       unhealthyIntervals = 0;
       updateImage(false, animate);
       $('#positive')[0].play();
-    } else if (action) {
+    } else if (animate && action === status) {
+console.log(3, 'user input correct')
       updateImage(false, animate);
       $('#positive')[0].play();
+    } else if (animate && action !== status) {
+console.log(3, 'user input wrong')
+      updateImage(animal.msg[0].species, 'boredom');
+      $('#negative')[0].play();
     } else {
-      updateImage(animal.msg[0].type, action);
+console.log(3, 'catchall')
+      updateImage(animal.msg[0].species, action);
       $('#positive')[0].play();
     }
   } else {
-    // play dead song
     updateImage(false, 'rip');
     $('#rip')[0].play();
   }
@@ -195,25 +211,18 @@ function startGame() {
 }
 
 function calculateStatus(animal) {
-  const { fatigue, hunger, sick, bathroom, bored, boredom } = animal;
+  const { hunger, bathroom, boredom } = animal;
   const arr = [
     { name: 'hunger', val: hunger },
     { name: 'bathroom', val: bathroom },
     { name: 'boredom', val: boredom },
   ];
 
-  if (sick) {
-    return 'sick';
-  }
-  if (fatigue) {
-    return 'fatigue';
-  }
-  if (bored) {
-    return 'bored';
-  }
+  arr.sort((a, b) => b.val - a.val);
 
-  arr.sort((a, b) => a.val - b.val);
-
+  if (arr[0].val === 10 && arr[0].val === arr[2].val) { // if all values are maxed out
+    return 'bathroom';
+  }
   return arr[0].name;
 }
 
@@ -252,6 +261,7 @@ const animateState = () => {
   }, interval);
 };
 
+// ----------------------- USER INPUT -----------------------
 $('#playPause').click(() => {
   $('#playPause').toggleClass('playing');
   if ($('#playPause').hasClass('playing')) {
@@ -273,7 +283,6 @@ $('#showMenu').click(() => {
   $('#menu').slideToggle(400);
 });
 
-// USER INPUT
 $('.updateStat').click(async function () {
   if (!dead) {
     $(this).attr('disabled', true);
