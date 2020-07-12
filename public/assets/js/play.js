@@ -16,7 +16,7 @@ $(async () => {
     dead = true;
   }
   populateAnimalStats(animal.msg[0]);
-  $('.modal').modal();
+  $('#menu').hide();
 });
 
 function getClientCreds() {
@@ -266,6 +266,10 @@ $('#volUp').click(() => {
 
 $('#volDown').click(() => {
   $('#player')[0].volume -= 0.1;
+});
+
+$('#showMenu').click(() => {
+  $('#menu').slideToggle(400);
 });
 
 // USER INPUT
