@@ -26,12 +26,11 @@
             <header class="navbar-fixed">
                 <nav class="row blue darken-3">
                     <div class="nav-wrapper">
-                        <a href="/login" class="left-brand-logo hide-on-small-and-down">
+                        <a href="/login" class="left-brand-logo">
                             <img id="logo" src="/assets/css/images/logo-17percent.jpg" alt="digidude-logo" /></a>
                         <ul id="nav-mobile" class="right">
                             <li><a id="logout">Logout</a></li>
                             <li><a href="/list">Animals</a></li>
-                            <li><a href="/how-to">Instructions</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -39,7 +38,7 @@
 
             <div>
                 <div class="background">
-                    <div class="container">
+                    <div class="body-container">
                         <p class="topic">Choose your pet</p>
 
                         <ul>
@@ -53,7 +52,7 @@
                     </div>
                 </div>
                 <div class="background">
-                    <div class="container">
+                    <div class="body-container">
                         <p class="topic">Choose level of difficulty</p>
                         <ul>
                             <li>Easy - Starts off with meters near empty</li>
@@ -63,7 +62,7 @@
                     </div>
                 </div>
                 <div class="background">
-                    <div class="container">
+                    <div class="body-container">
 
                         <p class="topic">How to Play</p>
                         <p class="subtitle">Feed Button</p>
@@ -93,7 +92,12 @@
     <footer class="list-footer blue darken-3">
         <div class="footer-copyright blue darken-4">
             <div class="container">
-                <div>&copy; Copyright 2020</div>
+                <div style='float:left; width:30%'>
+                    &copy; Copyright 2020
+                </div>
+                <div style='float:right; width:40%; margin-left:30px'>
+                    <a href="/how-to">Instructions</a>
+                </div>
             </div>
     </footer>
 
