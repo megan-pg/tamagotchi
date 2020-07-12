@@ -80,15 +80,27 @@ i.ml-auto {
   /* todo not truly centered, not sure how this'll do on mobile */
   margin-left: 0.5em;
   margin-top: 0.5em;
+}  
+.title {
+    /* todo not truly centered, not sure how this'll do on mobile */
+    margin-left: 0.5em;
+  }
+
+.name {
+  font-size: 2em;
+  color: #3d3d3d
+}
+.fas{
+  font-size: 0.75em;
+}
+.delete {
+  background-color: #ef5350;
+  color: white;
 }
 
-#toast-container {
-    top: auto !important;
-    right: auto !important;
-    bottom: 10%;
-    left:50%;  
-  }
-  
+.delete:hover{
+  cursor: pointer;
+}
 /* ////////////////////////////// FOOTER //////////////////////////////*/
   
 .list-footer  {

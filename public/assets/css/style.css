@@ -39,7 +39,7 @@ body.welcome {
     /* background-size: contain, cover; */
     background-color: #512da8;
     /* background-size: 100% 100%; */
-    overflow: hidden;
+    /* overflow: hidden; */
     -webkit-font-smoothing: antialiased;
   }
   
@@ -189,11 +189,4 @@ body.welcome {
   100% {
     opacity: 0;
   }
-}
-
-#toast-container {
-  top: auto !important;
-  right: auto !important;
-  bottom: 10%;
-  left:50%;  
 }

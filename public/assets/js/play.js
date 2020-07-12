@@ -16,6 +16,7 @@ $(async () => {
     dead = true;
   }
   populateAnimalStats(animal.msg[0]);
+  $('.modal').modal();
 });
 
 function getClientCreds() {
@@ -42,9 +43,7 @@ async function getAnimal(creds) {
   })
     .then(async (result) => result)
     .fail((result) => {
-      // todo add a toast here
-      M.toast({ html: 'Error.' });
-      console.log(result);
+      M.toast({ html: result.msg });
     });
 }
 
@@ -60,9 +59,7 @@ async function updateStats(data, creds) {
   })
     .then(async (result) => result)
     .fail((result) => {
-      // todo add a toast here
-      M.toast({ html: 'Error.' });
-      console.log(result);
+      M.toast({ html: result.msg });
     });
 }
 
@@ -78,9 +75,7 @@ async function updateStat(data, creds) {
   })
     .then(async (result) => result)
     .fail((result) => {
-      // todo add a toast here
-      M.toast({ html: 'Error.' });
-      console.log(result);
+      M.toast({ html: result.msg });
     });
 }
 
@@ -106,13 +101,7 @@ function populateAnimalStats(animal) {
   stats = stats.join('');
 
   const display = `<div class="waves-effect" id="animalBox">
-      <div class="valign-wrapper">      
-        <div class="title">
-          <ul>
             ${stats}
-          </ul>
-        </div>
-      </div>
     </div>`;
 
   $('#animalBox').remove();
@@ -122,13 +111,15 @@ function populateAnimalStats(animal) {
 }
 
 async function refreshScreen(action, animate) {
+  stopAnimate();
   const obj = getClientCreds();
   const uuid = JSON.parse(localStorage.getItem('animal-uuid'));
 
   if (action) {
+    
     await updateStat({ uuid, action }, getClientCreds());
     if (animate === 'sleep' || animate === 'medicine' || animate === 'love') {
-      await updateStat({ uuid, action }, getClientCreds()); // double effective !!!
+      await updateStat({ uuid, action }, getClientCreds());// double effective !!!
     }
   } else {
     await updateStats({ uuid }, getClientCreds());
@@ -157,8 +148,8 @@ async function refreshScreen(action, animate) {
     }
   } else {
     // play dead song
-    // $('#rip')[0].play();
     updateImage(false, 'rip');
+    $('#rip')[0].play();
   }
 }
 
@@ -243,17 +234,17 @@ const stopAnimate = () => {
 
 const animateState = () => {
   const elWidth = $('#view-screen').css('width');
-  const diff = parseInt(elWidth.match(/(\d+)/)[0], 10);
+  const diff = parseInt(elWidth.match(/(\d+)/)[0], 18);
 
   let position = 0; // start position for the image slicer
-  const interval = 500; // 500 ms of interval for the setInterval()
+  const interval = 600; // 500 ms of interval for the setInterval()
   tID = setInterval(() => {
     // todo this is px based, css sheet has ems, might see some weirdness
-    document.getElementById('view-screen').style.backgroundPosition = `-${position}px 0px`;
+    document.getElementById('view-screen').style.backgroundPosition = `-${position}em 0em`;
     // Template literal to insert the variable 'position'
     if (position < (diff * 2)) {
       position += diff;
-    } else { 
+    } else {
       position = 0;
     }
     // reset the position to 0px, once position exceeds 4480px
@@ -302,16 +293,12 @@ $('#logout').click(() => {
     dataType: 'json',
   })
     .then(async (result) => {
-      // todo add logout successufl toast
-      M.toast({ html: 'Logout was successful.' });
-      console.log(result);
+      M.toast({ html: result.msg });
     })
     .then(() => {
       window.location.assign('/');
     })
     .fail((result) => {
-      // todo add a toast here
-      M.toast({ html: 'Logout failed.' });
-      console.log(result);
+      M.toast({ html: result.msg });
     });
 });

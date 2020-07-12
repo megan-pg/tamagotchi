@@ -7,8 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Materialize & Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.4/css/materialize.min.css">
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="/assets/favicomatic/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/assets/favicomatic/favicon-16x16.png" sizes="16x16" />
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!-- Google Fonts -->
@@ -16,25 +17,25 @@
     <!-- CSS -->
     <link rel="stylesheet" href="/assets/css/list.css">
 
-    <title>Tamagotchi List</title>
+    <title>Digital Dude: Animals</title>
 </head>
 
 <body>
     <main>
         <div class="list">
-          <header class="navbar-fixed">
-            <nav class="row blue darken-3">
-                <div class="nav-wrapper">
-                    <a href="/login" class="left-brand-logo hide-on-small-and-down">
-                        <img id="logo" src="/assets/css/images/logo-17percent.jpg" alt="digidude-logo" /></a>
-                    <ul id="nav-mobile" class="right">
-                      <li><a id="logout">Logout</a></li>
-                      <li><a href="/list">Animals</a></li>
-                      <li><a href="/how-to">Instructions</a></li>
-                    </ul>
-                </div>
-            </nav>
-          </header>
+            <header class="navbar-fixed">
+                <nav class="row blue darken-3">
+                    <div class="nav-wrapper">
+                        <a href="/login" class="left-brand-logo hide-on-small-and-down">
+                            <img id="logo" src="/assets/css/images/logo-17percent.jpg" alt="digidude-logo" /></a>
+                        <ul id="nav-mobile" class="right">
+                            <li><a id="logout">Logout</a></li>
+                            <li><a href="/list">Animals</a></li>
+                            <li><a href="/how-to">Instructions</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
 
             <div class="container">
                 <div class="card">
@@ -49,10 +50,7 @@
 
     <!-- Modal Trigger -->
     <div class="fixed-action-btn">
-        <a class="waves-effect waves-light btn btn-large btn-floating amber waves-effect waves-light modal-trigger"
-            href="#modal1"><i class="large material-icons">add</i></a>
-
-
+        <button data-target="modal1" class="waves-effect waves-light btn btn-large btn-floating amber waves-effect waves-light modal-trigger"><i class="large material-icons">add</i></button>
         <!-- Modal Structure -->
         <div id="modal1" class="modal">
             <div class="modal-content">
@@ -131,18 +129,11 @@
     <script src="https://code.jquery.com/jquery-3.5.0.min.js"
         integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
     <script src='https://cdn.jsdelivr.net/jquery.leanmodal/1.1/jquery.leanmodal.min.js'></script>
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.4/js/materialize.min.js"></script>
     <!-- MATERIALIZE CSS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>
     <!-- FONT AWESOME -->
     <script src="https://kit.fontawesome.com/968271eaaa.js" crossorigin="anonymous"></script>
     <!-- JavaScript file -->
     <script src="/assets/js/list.js"></script>
-    <script src="/assets/js/add.js"></script>
 </body>
-
 </html>
-<!--  -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script> -->

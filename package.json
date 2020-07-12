@@ -1,8 +1,8 @@
 {
-  "name": "full-stack-sequelize",
+  "name": "digitaldude",
   "version": "1.0.0",
-  "description": "A full-stack application template using node, express, and sequelize",
-  "main": "index.js",
+  "description": "This application is a remake of the original Tamagotchi game from the 80's. User logs in and plays with a chosen animal. Keeping it alive and keeping it alive for XX amount of time is the goal.",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kylewhittemore/full-stack-sequelize.git"
+    "url": "https://github.com/megan-pg/tamagotchi.git"
   },
   "keywords": [],
-  "author": "",
+  "authors": ["Megan Pardy-Gokcu", "Doug Wright", "Scott House", "Karla McLeod"],
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kylewhittemore/full-stack-sequelize/issues"
+    "url": "https://github.com/megan-pg/tamagotchi/issues"
   },
-  "homepage": "https://github.com/kylewhittemore/full-stack-sequelize#readme",
+  "homepage": "https://digitaldude.herokuapp.com/",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",

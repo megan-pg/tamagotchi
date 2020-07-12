@@ -42,26 +42,32 @@ p {
 }
 
 #screen {
-  background-image: url(images/blueTamagotchi-1475.jpg);
+  background-image: url(images/blueTamagotchi-1475-reducedgreen.jpg);
   background-position: center;
   /*width: fit-content;*/
   background-position: center;
   position: center;
-  height: 800px;
+  height: 50em;
 }
 
 #view-screen {
-  margin-top: 339px;
-  margin-right: 10px;
-  height: 20em;
-  width: 20em;
-  background-size: 40em 20em;
+  margin-top: 19.5em;
+  margin-right: 0.625em;
+  height: 21em;
+  width: 24em;
+  background-size: 48em 22em;
+  border-radius: 0.9375em;
 }
 
 #actionButtons {
   text-align: center;
-  margin-top: 325px;
+  margin-top: 23em;
 }
+ /* Buttons */
+
+ .audioBtns {
+  margin-top: 5px;
+ }
 
 .updateStat {
   background-color: #e6e600;
