@@ -16,5 +16,10 @@ module.exports = {
     ecmaVersion: 2018,
   },
   rules: {
+    'import/no-unresolved': 'off',
+    'no-use-before-define': 'off',
+    'object-shorthand': 'off',
+    'comma-dangle': 'off',
+    'import/no-dynamic-require': 'off',
   },
 };
