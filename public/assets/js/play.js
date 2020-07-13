@@ -1,10 +1,3 @@
-/* eslint-disable func-names */
-/* eslint-disable no-console */
-/* eslint-disable array-callback-return */
-/* eslint-disable no-unused-vars */
-/* eslint-disable consistent-return */
-/* eslint-disable no-undef */
-/* eslint-disable no-use-before-define */
 // todo display a progress bar of unhealthy intervals
 let unhealthyIntervals = 0;
 let dead;

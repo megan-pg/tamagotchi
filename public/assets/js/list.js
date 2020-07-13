@@ -1,9 +1,3 @@
-/* eslint-disable func-names */
-/* eslint-disable no-use-before-define */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-shadow */
-/* eslint-disable no-undef */
-
 // INITIAL PAGE LOAD
 $(async () => {
   // todo add some validation here, if there's no/null values from getClientCreds

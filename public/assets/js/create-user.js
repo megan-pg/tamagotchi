@@ -1,6 +1,3 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-useless-escape */
 function passMatch(pw1, pw2) {
   if (pw1.localeCompare(pw2) === 0) {
     return true;

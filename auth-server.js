@@ -1,7 +1,3 @@
-/* eslint-disable arrow-body-style */
-/* eslint-disable no-console */
-/* eslint-disable no-use-before-define */
-/* eslint-disable consistent-return */
 // todo presently this file does nothing
 // would need to pull the related funcitonality out of the user controller / model
 // will remove this file if the time/inclination does not exist

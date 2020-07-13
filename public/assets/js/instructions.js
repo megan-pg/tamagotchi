@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 function getClientCreds() {
   const obj = {
     token: JSON.parse(localStorage.getItem('accessToken')),
