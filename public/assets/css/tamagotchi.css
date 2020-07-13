@@ -39,8 +39,8 @@ p {
   background-color: #1565C0;
   border-radius: 30%;
   padding-top: 2em;
-  width: 100%;
-  height: 90vh;
+  width: 26em;
+  height: 42em;
   padding-right: 0;
   padding-left: 0;
   margin: 0.5em;
@@ -49,8 +49,8 @@ p {
 /* BIGGER THAN A PHONE: ADD ADDITIONAL QUERIES AS SEEN FIT */
 @media only screen and (min-width: 800px) { 
   #screen{
-    width: 25vw;
-    height: 35vw;
+    width: 28em;
+    height: 40em;
     margin-top: 8em;
     margin-left: auto;
     margin-right: auto; 
