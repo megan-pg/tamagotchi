@@ -101,6 +101,9 @@ i.ml-auto {
 .delete:hover{
   cursor: pointer;
 }
+.turtle {
+  width: 0.75em;
+}
 
 /* ////////////////////////////// FOOTER //////////////////////////////*/
 

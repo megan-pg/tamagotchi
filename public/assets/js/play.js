@@ -116,7 +116,7 @@ function populateAnimalStats(animal) {
   const display = `<div id="animalBox">
     ${bars.join('')}
    
-    ${grave.join(' ')}
+    <div class="col s12 left-align">${grave.join(' ')}</div>
 
   </div>`;
 
@@ -133,20 +133,15 @@ async function refreshScreen(action, animate) {
   const currentAnimal = await getAnimal(obj);
   const status = calculateStatus(currentAnimal.msg[0]);
 
-  console.log(1, status);
   if (animate && action !== status) {
     // user input that does not match the creatues most depserate status
-    console.log(2, 'wrong');
     await updateStats({ uuid }, getClientCreds());
   } else if (action) {
-    console.log(2, 'right');
     await updateStat({ uuid, action }, getClientCreds());
     if (animate === 'sleep' || animate === 'medicine' || animate === 'love') {
-      console.log(2, 'power');
       await updateStat({ uuid, action }, getClientCreds()); // double effective !!!
     }
   } else {
-    console.log(2, 'update');
     await updateStats({ uuid }, getClientCreds());
     $('.updateStat').attr('disabled', false);
   }
@@ -156,28 +151,21 @@ async function refreshScreen(action, animate) {
 
   if (!dead) {
     if (animal.msg[0].unhealthy === true && !animate) {
-      console.log(3, 'update unhealthy');
       unhealthyIntervals += 1;
       $('#negative')[0].play();
     } else if (animal.msg[0].unhealthy === false && !animate) {
-      console.log(3, 'update healthy');
       $('#postive')[0].play();
     } else if (animal.msg[0].unhealthy === false && unhealthyIntervals > 0) {
-      console.log(3, 'right made healthy');
       unhealthyIntervals = 0;
       updateImage(false, animate);
       $('#positive')[0].play();
     } else if (animate && action === status) {
-      console.log(3, 'user input correct');
       updateImage(false, animate);
       $('#positive')[0].play();
     } else if (animate && action !== status) {
-      console.log(3, 'user input wrong');
-      console.log(animal.msg[0]);
       updateImage(animal.msg[0].species, 'boredom');
       $('#negative')[0].play();
     } else {
-      console.log(3, 'catchall');
       updateImage(animal.msg[0].species, action);
       $('#positive')[0].play();
     }
