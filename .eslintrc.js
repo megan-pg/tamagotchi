@@ -28,5 +28,10 @@ module.exports = {
     'no-shadow': 'off',
     'func-names': 'off',
     'no-unused-expressions': 'off',
+    'no-sequences': 'off',
+    'array-callback-return': 'off',
+    'consistent-return': 'off',
+    'no-console': 'off',
+    'arrow-body-style': 'off',
   },
 };
