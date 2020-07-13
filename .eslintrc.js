@@ -25,5 +25,7 @@ module.exports = {
     'no-useless-escape': 'off',
     'no-unused-vars': 'off',
     'no-undef': 'off',
+    'no-shadow': 'off',
+    'func-names': 'off',
   },
 };
