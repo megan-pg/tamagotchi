@@ -1,4 +1,4 @@
-function validateInputs(obj) {
+const validateInputs = (obj) => {
   const inputs = Object.entries(obj).filter(([key, val]) => val === undefined || val.length === 0);
 
   if (inputs.length > 0) {
@@ -7,9 +7,9 @@ function validateInputs(obj) {
   }
 
   return true;
-}
+};
 
-function getClientCreds() {
+const getClientCreds = () => {
   const obj = {
     token: JSON.parse(localStorage.getItem('accessToken')),
     uuid: JSON.parse(localStorage.getItem('uuid')),
@@ -17,7 +17,7 @@ function getClientCreds() {
   };
 
   return obj;
-}
+};
 
 $('#loginBtn').on('click', () => {
   const obj = {
