@@ -39,17 +39,18 @@ p {
   background-color: #1565C0;
   border-radius: 30%;
   padding-top: 2em;
-  height: 90vh;
+  width: 26em;
+  height: 46em;
   padding-right: 0;
   padding-left: 0;
   margin: 0.5em;
 }
 
 /* BIGGER THAN A PHONE: ADD ADDITIONAL QUERIES AS SEEN FIT */
-@media only screen and (min-width: 600px) { 
+@media only screen and (min-width: 800px) { 
   #screen{
-    width: 25vw;
-    height: 35vw;
+    width: 28em;
+    height: 44em;
     margin-top: 8em;
     margin-left: auto;
     margin-right: auto; 
@@ -57,7 +58,7 @@ p {
 }
 
 #view-screen {
-  height: 21em;
+  height: 24em;
   width: 24em;
   background-size: 48em 24em;
   border-radius: 0.9375em;
@@ -68,29 +69,47 @@ p {
 
  /* ----------------------- BUTTONS ----------------------- */
 
- .audioBtns {
+ #showMenu{
+  padding-top: 0;
+  padding-bottom:0;
   text-align: center;
-  margin-top: 10px;
-  margin-bottom: 30px;
+ }
+
+ .audioBtns {
+  margin-top: 1em;
+  margin-bottom: 2em;
+  text-align: center;
  }
 
  .audioBtns > button {
+  padding-top: 0;
+  padding-bottom:0;
   border-radius: 50%;
  }
 
 .actionBtns{
-  margin-top: 20px;
+  margin-top: 2em;
+  text-align: center;
+}
+
+.powerBtns{
+  margin-top: 1em;
   text-align: center;
 }
 
 .updateStat {
+  padding-top: 0;
+  padding-bottom:0;
+  text-align: center;
   font-weight: bold;
   background-color: #e6e600;
   border-radius: 50%;
 }
 
 .power {
-  margin-top: 0.5em;
+  padding-top: 0;
+  padding-bottom:0;
+  text-align: center;
   background-color: red;
 }
 
@@ -99,7 +118,7 @@ p {
 }
 
 #menu {
-  height: 21em;
+  height: 24em;
   width: 24em;
   border-radius: 0.9375em;
   background-image: url(/assets/sprite-sheet/raw-sprites/green-background.jpg);

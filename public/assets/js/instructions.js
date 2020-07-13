@@ -1,5 +1,4 @@
-/* eslint-disable no-undef */
-function getClientCreds() {
+const getClientCreds = () => {
   const obj = {
     token: JSON.parse(localStorage.getItem('accessToken')),
     uuid: JSON.parse(localStorage.getItem('uuid')),
@@ -7,7 +6,7 @@ function getClientCreds() {
   };
 
   return obj;
-}
+};
 
 $('.logout').click(() => {
   const { username } = getClientCreds();

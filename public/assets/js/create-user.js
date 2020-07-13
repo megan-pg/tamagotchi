@@ -1,21 +1,18 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-useless-escape */
-function passMatch(pw1, pw2) {
+const passMatch = (pw1, pw2) => {
   if (pw1.localeCompare(pw2) === 0) {
     return true;
   }
   return false;
-}
+};
 
-function emailIsEmail(str) {
+const emailIsEmail = (str) => {
   if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(str)) {
     return true;
   }
   return false;
-}
+};
 
-function validateInputs(obj) {
+const validateInputs = (obj) => {
   const inputs = Object.entries(obj).filter(([key, val]) => val === undefined || val.length === 0);
 
   if (inputs.length > 0) {
@@ -29,9 +26,9 @@ function validateInputs(obj) {
     return 'email';
   }
   return true;
-}
+};
 
-function getClientCreds() {
+const getClientCreds = () => {
   const obj = {
     token: JSON.parse(localStorage.getItem('accessToken')),
     uuid: JSON.parse(localStorage.getItem('uuid')),
@@ -39,7 +36,7 @@ function getClientCreds() {
   };
 
   return obj;
-}
+};
 
 $('#create').on('click', () => {
   const obj = {
