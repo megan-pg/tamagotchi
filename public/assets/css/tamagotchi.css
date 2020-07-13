@@ -33,26 +33,26 @@ p {
 #padding {
   padding: 100px;
 }
-
-#screen {
-  background-image: url(images/blueTamagotchi-1475-reducedgreen.jpg);
-  background-repeat:no-repeat;
-  background-position: center;
-  background-position-y: 15.5%;
-  height: 77.5vh;
-  padding-top: 12.25em;
+/* MOBILE FIRST */
+#screen{
+  background-image: none;
+  background-color: #1565C0;
+  border-radius: 30%;
+  padding-top: 2em;
+  height: 90vh;
+  padding-right: 0;
+  padding-left: 0;
+  margin: 0.5em;
 }
 
-@media only screen and (max-width: 600px) {
+/* BIGGER THAN A PHONE: ADD ADDITIONAL QUERIES AS SEEN FIT */
+@media only screen and (min-width: 600px) { 
   #screen{
-    background-image: none;
-    background-color: #1565C0;
-    border-radius: 30%;
-    padding-top: 2em;
-    height: 90vh;
-    padding-right: 0;
-    padding-left: 0;
-    margin: 0.5em;
+    width: 25vw;
+    height: 35vw;
+    margin-top: 8em;
+    margin-left: auto;
+    margin-right: auto; 
   }
 }
 
