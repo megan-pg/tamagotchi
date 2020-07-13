@@ -350,3 +350,7 @@ $('#logout').click(() => {
       M.toast({ html: result.msg });
     });
 });
+
+$(document).click(() => {
+  $('.sidenav').sidenav();
+});
