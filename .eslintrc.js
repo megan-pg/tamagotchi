@@ -27,5 +27,6 @@ module.exports = {
     'no-undef': 'off',
     'no-shadow': 'off',
     'func-names': 'off',
+    'no-unused-expressions': 'off',
   },
 };
