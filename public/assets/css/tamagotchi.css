@@ -46,7 +46,7 @@ p {
 }
 
 /* BIGGER THAN A PHONE: ADD ADDITIONAL QUERIES AS SEEN FIT */
-@media only screen and (min-width: 600px) { 
+@media only screen and (min-width: 800px) { 
   #screen{
     width: 25vw;
     height: 35vw;
