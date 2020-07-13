@@ -8,7 +8,7 @@ $(async () => {
   $('.modal').modal();
 });
 
-async function getAnimalList(obj) {
+const getAnimalList = async (obj) => {
   return $.ajax({
     url: `/api/users/${obj.username}/animals`,
     type: 'post',
@@ -33,9 +33,9 @@ async function getAnimalList(obj) {
         M.toast({ html: err });
       }
     });
-}
+};
 
-async function createAnimal(creds, data) {
+const createAnimal = async (creds, data) => {
   return $.ajax({
     url: '/api/animals/create',
     type: 'post',
@@ -49,9 +49,9 @@ async function createAnimal(creds, data) {
     .fail((result) => {
       M.toast({ html: result });
     });
-}
+};
 
-function getClientCreds() {
+const getClientCreds = () => {
   const obj = {
     token: JSON.parse(localStorage.getItem('accessToken')),
     uuid: JSON.parse(localStorage.getItem('uuid')),
@@ -59,9 +59,9 @@ function getClientCreds() {
   };
 
   return obj;
-}
+};
 
-function populateAnimalsList(animals, user) {
+const populateAnimalsList = (animals, user) => {
   $('.animal').remove();
   animals.forEach((animal, index) => {
     const display = `<li class=" animal" style="padding-bottom: 5px;">
@@ -92,9 +92,9 @@ function populateAnimalsList(animals, user) {
       await deleteAnimal(uuid, getClientCreds());
     });
   });
-}
+};
 
-function translateIcon(species) {
+const translateIcon = (species) => {
   switch (species) {
     case 'bird':
       return 'dove';
@@ -107,9 +107,9 @@ function translateIcon(species) {
     default:
       return 'paw';
   }
-}
+};
 
-function validateInputs(obj) {
+const validateInputs = (obj) => {
   const inputs = Object.entries(obj).filter(([key, val]) => val === undefined || val.length === 0);
 
   if (inputs.length > 0) {
@@ -118,9 +118,9 @@ function validateInputs(obj) {
   }
 
   return true;
-}
+};
 
-async function deleteAnimal(uuid, creds) {
+const deleteAnimal = async (uuid, creds) => {
   $.ajax({
     url: '/api/animals/delete',
     type: 'delete',
@@ -140,7 +140,7 @@ async function deleteAnimal(uuid, creds) {
     .fail((result) => {
       M.toast({ html: result.msg });
     });
-}
+};
 
 // CREATE A NEW ANIMAL
 $('#createAnimal').click(async () => {
