@@ -22,5 +22,8 @@ module.exports = {
     'comma-dangle': 'off',
     'import/no-dynamic-require': 'off',
     'no-param-reassign': 'off',
+    'no-useless-escape': 'off',
+    'no-unused-vars': 'off',
+    'no-undef': 'off',
   },
 };
