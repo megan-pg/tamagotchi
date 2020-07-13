@@ -100,7 +100,7 @@ function populateAnimalStats(animal) {
       }
     });
   bars.push(`<div class="col s12 left-align"><span style="font-weight:bold;">Unhealthy turns: ${unhealthyIntervals}</span><span class="progress">
-    <div class="determinate grey darken-3" style="width: ${unhealthyIntervals * 2}%;"></div></span></div>`);
+    <div class="determinate grey darken-3" style="width: ${unhealthyIntervals * 10}%;"></div></span></div>`);
   const tf = Object.entries(animal)
     .map(([key, val]) => {
       if (bools.includes(key)) {
@@ -177,7 +177,7 @@ async function refreshScreen(action, animate) {
 
 function isDead() {
   // if animal has been unhealthy for 5 intervals ~ 50 seconds
-  if (unhealthyIntervals > 20) {
+  if (unhealthyIntervals > 10) {
     dead = true;
     return true;
   }
