@@ -176,7 +176,7 @@ $('#createAnimal').click(async () => {
   }
 });
 
-$('#logout').click(() => {
+$('.logout').click(() => {
   const { username } = getClientCreds();
   localStorage.setItem('accessToken', JSON.stringify('null')); // to call it elsewhere
 
