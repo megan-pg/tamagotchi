@@ -1,10 +1,3 @@
-/* eslint-disable func-names */
-/* eslint-disable no-console */
-/* eslint-disable array-callback-return */
-/* eslint-disable no-unused-vars */
-/* eslint-disable consistent-return */
-/* eslint-disable no-undef */
-/* eslint-disable no-use-before-define */
 // todo display a progress bar of unhealthy intervals
 let unhealthyIntervals = 0;
 let dead;
@@ -26,7 +19,7 @@ $(async () => {
   $('#menu').hide();
 });
 
-function getClientCreds() {
+const getClientCreds = () => {
   const obj = {
     token: JSON.parse(localStorage.getItem('accessToken')),
     uuid: JSON.parse(localStorage.getItem('uuid')),
@@ -34,9 +27,9 @@ function getClientCreds() {
   };
 
   return obj;
-}
+};
 
-async function getAnimal(creds) {
+const getAnimal = async (creds) => {
   const url = window.location.href.split('/');
   const animal = url[url.length - 1]; // todo not sure if there's a better way to go about this
 
@@ -52,9 +45,9 @@ async function getAnimal(creds) {
     .fail((result) => {
       M.toast({ html: result.msg });
     });
-}
+};
 
-async function updateStats(data, creds) {
+const updateStats = async (data, creds) => {
   return $.ajax({
     url: '/api/animals/clock',
     type: 'put',
@@ -68,9 +61,9 @@ async function updateStats(data, creds) {
     .fail((result) => {
       M.toast({ html: result.msg });
     });
-}
+};
 
-async function updateStat(data, creds) {
+const updateStat = async (data, creds) => {
   return $.ajax({
     url: '/api/animals/update',
     type: 'put',
@@ -84,9 +77,9 @@ async function updateStat(data, creds) {
     .fail((result) => {
       M.toast({ html: result.msg });
     });
-}
+};
 
-function populateAnimalStats(animal) {
+const populateAnimalStats = (animal) => {
   const atts = ['hunger', 'bathroom', 'boredom', 'health'];
   const bools = ['fatigue', 'sick', 'bored'];
   const serious = ['unhealthy', 'dead'];
@@ -124,9 +117,9 @@ function populateAnimalStats(animal) {
   $('#animal').append(display);
   updateImage(type, state);
   animateState();
-}
+};
 // THE MONSTER
-async function refreshScreen(action, animate) {
+const refreshScreen = async (action, animate) => {
   stopAnimate();
   const obj = getClientCreds();
   const uuid = JSON.parse(localStorage.getItem('animal-uuid'));
@@ -173,31 +166,31 @@ async function refreshScreen(action, animate) {
     updateImage(false, 'rip');
     $('#rip')[0].play();
   }
-}
+};
 
-function isDead() {
+const isDead = () => {
   // if animal has been unhealthy for 5 intervals ~ 50 seconds
   if (unhealthyIntervals > 10) {
     dead = true;
     return true;
   }
   return false;
-}
+};
 
-function showPowerBtn() {
+const showPowerBtn = () => {
   const arr = ['sleep', 'medicine', 'love'];
   const rand = Math.floor(Math.random() * (3 - 0) + 0);
   $(`#${arr[rand]}`).toggleClass('active');
-}
+};
 
-function hidePowerBtn() {
+const hidePowerBtn = () => {
   const arr = ['sleep', 'medicine', 'love'];
   arr.forEach((id) => {
     $(`#${id}`).addClass('active');
   });
-}
+};
 
-function startGame() {
+const startGame = () => {
   let sec = 0;
   const timerInterval = setInterval(() => {
     sec += 1;
@@ -213,9 +206,9 @@ function startGame() {
       showPowerBtn();
     }
   }, 1000);
-}
+};
 
-function calculateStatus(animal) {
+const calculateStatus = (animal) => {
   const { hunger, bathroom, boredom } = animal;
   const arr = [
     { name: 'hunger', val: hunger },
@@ -229,9 +222,9 @@ function calculateStatus(animal) {
     return 'bathroom';
   }
   return arr[0].name;
-}
+};
 
-function updateImage(animalType, animalState) {
+const updateImage = (animalType, animalState) => {
   let animation;
   if (animalType) {
     animation = `/assets/sprite-sheet/sheet/${animalType}/${animalState}_sprite_sheet.png`;
@@ -239,7 +232,7 @@ function updateImage(animalType, animalState) {
     animation = `/assets/sprite-sheet/sheet/${animalState}_sprite_sheet.png`;
   }
   $('#view-screen').css('background-image', `url(${animation})`);
-}
+};
 
 let tID; // we will use this variable to clear the setInterval()
 
