@@ -21,5 +21,6 @@ module.exports = {
     'object-shorthand': 'off',
     'comma-dangle': 'off',
     'import/no-dynamic-require': 'off',
+    'no-param-reassign': 'off',
   },
 };
