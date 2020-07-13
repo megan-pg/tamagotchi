@@ -40,7 +40,7 @@ p {
   border-radius: 30%;
   padding-top: 2em;
   width: 26em;
-  height: 42em;
+  height: 46em;
   padding-right: 0;
   padding-left: 0;
   margin: 0.5em;
@@ -50,7 +50,7 @@ p {
 @media only screen and (min-width: 800px) { 
   #screen{
     width: 28em;
-    height: 40em;
+    height: 44em;
     margin-top: 8em;
     margin-left: auto;
     margin-right: auto; 
@@ -58,7 +58,7 @@ p {
 }
 
 #view-screen {
-  height: 21em;
+  height: 24em;
   width: 24em;
   background-size: 48em 24em;
   border-radius: 0.9375em;
@@ -100,7 +100,7 @@ p {
 }
 
 #menu {
-  height: 21em;
+  height: 24em;
   width: 24em;
   border-radius: 0.9375em;
   background-image: url(/assets/sprite-sheet/raw-sprites/green-background.jpg);
