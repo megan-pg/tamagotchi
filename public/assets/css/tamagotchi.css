@@ -70,9 +70,10 @@ p {
  /* ----------------------- BUTTONS ----------------------- */
 
  .audioBtns {
+  padding: 0;
   text-align: center;
-  margin-top: 10px;
-  margin-bottom: 30px;
+  margin-top: 1em;
+  margin-bottom: 2em;
  }
 
  .audioBtns > button {
@@ -80,7 +81,12 @@ p {
  }
 
 .actionBtns{
-  margin-top: 20px;
+  margin-top: 2em;
+  text-align: center;
+}
+
+.powerBtns{
+  margin-top: 1em;
   text-align: center;
 }
 
@@ -91,7 +97,6 @@ p {
 }
 
 .power {
-  margin-top: 0.5em;
   background-color: red;
 }
 
