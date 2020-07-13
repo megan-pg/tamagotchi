@@ -10,7 +10,6 @@ main {
 
 body.list {
   background-color: black;
-  /* overflow: hidden; */
   -webkit-font-smoothing: antialiased;
 }
 
@@ -35,45 +34,36 @@ p {
   padding: 100px;
 }
 
-.egg-shape{
-  width: 70px;
-  height: 70px;
-  border-radius: 80% 15% 55% 50% / 55% 15% 80% 50%;
-  border: 3px solid #1c446b;
-  transform: rotate(-45deg);
-  margin-top: 30px;
-  background: #ffc000;
-}
-
 #screen {
   background-image: url(images/blueTamagotchi-1475-reducedgreen.jpg);
+  background-repeat:no-repeat;
   background-position: center;
-  /*width: fit-content;*/
-  /*background-position-x: 47.5%;*/
-  position: center;
-  height: 50em;
-  padding-top: 150px;
-  padding-top: 10.75em;
+  background-position-y: 15.5%;
+  height: 77.5vh;
+  padding-top: 12.25em;
+}
+
+@media only screen and (max-width: 600px) {
+  #screen{
+    background-image: none;
+    background-color: #1565C0;
+    border-radius: 30%;
+    padding-top: 2em;
+    height: 90vh;
+    padding-right: 0;
+    padding-left: 0;
+    margin: 0.5em;
+  }
 }
 
 #view-screen {
-  /* margin-top: 19.5em;
-  margin-right: 0.625em; */
   height: 21em;
   width: 24em;
-  background-size: 48em 22em;
+  background-size: 48em 24em;
   border-radius: 0.9375em;
   margin-left: auto;
-  margin-right: auto;
-}
-
-#modal1 {
-  margin-top: 17em;
-  /* margin-right: 52.5em; */
-  height: 21em;
-  width: 24em;
-  /* background-size: 48em 22em; */
-  border-radius: 0.9375em;
+  margin-right: auto; 
+  box-shadow: 1px 1px 5px 5px #3787f2;
 }
 
  /* ----------------------- BUTTONS ----------------------- */
@@ -113,13 +103,12 @@ p {
   width: 24em;
   border-radius: 0.9375em;
   background-image: url(/assets/sprite-sheet/raw-sprites/green-background.jpg);
-  /* border: 4px solid #3d3d3d; */
 }
 
 #animalBox {
   font-family: 'Press Start 2P', cursive;
   color:#3d3d3d;
-  padding-top: 0.5em;
+  padding: 1em;
   width: 100%;
   text-transform: uppercase;
 }
@@ -130,16 +119,7 @@ p {
   border: 1px dashed #3d3d3d;
 }
 
-.tf {
-  margin-left:1em;
-  margin-right: 1em;
-}
-
-.tf > i {
-  font-size: 1.1em;
-}
 #logo {
-  /* todo not truly centered, not sure how this'll do on mobile */
   margin-left: 0.5em;
   margin-top: 0.5em;
 }
@@ -184,7 +164,6 @@ p {
 
 #instructions {
   color: white;
-  
 }
 
 /* unvisited link */

@@ -78,7 +78,9 @@ function populateAnimalsList(animals, user) {
           src='/assets/concept-art/${animal.dead ? 'miscellaneous/img/rip_example.png' : `${animal.species}-tamagotchi/img/${animal.species}_example.png`}'
           style="max-width:80px; height: 80px;border-radius:50%;" / >
           <div class="title">
-              <span class="name">${animal.name} <i class="fas fa-${translateIcon(animal.species)}" aria-hidden="true"></i></span>
+              <span class="name">${animal.name} 
+              ${animal.species === 'turtle' ? '<img class="turtle" src="/assets/concept-art/turtle-tamagotchi/icon/turtle-grey.png"></>' : `<i class='fas fa-${translateIcon(animal.species)}' aria-hidden="true"></i>`}
+              </span>
               <br>
               <span> Age: ${animal.age}</span>
           </div>

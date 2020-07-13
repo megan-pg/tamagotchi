@@ -116,7 +116,7 @@ function populateAnimalStats(animal) {
   const display = `<div id="animalBox">
     ${bars.join('')}
    
-    ${grave.join(' ')}
+    <div class="col s12 left-align">${grave.join(' ')}</div>
 
   </div>`;
 
