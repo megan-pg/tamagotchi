@@ -66,9 +66,9 @@ app.delete('/logout', (req, res) => {
   res.sendStatus(204);
 });
 
-function generateAccessToken(user) {
+const generateAccessToken = (user) => {
   return jwt.sign(user.dataValues, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15s' });
-}
+};
 
 db.sequelize.sync().then(() => {
   app.listen(PORT, () => {
