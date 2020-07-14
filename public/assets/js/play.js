@@ -15,10 +15,8 @@ $(async () => {
     updateImage(false, 'egg_hatching');
     animateState(true);
   } else if (!animal.msg[0].dead) {
-    $('#view-screen').css('background-size', '48em 24em');
     startGame();
   } else {
-    $('#view-screen').css('background-size', '48em 24em');
     dead = true;
   }
   $('#menu').hide();
@@ -121,7 +119,7 @@ const populateAnimalStats = (animal) => {
   $('#animalBox').remove();
   $('#animal').append(display);
   updateImage(type, state);
-  animateState();
+  animateState(false);
 };
 // THE MONSTER
 const refreshScreen = async (action, animate) => {
@@ -147,7 +145,6 @@ const refreshScreen = async (action, animate) => {
   populateAnimalStats(animal.msg[0]);
 
   if (!dead) {
-    $('#view-screen').css('background-size', '48em 24em');
     if (animal.msg[0].unhealthy === true && !animate) {
       unhealthyIntervals += 1;
       $('#negative')[0].play();
@@ -247,9 +244,7 @@ const stopAnimate = () => {
 };
 
 const animateState = async (egg) => {
-  const elWidth = $('#view-screen').css('width');
-  const diff = parseInt(elWidth.match(/(\d+)/)[0], 10);
-
+  const diff = 24;
   let position = 0; // start position for the image slicer
   const interval = 600; // 500 ms of interval for the setInterval()
   tID = setInterval(() => {
@@ -258,11 +253,12 @@ const animateState = async (egg) => {
     // Template literal to insert the variable 'position'
     if (position < (diff * (egg ? 7 : 2))) {
       position += diff;
-    } else if (!egg) {
-      position = 0;
-    } else {
+    } else if (egg && position >= (diff * 7)) {
+      $('#view-screen').css('background-size', '48em 24em');
       stopAnimate();
       startGame();
+    } else {
+      position = 0;
     }
     // reset the position to 0px, once position exceeds 4480px
   }, interval);
