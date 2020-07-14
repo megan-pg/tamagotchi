@@ -78,7 +78,7 @@ const populateAnimalsList = (animals, user) => {
               <br>
               <span> Age: ${animal.age}</span>
           </div>
-          <span class="ml-auto">${animal.dead ? `<button class="btn delete waves-effect waves-red" type="button" data-uuid=${animal.uuid}>Bury</button>` : ''}</span>
+          <span class="ml-auto">${animal.dead ? `<button class="btn delete waves-effect waves-red red lighten-1" type="button" data-uuid=${animal.uuid}>Bury</button>` : ''}</span>
       </div>
     </li>`;
 
