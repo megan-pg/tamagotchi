@@ -1,37 +1,38 @@
 body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-  }
-  
-  main {
-    flex: 1 0 auto;
-  }
-  
-  p.flow-text {
-    margin-bottom: -25px;
-  }
-  
-  h1 {
-    font-family: 'Indie Flower', cursive;
-    font-weight: 900;
-    text-shadow: 2px 2px black;
-  }
-
-  .words {
-      margin-left: 25px;
-  }
-  .text {
-    margin:0; 
-    width:100%;
-  }
-
-  .list {
-    margin: 0;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
-  
+
+main {
+  flex: 1 0 auto;
+}
+
+p.flow-text {
+  margin-bottom: -25px;
+}
+
+h1 {
+  font-family: 'Indie Flower', cursive;
+  font-weight: 900;
+  text-shadow: 2px 2px black;
+}
+
+.words {
+  margin-left: 25px;
+}
+
+.text {
+  margin:0; 
+  width:100%;
+}
+
+.list {
+  margin: 0;
+}
+
 .list li {
-    padding: 0 16px;
+  padding: 0 16px;
 }
 
 #logo {
@@ -40,46 +41,46 @@ body {
   margin-top: 0.5em;
 }
 
-  /* start welcome animation - found on codepen @champa720 */
+/* start welcome animation - found on codepen @champa720 */
 
 body.welcome {
-    background-image: url(images/darkStars.jpg);
-    background-position: center;
-    background-color: #512da8;
-    overflow: hidden;
-    -webkit-font-smoothing: antialiased;
-  }
+  background-image: url(images/darkStars.jpg);
+  background-position: center;
+  background-color: #512da8;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
   
-  .welcome .splash {
-    height: 0px;
-    padding: 0px;
-    border: 130em solid #039be5;
-    position: fixed;
-    left: 50%;
-    top: 100%;
-    display: block;
-    box-sizing: initial;
-    overflow: hidden;
-  
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    animation: puff 0.5s 1.8s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards, borderRadius 0.2s 2.3s linear forwards;
-  }
-  
-  .welcome #welcome {
-    background-image: url("assets/images/darkStars.jpg");
-    background: #311b92 ;
-    width: 56px;
-    height: 56px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    overflow: hidden;
-    opacity: 0;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    animation: init 0.5s 0.2s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards, moveDown 1s 0.8s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards, moveUp 1s 1.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, materia 0.5s 2.7s cubic-bezier(0.86, 0, 0.07, 1) forwards, hide 2s 2.9s ease forwards;
-  }
+.welcome .splash {
+  height: 0px;
+  padding: 0px;
+  border: 130em solid #039be5;
+  position: fixed;
+  left: 50%;
+  top: 100%;
+  display: block;
+  box-sizing: initial;
+  overflow: hidden;
+
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: puff 0.5s 1.8s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards, borderRadius 0.2s 2.3s linear forwards;
+}
+
+.welcome #welcome {
+  background-image: url("assets/images/darkStars.jpg");
+  background: #311b92 ;
+  width: 56px;
+  height: 56px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  overflow: hidden;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  animation: init 0.5s 0.2s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards, moveDown 1s 0.8s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards, moveUp 1s 1.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, materia 0.5s 2.7s cubic-bezier(0.86, 0, 0.07, 1) forwards, hide 2s 2.9s ease forwards;
+}
   
 /* moveIn */
 .welcome header,
@@ -90,17 +91,21 @@ body.welcome {
 
 /* login container */
 #login {
-    display: inline-block; 
-    padding: 32px 48px 0px 48px; 
-    margin: 20px;
-    width: 500px;
+  display: inline-block; 
+  padding: 32px 48px 0px 48px; 
+  margin: 20px;
+  width: 500px;
 }
 
 .login-text {
-    margin-left: 25px;
+  margin-left: 25px;
 }
 
-  /* movement - found on codepen @champa720 */
+.sidenav {
+  width: 11em;
+}
+
+/* movement - found on codepen @champa720 */
 
 @keyframes init {
   0% {
