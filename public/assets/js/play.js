@@ -125,8 +125,8 @@ const refreshScreen = async (action, animate) => {
   const uuid = JSON.parse(localStorage.getItem('animal-uuid'));
   const currentAnimal = await getAnimal(obj);
   const status = calculateStatus(currentAnimal.msg[0]);
-
   if (animate && action !== status) {
+    console.log(animate, action, status)
     // user input that does not match the creatues most depserate status
     await updateStats({ uuid }, getClientCreds());
   } else if (action) {
@@ -169,7 +169,6 @@ const refreshScreen = async (action, animate) => {
 };
 
 const isDead = () => {
-  // if animal has been unhealthy for 5 intervals ~ 50 seconds
   if (unhealthyIntervals > 10) {
     dead = true;
     return true;
