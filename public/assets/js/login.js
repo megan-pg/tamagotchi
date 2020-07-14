@@ -41,7 +41,7 @@ $('#loginBtn').on('click', () => {
       } else if (result.status === 404) {
         M.toast({ html: 'User does not exist!' });
       } else {
-        M.toast({ html: result });
+        M.toast({ html: result.msg });
       }
     });
   }
