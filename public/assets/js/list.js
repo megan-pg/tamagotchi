@@ -194,5 +194,5 @@ $('.logout').click(() => {
 });
 
 $(document).click(() => {
-  $('.sidenav').sidenav();
+  $('.sidenav').sidenav({ edge: 'right' });
 });

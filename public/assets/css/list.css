@@ -163,3 +163,7 @@ i.ml-auto {
 .fixed-action-btn{
   bottom: 10%
 }
+
+.sidenav {
+  width: 11em;
+}

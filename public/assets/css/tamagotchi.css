@@ -67,6 +67,10 @@ p {
   box-shadow: 1px 1px 5px 5px #3787f2;
 }
 
+.sidenav {
+  width: 11em;
+}
+
  /* ----------------------- BUTTONS ----------------------- */
 
  #showMenu{
