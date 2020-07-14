@@ -10,12 +10,17 @@ $(async () => {
   const animal = await getAnimal(obj);
   localStorage.setItem('animal-uuid', JSON.stringify(animal.msg[0].uuid)); // to call it elsewhere
 
-  if (!animal.msg[0].dead) {
+  if (animal.msg[0].age === 0) {
+    $('#view-screen').css('background-size', '168em 24em');
+    updateImage(false, 'egg_hatching');
+    animateState(true);
+  } else if (!animal.msg[0].dead) {
+    $('#view-screen').css('background-size', '48em 24em');
     startGame();
   } else {
+    $('#view-screen').css('background-size', '48em 24em');
     dead = true;
   }
-  populateAnimalStats(animal.msg[0]);
   $('#menu').hide();
 });
 
@@ -126,7 +131,6 @@ const refreshScreen = async (action, animate) => {
   const currentAnimal = await getAnimal(obj);
   const status = calculateStatus(currentAnimal.msg[0]);
   if (animate && action !== status) {
-    console.log(animate, action, status)
     // user input that does not match the creatues most depserate status
     await updateStats({ uuid }, getClientCreds());
   } else if (action) {
@@ -143,6 +147,7 @@ const refreshScreen = async (action, animate) => {
   populateAnimalStats(animal.msg[0]);
 
   if (!dead) {
+    $('#view-screen').css('background-size', '48em 24em');
     if (animal.msg[0].unhealthy === true && !animate) {
       unhealthyIntervals += 1;
       $('#negative')[0].play();
@@ -190,6 +195,8 @@ const hidePowerBtn = () => {
 };
 
 const startGame = () => {
+  refreshScreen();
+
   let sec = 0;
   const timerInterval = setInterval(() => {
     sec += 1;
@@ -239,9 +246,9 @@ const stopAnimate = () => {
   clearInterval(tID);
 };
 
-const animateState = () => {
+const animateState = async (egg) => {
   const elWidth = $('#view-screen').css('width');
-  const diff = parseInt(elWidth.match(/(\d+)/)[0], 18);
+  const diff = parseInt(elWidth.match(/(\d+)/)[0], 10);
 
   let position = 0; // start position for the image slicer
   const interval = 600; // 500 ms of interval for the setInterval()
@@ -249,10 +256,13 @@ const animateState = () => {
     // todo this is px based, css sheet has ems, might see some weirdness
     document.getElementById('view-screen').style.backgroundPosition = `-${position}em 0em`;
     // Template literal to insert the variable 'position'
-    if (position < (diff * 2)) {
+    if (position < (diff * (egg ? 7 : 2))) {
       position += diff;
-    } else {
+    } else if (!egg) {
       position = 0;
+    } else {
+      stopAnimate();
+      startGame();
     }
     // reset the position to 0px, once position exceeds 4480px
   }, interval);
