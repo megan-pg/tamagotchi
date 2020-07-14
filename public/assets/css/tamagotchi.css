@@ -61,6 +61,7 @@ p {
   height: 24em;
   width: 24em;
   background-size: 48em 24em;
+  /* background-size: 168em 24em; */
   border-radius: 0.9375em;
   margin-left: auto;
   margin-right: auto; 
