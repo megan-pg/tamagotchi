@@ -10,7 +10,16 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: { len: [0, 32] },
+      validate: {
+        len: [0, 32],
+        noSpecials: (val) => {
+          const canContain = RegExp('^[a-zA-Z0-9_]*$');
+          if (!canContain.test(val)) {
+            throw new Error('Username can\'t contain special characters.');
+          }
+          return true;
+        },
+      },
     },
     difficulty: {
       type: DataTypes.STRING,
