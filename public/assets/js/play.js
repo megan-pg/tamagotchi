@@ -18,6 +18,8 @@ $(async () => {
     startGame();
   } else {
     dead = true;
+    updateImage(animal.msg[0].species, 'rip');
+    animateState(false);
   }
   $('#menu').hide();
 });
@@ -171,7 +173,7 @@ const refreshScreen = async (action, animate) => {
 };
 
 const isDead = () => {
-  if (unhealthyIntervals > 10) {
+  if (unhealthyIntervals > 2) {
     dead = true;
     return true;
   }

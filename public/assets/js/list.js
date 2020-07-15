@@ -146,7 +146,7 @@ const deleteAnimal = async (uuid, creds) => {
 $('#createAnimal').click(async () => {
   const creds = getClientCreds();
   const obj = {
-    name: $('#name').val(),
+    name: $('#name').val().trim(),
     difficulty: $('input:radio[name=difficulty]:checked').val(),
     species: $('input:radio[name=species]:checked').val(),
     UserUuid: creds.uuid,
