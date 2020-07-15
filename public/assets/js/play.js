@@ -173,7 +173,7 @@ const refreshScreen = async (action, animate) => {
 };
 
 const isDead = () => {
-  if (unhealthyIntervals > 2) {
+  if (unhealthyIntervals > 10) {
     dead = true;
     return true;
   }
