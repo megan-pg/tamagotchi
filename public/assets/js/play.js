@@ -18,6 +18,8 @@ $(async () => {
     startGame();
   } else {
     dead = true;
+    updateImage(animal.msg[0].species, 'rip');
+    animateState(false);
   }
   $('#menu').hide();
 });

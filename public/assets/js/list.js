@@ -110,7 +110,7 @@ const translateIcon = (species) => {
 };
 
 const validateInputs = (obj) => {
-  const inputs = Object.entries(obj).filter(([key, val]) => val === undefined || val.length === 0);
+  const inputs = Object.entries(obj).filter(([key, val]) => val === undefined || val.length === 0 || val.indexOf(' ') >= 0);
 
   if (inputs.length > 0) {
     const required = inputs.map(([key, val]) => `${key}: is required.`);
