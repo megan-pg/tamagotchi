@@ -1,46 +1,74 @@
-# Tamagotchi
+# Digital Dude
 
 [![GitHub repo size](https://img.shields.io/github/repo-size/megan-pg/tamagotchi)](https://shields.io/)
 
-<!-- ![image or animation of application](./assets/tamagotchi.png) -->
-
 ## Table of Contents:
 * [Description](##Description)
-* [How to Install](##How-to-Install)
+* [Getting Started Remotely](##Installation-&-Getting-Started-Remotely)
+* [Getting Started Locally](##Installation-&-Getting-Started-Locally)
 * [Technologies Used](##Technologies-Used)
 * [Usage](##Usage)
 * [Contributors](##Contributors)
 * [Special Thanks](##Special-Thanks)
-* [Link to Page](##Link-to-Page)
+* [Deployed](##Deployed)
 
 ## Description
-This application is a remake of the original Tamagotchi game from the 80's. User logs in and plays with a chosen animal. Keeping it alive and keeping it alive for XX amount of time is the goal.
+A retro full-stack clone of the original Tamagotchi game from the 80's. Create an account, add some pets & keep them alive as long as you can.
 
-## How to Install
-Requires:
-* Node
-* MySQL
+<p align="center">
+   <img width="70%" height="300vh" src="./public/assets/readme-images/desktop.gif">
+   <img width="20%" height="300vh" src="./public/assets/readme-images/mobile.gif">
+</p>
 
-To run locally:
-1. Install dependencies:
-    ``` npm install ```
+## Installation & Getting Started Remotely
+* [hosted site](http://www.digital-dude.com)
+* [repo](https://github.com/megan-pg/tamagotchi)
 
-2. Create database:
-    ``` sequelize db:create ```
+## Installation & Getting Started Locally
 
-3. Run server:
-    ```node server```
-    
-4. Open localhost in browser & create an account
+1. Clone from the [Repo](https://github.com/megan-pg/tamagotchi.git): 
+  ```
+  git clone https://github.com/megan-pg/tamagotchi.git
+  ```
+2. Install dependencies:
+  ```
+  npm install
+  ```
+3. Create .env file at root directory, change values as needed (for use with MySQL database):
+  ```
+  DB_PASSWORD='password'
+  DB_HOST='localhost'
+  DB_USER='root'
+  DB_NAME='tamagotchi_db'
+  DB_PORT='3306'
+  ACCESS_TOKEN_SECRET={{a really long 64 bit string}}
+  REFRESH_TOKEN_SECRET={{an equally really long but distinct 64 bit string}}
+  ```
+4. Create & run MySQL Database:
+  * Install: 
+    * [MySQL Install (Mac)](https://dev.mysql.com/doc/mysql-osx-excerpt/5.7/en/osx-installation-pkg.html)
+    * [MySQL Workbench](https://www.mysql.com/products/workbench/)
+  * Run MySQL, from System Prefrences.
+  * Open MySQL Workbench, not required but helps to see what's going on in the DB
+
+5. Run application:
+  ```
+  node server.js
+  ```
+
+6. Open [localhost](http://localhost:8080/)
+7. [Play](##Usage)
 
 ## Technologies Used
 Project is created with:
 * HTML5
 * CSS3
 * Materialize
+* Pixelart.com
+* Texture Packer (to create sprite sheets)
 * Javascript
 * MySql
-* Deployed in Heroku
+* Heroku
 * Node.js
     * bcryptjs
     * dotenv
@@ -50,46 +78,89 @@ Project is created with:
     * sequelize
     * uuid
 
-* Online Pixelart.com
-* Texture Packer (to create sprite sheets)
-
 ## Usage
-* Choose your pet
+
+### Create Your Pet
+<p align="center">
+   <img width="70%" height="300vh" src="./public/assets/readme-images/desktop-create.png"/>
+</p>
+
+* Give it a name
+* Choose the species:
     * Turtle
     * Fish
-    * Gator
+    * Bird
     * Mammal
-User inputs Name. Date and pet ID get auto generated.
-
-* Choose level of difficulty 
+* Choose level of difficulty:
     * Easy - Starts off with meters near empty
     * Medium - Starts off with meters half full
     * Hard - Starts off with meters almost full
 
+### Take Care of Your Pets
+<p align="center">
+   <img width="70%" height="300vh" src="./public/assets/readme-images/desktop-play.png"/>
+</p>
 
-* Feed Button - This will update your Hunger meter (makes positive sound)
+Be sure to take note of how your pet is behaving before giving interacting with it. Even usually helpful interactions can be harmful or neglectful if other attributes are more in need of your attention.
 
-* Clean Button - After your pet poops, it will need to be cleaned. Don't let it sit too long in it's poop or the health meter will be decremented.
+* Feed - Keep your pet well fed, otherwise they'll get hungry ortired.
+* Clean - Keep your pet's surroundings clean, otherwise they'll get dirty or sick.
+* Play - Keep your pet entertained, otherwise they'll get bored.
+* Sleep - Give your pet some rest.
+* Medicine - Give your pet some medicine.
+* Love - Give you pet some love.
 
-* Play Button - Play with pet to boost Happy/Bored meter (makes a positive sound)
+### Check on Your Pets' Status
+<p align="center">
+   <img width="19%" height="300vh" src="./public/assets/readme-images/menu.png"/>
+   <img width="19%" height="300vh" src="./public/assets/readme-images/bathroom.png"/>
+   <img width="19%" height="300vh" src="./public/assets/readme-images/feed.png"/>
+   <img width="19%" height="300vh" src="./public/assets/readme-images/clean.png"/>
+   <img width="19%" height="300vh" src="./public/assets/readme-images/bored.png"/>
+</p>
 
-* Sleep Button - Play with pet to boost Happy/Bored meter (makes a positive sound)
+* Open the menu to check on status of your pet:
+    * Hunger / Fatigue
+    * Bathroom / Cleanliness
+    * Boredom / Love
+    * Overall Health
+    * Length of Unhealthiness
 
-* Medicine Button - When your pet's health is very low you can use this but it will also severely lower their Happy/Bored meter (makes a negative sound)
+### Play Some Music
+* Play/Pause
+* Volume Up
+* Volume Down
 
-* Love Button - Love your pet to boost Happy/Bored meter (makes a positive sound)
+### Lay to Rest
+<p align="center">
+   <img width="70%" height="300vh" src="./public/assets/readme-images/desktop-bury.png"/>
+</p>
 
+* Bury - If your pet has grown ill and passed away, you may bury them from the pets list.
 
 ## Contributors
-* **Megan Pardy-Gokcu** - [megan-pg](https://github.com/megan-pg)
-* **Doug Wright** - [Spazcool](https://github.com/Spazcool)
-* **Scott House** - [sehouse](https://github.com/sehouse)
-* **Karla McLeod** - [kmcleod81](https://github.com/kmcleod81)
+<p align="center">
+  <a href="https://github.com/megan-pg">
+  <img src="./public/assets/readme-images/cooldude1.png" title="Megan Pardy-Gokcu" width="10%"/>
+  </a> 
+
+  <a href="https://github.com/Spazcool">
+  <img src="./public/assets/readme-images/cooldude2.png" title="Douglas Wright" width="10%"/>
+  </a> 
+
+  <a href="https://github.com/sehouse">
+  <img src="./public/assets/readme-images/cooldude3.png" title="Scott House" width="10%"/>
+  </a>
+
+  <a href="https://github.com/kmcleod81">
+  <img src="./public/assets/readme-images/cooldude4.png" title="Karla McLeod" width="10%"/>
+  </a>
+</p>
 
 ## Special Thanks/Credits
-* Game Music: "Chubby Cat", from PlayOnLoop.com Licensed under Creative Commins by Attriution 4.0
+* Game Music: "Chubby Cat", from PlayOnLoop.com Licensed under Creative Commons by Attriution 4.0
 * Additional sound effects from [Zap Splat](https://www.zapsplat.com)
 * Cool bouncy animation found on codepen @champa720
 
-## Link to Heroku Page
-* [Digital Dude](https://digitaldude.herokuapp.com/)
+## Depolyed
+* [Digital Dude](http://www.digital-dude.com)
